@@ -1,0 +1,33 @@
+﻿@page "{path?}"
+@model Server.Pages.Admin.FileManager.IndexModel
+
+@{
+}
+
+<section-page-header>
+	@(Resources.DataDictionary.FileManager)
+</section-page-header>
+
+<section-page-body>
+	<div dir="ltr">
+
+		<form method="post" enctype="multipart/form-data">
+
+			<input type="hidden" id="Path" name="Path" value="@(Model.CurrentPath)" />
+
+			<h5>
+				Current Path: @(Model.CurrentPath)
+			</h5>
+
+			<partial name="PartialViews/_DisplayControls" model="Model" />
+
+			<partial name="PartialViews/_DisplayDirectories" model="Model" />
+
+			<partial name="PartialViews/_DisplayFiles" model="Model" />
+
+			<partial name="PartialViews/_DisplayPictures" model="Model" />
+
+		</form>
+
+	</div>
+</section-page-body>

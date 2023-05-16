@@ -1,0 +1,36 @@
+﻿@page
+@model Server.Pages.Admin.IndexModel
+@{
+
+}
+
+
+<section-page-header>
+	@(Resources.DataDictionary.Dashboard)
+</section-page-header>
+
+<section-page-body>
+
+	<div class="row g-2">
+		<div class="col-md-3  card text-white bg-primary">
+			<a asp-page="/admin/users/index" class="text-white">
+			<div class="card-body">
+				<h5 class="card-text text-center p-4">@(Resources.DataDictionary.Users)</h5>
+			</div>
+			</a>
+		</div>
+		<div class="col-md-3  mx-auto card text-white bg-primary ">
+			<div class="card-body">
+				<h5 class="card-text text-center p-4">@(Resources.DataDictionary.Users)</h5>
+			</div>
+		</div>
+
+		<div class="col-md-3   card text-white bg-primary ">
+			<div class="card-body">
+				<h5 class="card-text text-center p-4">@(Resources.DataDictionary.Users)</h5>
+			</div>
+		</div>
+
+	</div>
+
+</section-page-body>
