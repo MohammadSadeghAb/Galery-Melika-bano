@@ -1,10 +1,13 @@
-﻿using Domain.Users;
+﻿using Domain.ProductAgg;
+using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
 	public class DatabaseContext : DbContext
 	{
+		public DbSet<Product> Products { get; set; }
+
 		public DbSet<User> Users { get; set; }
 
 		public DatabaseContext(DbContextOptions options) : base(options)
