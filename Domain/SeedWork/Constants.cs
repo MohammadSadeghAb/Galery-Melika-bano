@@ -74,7 +74,20 @@
 			public const int Address = 4000;
 			public const int Name_Job = 500;
 
-		}
+			public const int Color_Text = 20;
+            public const int Color_rgb = 14;
+
+			public const int Gender = 4;
+
+			public const int Price = 10;
+
+            public const int Dimensions = 11;
+
+			public const int Type = 30;
+
+			public const int Number = 7;
+
+        }
 
 		/// <summary>
 		/// https://regex101.com/
