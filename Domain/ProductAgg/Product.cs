@@ -173,7 +173,7 @@ namespace Domain.ProductAgg
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public int Discount_Single { get; set; }
+        public int? Discount_Single { get; set; }
         // **********
 
         // **********
@@ -182,7 +182,7 @@ namespace Domain.ProductAgg
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public int Discount_Major { get; set; }
+        public int? Discount_Major { get; set; }
         // **********
 
         // **********

@@ -12,7 +12,7 @@ namespace ViewModels.Pages.Admin.Products
     public class UpdateViewModel : CommonViewModel
     {
         //**********
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         //**********
 
         // **********
