@@ -1,0 +1,110 @@
+﻿@page
+@model Server.Pages.Admin.Categories.IndexModel
+@using Resources
+
+@{
+    var pageTitle = $"{ButtonCaptions.ListOf} {DataDictionary.Category}";
+    ViewData[ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+
+<section-page-header>
+    @(pageTitle)
+</section-page-header>
+
+<section-page-actions>
+    @if (Request.Query["Id"].ToString() == string.Empty)
+    {
+        <a asp-page="Create">
+            @(Html.DtatGetLinkCaptionForCreate())
+        </a>
+    }
+    else
+    {
+        <a asp-page="Index" class="btn btn-secondary">@(ButtonCaptions.Back)</a>
+    }
+</section-page-actions>
+
+<section-table>
+    <table>
+        <caption>
+            @(pageTitle)
+        </caption>
+
+        <thead>
+            <tr>
+                <th>
+                    @(DataDictionary.RowNumber)
+                </th>
+                <th>
+                    @(DataDictionary.Action)
+                </th>
+                <th>
+                    @(DataDictionary.Name)
+                </th>
+                <th>
+                    @(DataDictionary.IsActive)
+                </th>
+                <th>
+                    @(DataDictionary.IsDeletable)
+                </th>
+                <th>
+                    @(DataDictionary.Ordering)
+                </th>
+                <th>
+                    @(DataDictionary.Children)
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="text-center">
+            @for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+            {
+                var item = Model.ViewModel[index];
+
+                <tr>
+                    @(Html.DtatDisplayRowNumberWithTd(index + 1))
+
+                    <table-actions>
+                        <a asp-page="Details" asp-route-id="@(item.Id)">
+                            @(Html.DtatGetIconDetails())
+                        </a>
+                        <a asp-page="Update" asp-route-id="@(item.Id)">
+                            @(Html.DtatGetIconUpdate())
+                        </a>
+
+                        @if (item.IsDeletable)
+                        {
+                            <a asp-page="Delete" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDelete())
+                            </a>
+                        }
+                    </table-actions>
+
+                    <td>
+                        @(item.Name)
+                    </td>
+
+                    @(Html.DtatDisplayBooleanWithTd(item.IsActive))
+
+                    @(Html.DtatDisplayBooleanWithTd(item.IsDeletable))
+
+                    @(Html.DtatDisplayIntegerWithTd(item.Ordering))
+
+                    <td>
+                        @if (item.ChildCount > 0)
+                        {
+                            @(Html.SmallLinkButton(ButtonCaptions.Show, "categories", "Id", item.Id.ToString()))
+                        }
+                        else
+                        {
+                            <text>@(DataDictionary.WithoutChild)</text>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section-table>
