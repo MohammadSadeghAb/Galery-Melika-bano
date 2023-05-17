@@ -1,5 +1,5 @@
 ﻿using Domain.SeedWork;
-using Domain.UserAgg;
+using Domain.Users;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,8 +8,7 @@ namespace Domain.CategoryAgg
     public class Category : 
         Entity,
         IEntityHasIsActive,
-        IEntityHasIsDeletable,
-        IEntityHasEditorUserId
+        IEntityHasIsDeletable
     {
         public Category()
         {
@@ -50,12 +49,6 @@ namespace Domain.CategoryAgg
         // **********
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public DateTime UpdateDateTime { get; private set; }
-        // **********
-
-
-        // **********
-        public Guid EditorUserId { get; set; }
-        public User EditorUser { get; set; }
         // **********
 
         public void SetUpdateDateTime()

@@ -1,6 +1,8 @@
 ﻿using Application.AccountApp;
+using Application.CategoryApp;
 using Application.ProductApp;
 using Application.UserApp;
+using Domain.CategoryAgg;
 using Domain.ProductAgg;
 using Domain.Users;
 using Framework.Password;
@@ -18,6 +20,9 @@ namespace Infrastructure
 
 			services.AddTransient<IProductApplication, ProductApplication>();
             services.AddTransient<IProductRepository, ProductRepository>();
+
+			services.AddTransient<ICategoryApplication, CategoryApplication>();
+			services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             services.AddTransient<IAccountApplication, AccountApplication>();
 			services.AddTransient<IPasswordHasher, PasswordHasher>();

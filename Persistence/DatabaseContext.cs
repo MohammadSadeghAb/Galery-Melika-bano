@@ -1,4 +1,5 @@
-﻿using Domain.ProductAgg;
+﻿using Domain.CategoryAgg;
+using Domain.ProductAgg;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,8 @@ namespace Persistence
 		public DbSet<Product> Products { get; set; }
 
 		public DbSet<User> Users { get; set; }
+
+		public DbSet<Category> Categories { get; set; }
 
 		public DatabaseContext(DbContextOptions options) : base(options)
 		{

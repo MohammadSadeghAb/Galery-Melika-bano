@@ -10,9 +10,5 @@ namespace ViewModels.Pages.Admin.Categories
             Name = nameof(Resources.DataDictionary.Parent))]
         public Guid? ParentId { get; set; }
         // **********
-
-        // **********
-        public Guid EditorUserId { get; set; }
-        // **********
     }
 }

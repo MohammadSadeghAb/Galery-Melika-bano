@@ -55,8 +55,6 @@ namespace Server.Pages.Admin.Categories
                 return Page();
             }
 
-            var editorUserId = User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
-            ViewModel.EditorUserId = Guid.Parse(editorUserId);
             var res = await _application.AddCategory(ViewModel);
 
             if (!res.Succeeded || res.ErrorMessages.Count > 0)

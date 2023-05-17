@@ -1,5 +1,5 @@
 ﻿using Domain.CategoryAgg;
-using Domain.UserAgg;
+using Domain.Users;
 using Framework;
 using Framework.OperationResult;
 using Resources;
@@ -53,7 +53,6 @@ namespace Application.CategoryApp
                 Ordering = category.Ordering,
                 IsActive = category.IsActive,
                 IsDeletable = category.IsDeletable,
-                EditorUserId = category.EditorUserId,
             };
 
             await _repository.CreateAsync(_category);
@@ -103,7 +102,6 @@ namespace Application.CategoryApp
             categoryForUpdate.Ordering = category.Ordering;
             categoryForUpdate.IsActive = category.IsActive;
             categoryForUpdate.IsDeletable = category.IsDeletable;
-            categoryForUpdate.EditorUserId = category.EditorUserId;
             categoryForUpdate.SetUpdateDateTime();
 
             await _repository.SaveChangesAsync();
@@ -180,7 +178,6 @@ namespace Application.CategoryApp
                 parentName = parent?.Name;
             }
 
-            var editorUser = await _userRepository.GetAsync(category.EditorUserId);
 
             DetailsViewModel categoryForView = new()
             {
@@ -188,8 +185,6 @@ namespace Application.CategoryApp
                 Name = category.Name,
                 ParentId = category.ParentId,
                 ParentName = parentName,
-                EditorUserId = category.EditorUserId,
-                EditorUserName = editorUser?.Username,
                 Ordering = category.Ordering,
                 IsActive = category.IsActive,
                 IsDeletable = category.IsDeletable,
