@@ -1,0 +1,166 @@
+﻿@page
+@model Server.Pages.Admin.Products.UpdateModel
+@{
+	var pageTitle =
+	$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Product}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+}
+
+<form method="post">
+<section-form>
+	<fieldset>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<input type="hidden" asp-for="ViewModel.Id" />
+
+		<section-form-field>
+			<label asp-for="ViewModel.Name_Product"></label>
+			<input asp-for="ViewModel.Name_Product" />
+			<span asp-validation-for="ViewModel.Name_Product"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Gender"></label>
+			<select asp-for="ViewModel.Gender">
+				@if (Model.ViewModel.Gender == Resources.DataDictionary.Both)
+					{
+						<option>@(Resources.DataDictionary.Both)</option>
+						<option>@(Resources.DataDictionary.Boy)</option>
+						<option>@(Resources.DataDictionary.Girl)</option>
+					}
+				@if (Model.ViewModel.Gender == Resources.DataDictionary.Boy)
+					{
+						<option>@(Resources.DataDictionary.Boy)</option>
+						<option>@(Resources.DataDictionary.Both)</option>
+						<option>@(Resources.DataDictionary.Girl)</option>
+					}
+				@if (Model.ViewModel.Gender == Resources.DataDictionary.Girl)
+					{
+						<option>@(Resources.DataDictionary.Girl)</option>
+						<option>@(Resources.DataDictionary.Both)</option>
+						<option>@(Resources.DataDictionary.Boy)</option>
+					}
+			</select>
+			<span asp-validation-for="ViewModel.Gender"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Type"></label>
+			<input asp-for="ViewModel.Type" />
+				<span asp-validation-for="ViewModel.Type"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Price"></label>
+			<input asp-for="ViewModel.Price" />
+				<span asp-validation-for="ViewModel.Price"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Number"></label>
+			<input asp-for="ViewModel.Number" />
+			<span asp-validation-for="ViewModel.Number"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Discount_Single"></label>
+			<input asp-for="ViewModel.Discount_Single" />
+			<span asp-validation-for="ViewModel.Discount_Single"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Discount_Major"></label>
+			<input asp-for="ViewModel.Discount_Major" />
+				<span asp-validation-for="ViewModel.Discount_Major"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Dimensions"></label>
+			<input asp-for="ViewModel.Dimensions" />
+			<span asp-validation-for="ViewModel.Dimensions"></span>
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color1_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color1_text" />
+					<span asp-validation-for="ViewModel.Color1_text"></span>
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color1_rgb"></label>
+					<input type="color" class="form-control" style="color : @(Model.ViewModel.Color1_rgb)" asp-for="ViewModel.Color1_rgb" />
+					<span asp-validation-for="ViewModel.Color1_rgb"></span>
+				</div>
+			</div>
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color2_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color2_text" />
+					<span asp-validation-for="ViewModel.Color2_text"></span>
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color2_rgb"></label>
+					<input type="color" class="form-control" style="color : @(Model.ViewModel.Color2_rgb)" asp-for="ViewModel.Color2_rgb" />
+					<span asp-validation-for="ViewModel.Color2_rgb"></span>
+				</div>
+			</div>
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color3_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color3_text" />
+					<span asp-validation-for="ViewModel.Color3_text"></span>
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color3_rgb"></label>
+					<input type="color" class="form-control" style="color : @(Model.ViewModel.Color3_rgb)" asp-for="ViewModel.Color3_rgb" />
+					<span asp-validation-for="ViewModel.Color3_rgb"></span>
+				</div>
+			</div>
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color4_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color4_text" />
+					<span asp-validation-for="ViewModel.Color4_text"></span>
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color4_rgb"></label>
+					<input type="color" class="form-control" style="color : @(Model.ViewModel.Color4_rgb)" asp-for="ViewModel.Color4_rgb" />
+					<span asp-validation-for="ViewModel.Color4_rgb"></span>
+				</div>
+			</div>
+		</section-form-field>
+	</fieldset>
+
+	<section-form-buttons>
+		<button-save />
+		<button-reset />
+	</section-form-buttons>
+
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForUpdate())
+		</a>
+		<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDelete())
+		</a>
+	</section-form-footer>
+</section-form>
+</form>

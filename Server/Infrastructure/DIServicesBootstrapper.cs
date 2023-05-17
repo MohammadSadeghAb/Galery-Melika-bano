@@ -1,5 +1,7 @@
 ﻿using Application.AccountApp;
+using Application.ProductApp;
 using Application.UserApp;
+using Domain.ProductAgg;
 using Domain.Users;
 using Framework.Password;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +16,10 @@ namespace Infrastructure
 			services.AddTransient<IUserApplication, UserApplication>();
 			services.AddTransient<IUserRepository, UserRepository>();
 
-			services.AddTransient<IAccountApplication, AccountApplication>();
+			services.AddTransient<IProductApplication, ProductApplication>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+
+            services.AddTransient<IAccountApplication, AccountApplication>();
 			services.AddTransient<IPasswordHasher, PasswordHasher>();
 
 			services.AddTransient<IPasswordHasher, PasswordHasher>();

@@ -567,4 +567,19 @@
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="Boy" xml:space="preserve">
+    <value>Boy</value>
+  </data>
+  <data name="Girl" xml:space="preserve">
+    <value>Girl</value>
+  </data>
 </root>

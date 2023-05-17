@@ -90,13 +90,13 @@ namespace Application.ProductApp
                     Number = product.Number,
                     Dimensions = product.Dimensions,
                     Color1_rgb = product.Color1_rgb,
-                    Color2_rgb = product.Color1_rgb,
-                    Color3_rgb = product.Color1_rgb,
-                    Color4_rgb = product.Color1_rgb,
+                    Color2_rgb = product.Color2_rgb,
+                    Color3_rgb = product.Color3_rgb,
+                    Color4_rgb = product.Color4_rgb,
                     Color1_text = product.Color1_text,
-                    Color2_text = product.Color1_text,
-                    Color3_text = product.Color1_text,
-                    Color4_text = product.Color1_text,
+                    Color2_text = product.Color2_text,
+                    Color3_text = product.Color3_text,
+                    Color4_text = product.Color4_text,
                     Name_Product = product.Name_Product,
                     UpdateDateTime = product.UpdateDateTime,
                     Discount_Major = product.Discount_Major,
@@ -127,13 +127,13 @@ namespace Application.ProductApp
                 Number = product.Number,
                 Dimensions = product.Dimensions,
                 Color1_rgb = product.Color1_rgb,
-                Color2_rgb = product.Color1_rgb,
-                Color3_rgb = product.Color1_rgb,
-                Color4_rgb = product.Color1_rgb,
+                Color2_rgb = product.Color2_rgb,
+                Color3_rgb = product.Color3_rgb,
+                Color4_rgb = product.Color4_rgb,
                 Color1_text = product.Color1_text,
-                Color2_text = product.Color1_text,
-                Color3_text = product.Color1_text,
-                Color4_text = product.Color1_text,
+                Color2_text = product.Color2_text,
+                Color3_text = product.Color3_text,
+                Color4_text = product.Color4_text,
                 Name_Product = product.Name_Product,
                 UpdateDateTime = product.UpdateDateTime,
                 Discount_Major = product.Discount_Major,
@@ -172,11 +172,6 @@ namespace Application.ProductApp
                 return res;
             }
 
-            if (_repository.Exist(x => x.Name_Product == product.Name_Product))
-            {
-                res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.ProductName));
-            }
-
             if (0 < res.ErrorMessages.Count)
             {
                 res.Succeeded = false;
@@ -191,13 +186,13 @@ namespace Application.ProductApp
             productForUpdate.Number = product.Number;
             productForUpdate.Dimensions = product.Dimensions;
             productForUpdate.Color1_rgb = product.Color1_rgb;
-            productForUpdate.Color2_rgb = product.Color1_rgb;
-            productForUpdate.Color3_rgb = product.Color1_rgb;
-            productForUpdate.Color4_rgb = product.Color1_rgb;
+            productForUpdate.Color2_rgb = product.Color2_rgb;
+            productForUpdate.Color3_rgb = product.Color3_rgb;
+            productForUpdate.Color4_rgb = product.Color4_rgb;
             productForUpdate.Color1_text = product.Color1_text;
-            productForUpdate.Color2_text = product.Color1_text;
-            productForUpdate.Color3_text = product.Color1_text;
-            productForUpdate.Color4_text = product.Color1_text;
+            productForUpdate.Color2_text = product.Color2_text;
+            productForUpdate.Color3_text = product.Color3_text;
+            productForUpdate.Color4_text = product.Color4_text;
             productForUpdate.Name_Product = product.Name_Product;
             productForUpdate.Discount_Major = product.Discount_Major;
             productForUpdate.Discount_Single = product.Discount_Single;

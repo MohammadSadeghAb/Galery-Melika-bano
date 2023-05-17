@@ -570,4 +570,19 @@
   <data name="DiscountSingle" xml:space="preserve">
     <value>تخفیف تکی</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>کالا</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>کالا ها</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>هردو</value>
+  </data>
+  <data name="Boy" xml:space="preserve">
+    <value>پسر</value>
+  </data>
+  <data name="Girl" xml:space="preserve">
+    <value>دختر</value>
+  </data>
 </root>

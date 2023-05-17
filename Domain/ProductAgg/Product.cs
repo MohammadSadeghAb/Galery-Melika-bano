@@ -66,14 +66,14 @@ namespace Domain.ProductAgg
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Color2_text { get; set; }
+        public string? Color2_text { get; set; }
 
         [MaxLength
         (length: Constants.MaxLength.Color_rgb,
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Color2_rgb { get; set; }
+        public string? Color2_rgb { get; set; }
         // **********
 
         // **********
@@ -82,13 +82,13 @@ namespace Domain.ProductAgg
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Color3_text { get; set; }
+        public string? Color3_text { get; set; }
 
         [MaxLength(length: Constants.MaxLength.Color_rgb,
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Color3_rgb { get; set; }
+        public string? Color3_rgb { get; set; }
         // **********
 
         // **********
@@ -97,14 +97,14 @@ namespace Domain.ProductAgg
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Color4_text { get; set; }
+        public string? Color4_text { get; set; }
 
         [MaxLength
         (length: Constants.MaxLength.Color_rgb,
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Color4_rgb { get; set; }
+        public string? Color4_rgb { get; set; }
         // **********
 
         // **********
@@ -117,11 +117,6 @@ namespace Domain.ProductAgg
         // **********
 
         // **********
-        [MaxLength
-        (length: Constants.MaxLength.Number,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
         [Required
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
@@ -146,11 +141,6 @@ namespace Domain.ProductAgg
         // **********
 
         // **********
-        [MaxLength
-        (length: Constants.MaxLength.Price,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
         [Required
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
@@ -191,7 +181,7 @@ namespace Domain.ProductAgg
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-        public string Dimensions { get; set; }
+        public string? Dimensions { get; set; }
         // **********
 
         public void SetId(Guid id)

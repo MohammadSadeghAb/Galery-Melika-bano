@@ -74,11 +74,6 @@ namespace ViewModels.Pages.Admin.Products
         // **********
 
         // **********
-        [MaxLength
-        (length: Constants.MaxLength.Number,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
         [Required
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
@@ -91,11 +86,6 @@ namespace ViewModels.Pages.Admin.Products
         // **********
 
         // **********
-        [MaxLength
-        (length: Constants.MaxLength.Price,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
         [Required
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
