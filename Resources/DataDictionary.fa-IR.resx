@@ -585,4 +585,7 @@
   <data name="Girl" xml:space="preserve">
     <value>دختر</value>
   </data>
+  <data name="Picture" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
 </root>

@@ -582,4 +582,7 @@
   <data name="Girl" xml:space="preserve">
     <value>Girl</value>
   </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Picture</value>
+  </data>
 </root>
