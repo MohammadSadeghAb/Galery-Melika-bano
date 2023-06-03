@@ -45,12 +45,21 @@ namespace Application.UserApp
 
 			var fixedDescription = Framework.Utility.FixText(user.AdminDescription);
 
-			var hashedPassword = _hasher.Hash(user?.Password);
+            var fixedAddress = Framework.Utility.FixText(user.Address);
+
+            var hashedPassword = _hasher.Hash(user?.Password);
 
 			var _user = new User(user?.EmailAddress)
 			{
 				Password = hashedPassword,
 				IsEmailAddressVerified = true,
+				Address = fixedAddress,
+				CityAddress = user.CityAddress,
+				PostalCode = user.PostalCode,
+				ProvinceAddress = user.ProvinceAddress,
+				FatherName = user.FatherName,
+				Gender = user.Gender,
+				EmailAddress = user.EmailAddress,
 				Ordering = user.Ordering,
 				IsActive = user.IsActive,
 				AdminDescription = fixedDescription,
@@ -59,6 +68,7 @@ namespace Application.UserApp
 				CellPhoneNumber = user.CellPhoneNumber,
 				Role = user.Role,
 				Username = user.Username,
+				NationalCode = user.NationalCode,
 				FullName = user.FullName,
 			};
 
@@ -151,6 +161,13 @@ namespace Application.UserApp
 				IsCellPhoneNumberVerified = user.IsCellPhoneNumberVerified,
 				IsProfilePublic = user.IsProfilePublic,
 				Username = user.Username,
+				Address = user.Address,
+				Gender = user.Gender,
+				FatherName = user.FatherName,
+				CityAddress = user.CityAddress,
+				PostalCode = user.PostalCode,
+				NationalCode = user.NationalCode,
+				ProvinceAddress = user.ProvinceAddress,
 			};
 
 			res.Data = _user;
@@ -203,6 +220,14 @@ namespace Application.UserApp
 			userForUpdate.AdminDescription = fixedAdminDescription;
 			userForUpdate.FullName = user.FullName;
 			userForUpdate.Username = user.Username;
+			userForUpdate.Address = user.Address;
+			userForUpdate.CityAddress = user.CityAddress;
+			userForUpdate.ProvinceAddress = user.ProvinceAddress;
+			userForUpdate.EmailAddress = user.EmailAddress;
+			userForUpdate.FatherName = user.FatherName;
+			userForUpdate.Gender = user.Gender;
+			userForUpdate.NationalCode = user.NationalCode;
+			userForUpdate.PostalCode = user.PostalCode;
 			userForUpdate.Role = user.Role;
 
 
@@ -234,6 +259,16 @@ namespace Application.UserApp
 					Ordering = user.Ordering,
 					Role = user.Role,
 					UpdateDateTime = user.UpdateDateTime,
+					Address = user.Address,
+					PostalCode = user.PostalCode,
+					NationalCode = user.NationalCode,
+					Gender = user.Gender,
+					FatherName = user.FatherName,
+					FullName = user.FullName,
+					ProvinceAddress = user.ProvinceAddress,
+					CityAddress = user.CityAddress,
+					CellPhoneNumber = user.CellPhoneNumber,
+					Username = user.Username,
 				});
 			}
 

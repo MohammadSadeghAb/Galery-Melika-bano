@@ -7,6 +7,7 @@
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 
+	Layout = "Layouts/Admin/Rtl/_Layout";
 
 }
 
@@ -24,6 +25,12 @@
 				<label asp-for="ViewModel.FullName"></label>
 				<input asp-for="ViewModel.FullName" />
 				<span asp-validation-for="ViewModel.FullName"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.FatherName"></label>
+				<input asp-for="ViewModel.FatherName" />
+				<span asp-validation-for="ViewModel.FatherName"></span>
 			</section-form-field>
 
 			<section-form-field>
@@ -54,6 +61,42 @@
 				<label asp-for="ViewModel.ConfirmPassword"></label>
 				<input type="password" asp-for="ViewModel.ConfirmPassword" />
 				<span asp-validation-for="ViewModel.ConfirmPassword"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.PostalCode"></label>
+				<input asp-for="ViewModel.PostalCode" />
+				<span asp-validation-for="ViewModel.PostalCode"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.NationalCode"></label>
+				<input asp-for="ViewModel.NationalCode" />
+				<span asp-validation-for="ViewModel.NationalCode"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Gender"></label>
+				<input asp-for="ViewModel.Gender" />
+				<span asp-validation-for="ViewModel.Gender"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.ProvinceAddress"></label>
+				<input asp-for="ViewModel.ProvinceAddress" />
+				<span asp-validation-for="ViewModel.ProvinceAddress"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.CityAddress"></label>
+				<input asp-for="ViewModel.CityAddress" />
+				<span asp-validation-for="ViewModel.CityAddress"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Address"></label>
+				<input asp-for="ViewModel.Address" />
+				<span asp-validation-for="ViewModel.Address"></span>
 			</section-form-field>
 
 			<section-form-field>

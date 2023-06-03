@@ -155,6 +155,125 @@ public class User :
 		ErrorMessageResourceType = typeof(Validations),
 		ErrorMessageResourceName = nameof(Validations.CellPhoneNumber))]
 	public string? CellPhoneNumber { get; set; }
+    // **********
+
+    // **********
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.Postalcode))]
+
+    [MaxLength
+        (length: FixedLength.PostalCode,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    public int PostalCode { get; set; }
+    // **********
+
+    // **********
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.Province))]
+
+    [MaxLength
+        (length: MaxLength.Province,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    public string ProvinceAddress { get; set; }
+    // **********
+
+    // **********
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.City))]
+
+    [MaxLength
+        (length: MaxLength.City,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    public string CityAddress { get; set; }
+    // **********
+
+    // **********
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.Fathersname))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    [MaxLength
+        (length: MaxLength.Name,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    public string FatherName { get; set; }
+    // **********
+
+    // **********
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.NationalCode))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    [MaxLength
+        (length: FixedLength.NationalCode,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    public int NationalCode { get; set; }
+	// **********
+
+	// **********
+	[Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.Address))]
+
+    [MaxLength
+        (length: MaxLength.Address,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    public string Address { get; set; }
+    // **********
+
+    // **********
+    [Display
+        (ResourceType = typeof(Resources.DataDictionary),
+        Name = nameof(Resources.DataDictionary.Gender))]
+
+    [MaxLength
+        (length: MaxLength.Gender,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+    [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+    public string Gender { get; set; }
 	// **********
 
 	// **********

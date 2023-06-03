@@ -7,6 +7,7 @@
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 
+	Layout = "Layouts/Admin/Rtl/_Layout";
 
 }
 
@@ -46,6 +47,41 @@
 		<section-form-field>
 			<label asp-for="ViewModel.FullName"></label>
 			<input asp-for="ViewModel.FullName" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.FatherName"></label>
+			<input asp-for="ViewModel.FatherName" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.ProvinceAddress"></label>
+			<input asp-for="ViewModel.ProvinceAddress" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.CityAddress"></label>
+			<input asp-for="ViewModel.CityAddress" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Address"></label>
+			<textarea asp-for="ViewModel.Address"></textarea>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.NationalCode"></label>
+			<input asp-for="ViewModel.NationalCode" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.PostalCode"></label>
+			<input asp-for="ViewModel.PostalCode" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Gender"></label>
+			<input asp-for="ViewModel.Gender" />
 		</section-form-field>
 
 		<section-form-check>
