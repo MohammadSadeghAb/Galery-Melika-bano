@@ -171,7 +171,7 @@ public class User :
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-    public int PostalCode { get; set; }
+    public string PostalCode { get; set; }
     // **********
 
     // **********
@@ -239,7 +239,7 @@ public class User :
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    public int NationalCode { get; set; }
+    public string NationalCode { get; set; }
 	// **********
 
 	// **********

@@ -223,9 +223,8 @@ namespace Application.UserApp
 			userForUpdate.Address = user.Address;
 			userForUpdate.CityAddress = user.CityAddress;
 			userForUpdate.ProvinceAddress = user.ProvinceAddress;
-			userForUpdate.EmailAddress = user.EmailAddress;
-			userForUpdate.FatherName = user.FatherName;
 			userForUpdate.Gender = user.Gender;
+			userForUpdate.FatherName = user.FatherName;
 			userForUpdate.NationalCode = user.NationalCode;
 			userForUpdate.PostalCode = user.PostalCode;
 			userForUpdate.Role = user.Role;

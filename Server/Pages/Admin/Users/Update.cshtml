@@ -61,7 +61,18 @@
 
 			<section-form-field>
 				<label asp-for="ViewModel.Gender"></label>
-				<input asp-for="ViewModel.Gender" />
+				<select asp-for="ViewModel.Gender">
+					@if (Model.ViewModel.Gender == Resources.DataDictionary.Male)
+					{
+						<option>@(Resources.DataDictionary.Male)</option>
+						<option>@(Resources.DataDictionary.Female)</option>
+					}
+					@if (Model.ViewModel.Gender == Resources.DataDictionary.Female)
+					{
+						<option>@(Resources.DataDictionary.Female)</option>
+						<option>@(Resources.DataDictionary.Male)</option>
+					}
+			</select>
 				<span asp-validation-for="ViewModel.Gender"></span>
 			</section-form-field>
 
