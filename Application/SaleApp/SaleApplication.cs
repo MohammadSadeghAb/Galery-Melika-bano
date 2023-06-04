@@ -116,7 +116,7 @@ namespace Application.SaleApp
             return res;
         }
 
-        public async Task<OperationResult> UpdateSale(CommonViewModel product)
+        public async Task<OperationResult> UpdateSale(UpdateViewMode product)
         {
             var res = new OperationResult();
 

@@ -14,7 +14,7 @@ namespace Application.SaleApp
     {
         Task<OperationResult> AddSale(CommonViewModel sale);
         Task<OperationResult> DeleteSale(Guid Id);
-        Task<OperationResult> UpdateSale(CommonViewModel sale);
+        Task<OperationResult> UpdateSale(UpdateViewMode sale);
         Task<OperationResultWithData<CommonViewModel>> GetSale(Guid Id);
         Task<OperationResultWithData<IList<CommonViewModel>>> GetAllSale();
     }
