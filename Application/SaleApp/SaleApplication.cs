@@ -22,7 +22,7 @@ namespace Application.SaleApp
             _repository = repository;
         }
 
-        public async Task<OperationResult> AddSale(CommonViewModel sale)
+        public async Task<OperationResult> AddSale(CreateViewModel sale)
         {
             var res = new OperationResult();
 
@@ -69,17 +69,17 @@ namespace Application.SaleApp
             return res;
         }
 
-        public async Task<OperationResultWithData<IList<CommonViewModel>>> GetAllSale()
+        public async Task<OperationResultWithData<IList<DetailsViewModel>>> GetAllSale()
         {
-            var res = new OperationResultWithData<IList<CommonViewModel>>();
+            var res = new OperationResultWithData<IList<DetailsViewModel>>();
 
             var sales = await _repository.GetAllAsync();
 
-            var _data = new List<CommonViewModel>();
+            var _data = new List<DetailsViewModel>();
 
             foreach (var sale in sales)
             {
-                _data.Add(new CommonViewModel
+                _data.Add(new DetailsViewModel
                 {
                     Id = sale.Id,
                     Price = sale.Price,
@@ -95,13 +95,13 @@ namespace Application.SaleApp
             return res;
         }
 
-        public async Task<OperationResultWithData<CommonViewModel>> GetSale(Guid Id)
+        public async Task<OperationResultWithData<DetailsViewModel>> GetSale(Guid Id)
         {
-            var res = new OperationResultWithData<CommonViewModel>();
+            var res = new OperationResultWithData<DetailsViewModel>();
 
             var sale = await _repository.GetAsync(Id);
 
-            var _sale = new CommonViewModel
+            var _sale = new DetailsViewModel
             {
                 Id = sale?.Id,
                 Price = sale.Price,

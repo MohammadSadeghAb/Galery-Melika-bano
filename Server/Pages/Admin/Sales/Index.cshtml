@@ -1,0 +1,102 @@
+﻿@page
+@model Server.Pages.Admin.Sales.IndexModel
+@{
+    var pageTitle =
+	$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Sales}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
+<section-page-body>
+
+	<section-page-actions>
+		<a asp-page="Create">
+			@(Html.DtatGetLinkCaptionForCreate())
+		</a>
+	</section-page-actions>
+
+	<section-table>
+		<table>
+			<caption>
+				@(pageTitle)
+			</caption>
+
+			<thead>
+				<tr>
+					<th>
+						@(Resources.DataDictionary.RowNumber)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Action)
+					</th>
+					<th>
+						@(Resources.DataDictionary.FullName)
+					</th>
+					<th>
+						@(Resources.DataDictionary.ProductName)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Number)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Price)
+					</th>
+					<th>
+						@(Resources.DataDictionary.InsertDateTime)
+					</th>
+				</tr>
+			</thead>
+
+			<tbody class="text-center">
+				@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+				{
+					var item = Model.ViewModel[index];
+
+					var user = Model._context.Users.FirstOrDefault(x => x.Id == item.UserId);
+
+					var product = Model._context.Products.FirstOrDefault(x => x.Id == item.ProductId);
+
+					<tr>
+						@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+						<table-actions>
+							<a asp-page="Details" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDetails())
+							</a>
+							<a asp-page="Update" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconUpdate())
+							</a>
+
+							<a asp-page="Delete" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDelete())
+							</a>
+						</table-actions>
+
+						<td>
+							@(user.FullName)
+						</td>
+
+						<td>
+							@(product.Name_Product)
+						</td>
+
+						<td>
+							@(item.Number)
+						</td>
+
+						<td>
+							@(item.Price)
+						</td>
+
+						@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+					</tr>
+				}
+			</tbody>
+		</table>
+	</section-table>
+</section-page-body>

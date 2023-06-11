@@ -1,0 +1,67 @@
+﻿@page
+@model Server.Pages.Admin.Sales.CreateModel
+@{
+    var pageTitle =
+    $"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.Sale}";
+
+    ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <section-form-field>
+                <label asp-for="ViewModel.ProductId"></label>
+                <select class="form-select" asp-for="ViewModel.ProductId"
+                        asp-items="@(new SelectList(Model.products,
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+                </select>
+                <span asp-validation-for="ViewModel.ProductId"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.UserId"></label>
+                <select class="form-select" asp-for="ViewModel.UserId"
+                        asp-items="@(new SelectList(Model.users,
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+                </select>
+                <span asp-validation-for="ViewModel.UserId"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.Number"></label>
+                <input asp-for="ViewModel.Number" />
+                <span asp-validation-for="ViewModel.Number"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.Price"></label>
+                <input asp-for="ViewModel.Price" />
+                <span asp-validation-for="ViewModel.Price"></span>
+            </section-form-field>
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+        <section-form-footer>
+            <a asp-page="Index">
+                @(Html.DtatGetLinkCaptionForList())
+            </a>
+        </section-form-footer>
+    </section-form>
+
+</form>
