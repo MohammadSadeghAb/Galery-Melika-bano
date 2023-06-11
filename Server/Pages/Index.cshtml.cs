@@ -1,20 +1,39 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Application.ProductApp;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Persistence;
 using Resources.Messages;
+using ViewModels.Pages.Admin.Products;
 
 namespace Server.Pages
 {
 	public class IndexModel : BasePageModel
 	{
-		public IndexModel()
+		private readonly IProductApplication _application;
+
+		public IndexModel(IProductApplication application,
+						  DatabaseContext context)
 		{
+			_context = context;
+			_application = application;
+			ViewModel = new List<DetailsViewModel>();
 		}
 
-		public IActionResult OnGet()
+		public DatabaseContext _context { get; set; }
+
+		public IList<DetailsViewModel> ViewModel { get; private set; }
+
+		public async Task<IActionResult> OnGetAsync()
 		{
 			return Page();
+
+			ViewModel = (await _application.GetAllProduct()).Data;
+
 			//if (User == null || User.Identity == null || User.Identity.IsAuthenticated == false)
 			//{
 			//	return RedirectToPage("Account/Login");

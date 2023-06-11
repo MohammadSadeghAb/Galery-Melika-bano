@@ -18,18 +18,36 @@
 	}
 	else
 	{
-		<li>
-			<a class="nav-link text-warning" asp-page="/Admin/Index">
-				@(Resources.DataDictionary.Dashboard)
-			</a>
-		</li>
+		if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Admin")
+		{
+			<li>
+				<a class="nav-link text-warning" asp-page="/Admin/Index">
+					@(Resources.DataDictionary.Dashboard)
+				</a>
+			</li>
 
 
-		<li class="nav-item">
-			<a class="nav-link" asp-page="/Account/Logout">
-				@(Resources.PageTitles.Logout)
-			</a>
-		</li>
+			<li class="nav-item">
+				<a class="nav-link" asp-page="/Account/Logout">
+					@(Resources.PageTitles.Logout)
+				</a>
+			</li>
+		}
+
+		if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "User")
+		{
+			<li>
+				<a class="nav-link text-warning" asp-page="/User/Index">
+					@(Resources.DataDictionary.Dashboard)
+				</a>
+			</li>
+
+
+			<li class="nav-item">
+				<a class="nav-link" asp-page="/Account/Logout">
+					@(Resources.PageTitles.Logout)
+				</a>
+			</li>
+		}
 	}
-
 </ul>
