@@ -2,6 +2,7 @@
 using Domain.ProductAgg;
 using Domain.ProductPicAgg;
 using Domain.SaleAgg;
+using Domain.TotalSaleAgg;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ namespace Persistence
         public DbSet<User> Users { get; set; }
 
         public DbSet<Sale> Sales { get; set; }
+
+        public DbSet<TotalSale> TotalSales { get; set; }
 
         public DbSet<Category> Categories { get; set; }
 
