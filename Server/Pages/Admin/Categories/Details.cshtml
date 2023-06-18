@@ -6,6 +6,10 @@
     var pageTitle = $"{ButtonCaptions.Details} {DataDictionary.Category}";
 
     ViewData[ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
+
+    string picname = $"{Model.ViewModel.Name}.png";
 }
 
 
@@ -16,6 +20,9 @@
         </section-form-header>
 
         <partial name="PartialViews/_DisplayPageMessages" />
+
+        <label>@(Resources.DataDictionary.Picture)</label>
+        <img class="w-100 h-75 rounded-3 mb-2" src="~/CategoryPic/@(picname)" />
 
         <section-form-field>
             <label asp-for="ViewModel.Name"></label>

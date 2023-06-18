@@ -1,11 +1,15 @@
 using Application.CategoryApp;
 using Infrastructure;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Resources;
 using Resources.Messages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.Categories;
@@ -18,9 +22,12 @@ namespace Server.Pages.Admin.Categories
     {
         private readonly ICategoryApplication _application;
 
-        public UpdateModel(ICategoryApplication application)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public UpdateModel(ICategoryApplication application, IWebHostEnvironment webHostEnvironment)
         {
             _application = application;
+            _webHostEnvironment = webHostEnvironment;
             ParentsViewModel = new();
         }
 
@@ -28,6 +35,10 @@ namespace Server.Pages.Admin.Categories
         [BindProperty]
         public UpdateViewModel ViewModel { get; set; }
         public List<KeyValueViewModel> ParentsViewModel { get; set; }
+
+        [BindProperty]
+        [DataType(DataType.Upload)]
+        public IFormFile UploadPic { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -86,9 +97,8 @@ namespace Server.Pages.Admin.Categories
                 return Page();
             }
 
-            var editorUserId = User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
-            Console.WriteLine(editorUserId);
-            ViewModel.EditorUserId = Guid.Parse(editorUserId);
+            Upload(UploadPic);
+
             var res = await _application.UpdateCategory(ViewModel);
 
             if (!res.Succeeded || res.ErrorMessages.Count > 0)
@@ -105,6 +115,23 @@ namespace Server.Pages.Admin.Categories
             AddToastSuccess(successMessage);
 
             return RedirectToPage("Index");
+        }
+
+        public void Upload(IFormFile file)
+        {
+            var directoryPath = $"{Getwebroot()}\\CategoryPic";
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+
+            string filename = Path.Combine(ViewModel.Name + ".png");
+            string filepath = Path.Combine(directoryPath, filename);
+            using var output = System.IO.File.Create(filepath);
+            file.CopyTo(output);
+        }
+
+        public string Getwebroot()
+        {
+            return _webHostEnvironment.WebRootPath;
         }
     }
 }

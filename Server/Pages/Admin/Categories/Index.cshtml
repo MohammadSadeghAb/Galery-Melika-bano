@@ -7,6 +7,8 @@
     $"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Category}";
 
     ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
 }
 
 
@@ -75,7 +77,6 @@
                             <a asp-page="Update" asp-route-id="@(item.Id)">
                                 @(Html.DtatGetIconUpdate())
                             </a>
-
                             @if (item.IsDeletable)
                             {
                                 <a asp-page="Delete" asp-route-id="@(item.Id)">

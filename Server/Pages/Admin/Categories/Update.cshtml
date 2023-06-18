@@ -6,10 +6,12 @@
     var pageTitle = $"{ButtonCaptions.Update} {DataDictionary.Category}";
 
     ViewData[ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
 }
 
 
-<form method="post">
+<form enctype="multipart/form-data" method="post">
 
     <section-form>
         <fieldset>
@@ -20,6 +22,12 @@
             <partial name="PartialViews/_DisplayPageMessages" />
 
             <input type="hidden" asp-for="ViewModel.Id" />
+
+            <section-form-field>
+                <label asp-for="UploadPic"></label>
+                <input asp-for="UploadPic" />
+                <span asp-validation-for="UploadPic"></span>
+            </section-form-field>
 
             <section-form-field>
                 <label asp-for="ViewModel.Name"></label>
