@@ -12,7 +12,7 @@ using ViewModels.Pages.Admin.ProductPics;
 
 namespace Application.ProductPicApp
 {
-    internal class ProductPicApplication : IProductPicApplication
+    public class ProductPicApplication : IProductPicApplication
     {
         private readonly IProductPicRepository _repository;
         public ProductPicApplication(IProductPicRepository repository)
@@ -30,10 +30,21 @@ namespace Application.ProductPicApp
                 return res;
             }
 
+            if (_repository.Exist(x => x.Product_Id == productpic.Product_Id))
+            {
+                res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.ProductPicture));
+                res.Succeeded = false;
+                return res;
+            }
+
             var _productpic = new ProductPic()
             {
                 Product_Id = productpic.Product_Id,
-                PicAddress = productpic.PicAddress,
+                PicAddress1 = productpic.PicAddress1,
+                PicAddress2 = productpic.PicAddress2,
+                PicAddress3 = productpic.PicAddress3,
+                PicAddress4 = productpic.PicAddress4,
+                PicAddress5 = productpic.PicAddress5,
             };
 
             await _repository.CreateAsync(_productpic);
@@ -78,7 +89,11 @@ namespace Application.ProductPicApp
                 _data.Add(new CommonViewModel
                 {
                     Id = productpic.Id,
-                    PicAddress = productpic.PicAddress,
+                    PicAddress1 = productpic.PicAddress1,
+                    PicAddress2 = productpic.PicAddress2,
+                    PicAddress3 = productpic.PicAddress3,
+                    PicAddress4 = productpic.PicAddress4,
+                    PicAddress5 = productpic.PicAddress5,
                     Product_Id = productpic.Product_Id,
                     UpdateDateTime = productpic.UpdateDateTime,
                     InsertDateTime = productpic.InsertDateTime,
@@ -99,7 +114,11 @@ namespace Application.ProductPicApp
             var _productpic = new CommonViewModel
             {
                 Id = productpic.Id,
-                PicAddress = productpic.PicAddress,
+                PicAddress1 = productpic.PicAddress1,
+                PicAddress2 = productpic.PicAddress2,
+                PicAddress3 = productpic.PicAddress3,
+                PicAddress4 = productpic.PicAddress4,
+                PicAddress5 = productpic.PicAddress5,
                 Product_Id = productpic.Product_Id,
                 UpdateDateTime = productpic.UpdateDateTime,
                 InsertDateTime = productpic.InsertDateTime,
@@ -131,7 +150,11 @@ namespace Application.ProductPicApp
 
             productpicForUpdate.SetUpdateDateTime();
 
-            productpicForUpdate.PicAddress = productpic.PicAddress;
+            productpicForUpdate.PicAddress1 = productpic.PicAddress1;
+            productpicForUpdate.PicAddress2 = productpic.PicAddress2;
+            productpicForUpdate.PicAddress3 = productpic.PicAddress3;
+            productpicForUpdate.PicAddress4 = productpic.PicAddress4;
+            productpicForUpdate.PicAddress5 = productpic.PicAddress5;
             productpicForUpdate.Product_Id = productpic.Product_Id;
 
             await _repository.SaveChangesAsync();

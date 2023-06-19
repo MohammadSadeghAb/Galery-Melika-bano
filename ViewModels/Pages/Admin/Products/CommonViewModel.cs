@@ -11,6 +11,10 @@ namespace ViewModels.Pages.Admin.Products
 {
     public class CommonViewModel
     {
+        //**********
+        public Guid? Id { get; set; }
+        //**********
+
         // **********
         [MaxLength
         (length: Constants.MaxLength.Name,
@@ -132,6 +136,30 @@ namespace ViewModels.Pages.Admin.Products
             Name = nameof(Resources.DataDictionary.Category))]
 
         public Guid CategoryChild_Id { get; set; }
+        // **********
+
+        // **********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.DiscountSingle))]
+
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public int? Discount_Single { get; set; }
+        // **********
+
+        // **********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.DiscountMajor))]
+
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public int? Discount_Major { get; set; }
         // **********
     }
 }

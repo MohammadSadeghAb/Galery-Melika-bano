@@ -1,5 +1,7 @@
+using Application.CategoryApp;
 using Application.ProductApp;
 using Application.UserApp;
+using Framework.OperationResult;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -13,13 +15,19 @@ namespace Server.Pages.Admin.Products;
 public class DeleteModel : Infrastructure.BasePageModel
 {
     private readonly IProductApplication _application;
-    public DeleteModel(IProductApplication application)
+
+    private readonly ICategoryApplication _category;
+    public DeleteModel(IProductApplication application,
+                       ICategoryApplication category)
     {
+        _category = category;
         _application = application;
     }
 
     [BindProperty]
     public DetailsViewModel ViewModel { get; set; }
+
+    public OperationResultWithData<ViewModels.Pages.Admin.Categories.DetailsViewModel> category { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
@@ -40,6 +48,8 @@ public class DeleteModel : Infrastructure.BasePageModel
 
             return RedirectToPage(pageName: "Index");
         }
+
+        category = await _category.GetCategory(ViewModel.CategoryParent_Id);
 
         return Page();
     }

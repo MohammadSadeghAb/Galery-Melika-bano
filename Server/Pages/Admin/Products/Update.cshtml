@@ -5,6 +5,8 @@
 	$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Product}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Admin/Rtl/_Layout";
 }
 
 <form method="post">
@@ -66,6 +68,16 @@
 			<input asp-for="ViewModel.Number" />
 			<span asp-validation-for="ViewModel.Number"></span>
 		</section-form-field>
+
+		<section-form-field>
+                <label asp-for="ViewModel.CategoryParent_Id"></label>
+                <select class="form-select" asp-for="ViewModel.CategoryParent_Id"
+                        asp-items="@(new SelectList(Model.categories,
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+                </select>
+                <span asp-validation-for="ViewModel.CategoryParent_Id"></span>
+        </section-form-field>
 
 		<section-form-field>
 			<label asp-for="ViewModel.Discount_Single"></label>
@@ -155,8 +167,8 @@
 		<a asp-page="Index">
 			@(Html.DtatGetLinkCaptionForList())
 		</a>
-		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
-			@(Html.DtatGetLinkCaptionForUpdate())
+		<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDetails())
 		</a>
 		<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
 			@(Html.DtatGetLinkCaptionForDelete())

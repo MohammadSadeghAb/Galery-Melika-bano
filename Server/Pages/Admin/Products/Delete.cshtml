@@ -5,6 +5,8 @@
 		$"{Resources.ButtonCaptions.Delete} {Resources.DataDictionary.Product}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Admin/Rtl/_Layout";
 }
 
 <section-form>
@@ -18,6 +20,16 @@
 		<section-form-field>
 			<label asp-for="ViewModel.Name_Product"></label>
 			<input asp-for="ViewModel.Name_Product" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.CategoryParent_Id"></label>
+			<input asp-for="category.Data.Name" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.CategoryChild_Id"></label>
+			<input asp-for="ViewModel.CategoryChild_Id" />
 		</section-form-field>
 
 		<section-form-field>

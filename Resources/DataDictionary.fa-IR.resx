@@ -196,7 +196,7 @@
     <value>کد تایید پست الکترونیکی</value>
   </data>
   <data name="Female" xml:space="preserve">
-    <value>آقا</value>
+    <value>زن</value>
   </data>
   <data name="FileManager" xml:space="preserve">
     <value>مدیریت فایل‌ها</value>
@@ -304,7 +304,7 @@
     <value>فهرست {0}</value>
   </data>
   <data name="Male" xml:space="preserve">
-    <value>خانم</value>
+    <value>مرد</value>
   </data>
   <data name="MenuItem" xml:space="preserve">
     <value>آیتم منو</value>
@@ -587,5 +587,47 @@
   </data>
   <data name="Picture" xml:space="preserve">
     <value>تصویر</value>
+  </data>
+  <data name="ProductPicture" xml:space="preserve">
+    <value>عکس کالا</value>
+  </data>
+  <data name="Fathersname" xml:space="preserve">
+    <value>نام پدر</value>
+  </data>
+  <data name="NationalNumber" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="Postalcode" xml:space="preserve">
+    <value>کد پستی</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="Sale" xml:space="preserve">
+    <value>فروش</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>فروش ها</value>
+  </data>
+  <data name="PriceTotal" xml:space="preserve">
+    <value>قیمت کل</value>
+  </data>
+  <data name="FactorNumber" xml:space="preserve">
+    <value>شماره فاکتور</value>
+  </data>
+  <data name="PicNumber" xml:space="preserve">
+    <value>تعداد عکس</value>
+  </data>
+  <data name="Communicational" xml:space="preserve">
+    <value>راه های ارتباطی</value>
+  </data>
+  <data name="Galery" xml:space="preserve">
+    <value>گالری</value>
+  </data>
+  <data name="Melikabanoo" xml:space="preserve">
+    <value>ملیکا بانو</value>
   </data>
 </root>

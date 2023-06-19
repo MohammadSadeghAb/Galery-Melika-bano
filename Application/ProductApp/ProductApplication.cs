@@ -38,6 +38,8 @@ namespace Application.ProductApp
                 Color1_rgb = product.Color1_rgb,
                 Color1_text = product.Color1_text,
                 Name_Product = product.Name_Product,
+                Discount_Major = product.Discount_Major,
+                Discount_Single = product.Discount_Single,
                 CategoryChild_Id = product.CategoryChild_Id,
                 CategoryParent_Id = product.CategoryParent_Id,
             };

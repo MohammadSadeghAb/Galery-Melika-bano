@@ -5,6 +5,8 @@
 	$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Products}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Admin/Rtl/_Layout";
 }
 
 <section-page-header>
@@ -15,6 +17,14 @@
 	<section-page-actions>
 		<a asp-page="Create">
 			@(Html.DtatGetLinkCaptionForCreate())
+		</a>
+
+		<a asp-page="CreatePic">
+			@(Html.DtatGetIconCreate()) @(Resources.DataDictionary.Picture)
+		</a>
+
+		<a asp-page="DeletePic">
+			@(Html.DtatGetIconDelete()) @(Resources.DataDictionary.Picture)
 		</a>
 	</section-page-actions>
 
@@ -30,10 +40,13 @@
 						@(Resources.DataDictionary.RowNumber)
 					</th>
 					<th>
-
+						@(Resources.DataDictionary.Action)
 					</th>
 					<th>
 						@(Resources.DataDictionary.ProductName)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Category)
 					</th>
 					<th>
 						@(Resources.DataDictionary.Gender)
@@ -58,6 +71,8 @@
 				{
 					var item = Model.ViewModel[index];
 
+					var category = Model._context.Categories.FirstOrDefault(x => x.Id == item.CategoryParent_Id);
+
 					<tr>
 						@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
 
@@ -68,7 +83,6 @@
 							<a asp-page="Update" asp-route-id="@(item.Id)">
 								@(Html.DtatGetIconUpdate())
 							</a>
-
 							<a asp-page="Delete" asp-route-id="@(item.Id)">
 								@(Html.DtatGetIconDelete())
 							</a>
@@ -76,6 +90,10 @@
 
 						<td>
 							@(item.Name_Product)
+						</td>
+
+						<td>
+							@(category.Name)
 						</td>
 
 						<td>

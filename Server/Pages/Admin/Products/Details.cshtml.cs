@@ -1,5 +1,7 @@
+using Application.CategoryApp;
 using Application.ProductApp;
 using Application.UserApp;
+using Framework.OperationResult;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -13,15 +15,21 @@ namespace Server.Pages.Admin.Products;
 
 public class DetailsModel : Infrastructure.BasePageModel
 {
-    public DetailsModel(IProductApplication application)
+    public DetailsModel(IProductApplication application,
+                        ICategoryApplication category)
     {
+        _catrgory = category;
         _application = application;
         ViewModel = new();
     }
 
     private readonly IProductApplication _application;
 
+    private readonly ICategoryApplication _catrgory;
+
     public DetailsViewModel ViewModel { get; private set; }
+
+    public OperationResultWithData<ViewModels.Pages.Admin.Categories.DetailsViewModel> categoty { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
@@ -42,6 +50,8 @@ public class DetailsModel : Infrastructure.BasePageModel
 
             return RedirectToPage(pageName: "Index");
         }
+
+        categoty = await _catrgory.GetCategory(ViewModel.CategoryParent_Id);
 
         return Page();
     }

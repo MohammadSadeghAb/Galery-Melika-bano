@@ -1,4 +1,5 @@
 ﻿using Domain.SeedWork;
+using Domain.TotalSaleAgg;
 using Resources.Messages;
 using System;
 using System.Collections.Generic;
@@ -183,6 +184,11 @@ namespace Domain.ProductAgg
 
         public string? Dimensions { get; set; }
         // **********
+
+        //// **********
+        //public Guid TotalSaleId { get; set; }
+        //public TotalSale TotalSale { get; set; }
+        //// **********
 
         public void SetId(Guid id)
         {

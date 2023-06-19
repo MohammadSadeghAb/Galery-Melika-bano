@@ -11,10 +11,6 @@ namespace ViewModels.Pages.Admin.Products
 {
     public class UpdateViewModel : CommonViewModel
     {
-        //**********
-        public Guid? Id { get; set; }
-        //**********
-
         // **********
         [MaxLength
         (length: Constants.MaxLength.Color_Text,
@@ -84,32 +80,6 @@ namespace ViewModels.Pages.Admin.Products
             Name = nameof(Resources.DataDictionary.Color4))]
 
         public string? Color4_rgb { get; set; }
-        // **********
-
-        // **********
-        [MaxLength
-        (length: Constants.MaxLength.Price,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
-        [Display
-            (ResourceType = typeof(Resources.DataDictionary),
-            Name = nameof(Resources.DataDictionary.DiscountSingle))]
-
-        public int? Discount_Single { get; set; }
-        // **********
-
-        // **********
-        [MaxLength
-        (length: Constants.MaxLength.Price,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
-        [Display
-            (ResourceType = typeof(Resources.DataDictionary),
-            Name = nameof(Resources.DataDictionary.DiscountMajor))]
-
-        public int? Discount_Major { get; set; }
         // **********
 
         // **********

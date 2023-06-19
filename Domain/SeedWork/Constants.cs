@@ -32,6 +32,7 @@
 			{
 			}
 
+			public const int PostalCode = 10;
 			public const int NationalCode = 10;
 			public const int CellPhoneNumber = 14;
 			public const int DatabasePassword = 80;
@@ -86,6 +87,9 @@
 			public const int Type = 30;
 
 			public const int Number = 7;
+
+			public const int Province = 30;
+			public const int City = 50;
 
         }
 

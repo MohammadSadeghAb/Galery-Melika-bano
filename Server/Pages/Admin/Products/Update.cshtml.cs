@@ -1,11 +1,16 @@
 using Application.ProductApp;
+using Application.ProductPicApp;
 using Application.UserApp;
+using Domain.CategoryAgg;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Persistence.Repositories;
 using Resources;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.Products;
+using ViewModels.Shared;
 
 namespace Server.Pages.Admin.Products;
 
@@ -13,19 +18,45 @@ namespace Server.Pages.Admin.Products;
 
 public class UpdateModel : Infrastructure.BasePageModel
 {
-    public UpdateModel(IProductApplication application)
+    public UpdateModel(IProductApplication application,
+        IProductPicApplication productPicApplication,
+        ICategoryRepository categoryRepository)
     {
         _application = application;
+        _categoryRepository = categoryRepository;
+        _productPicApplication = productPicApplication;
         ViewModel = new();
+        ViewModelPic = new();
+        categories = new List<KeyValueViewModel>();
     }
 
     private readonly IProductApplication _application;
 
+    private readonly IProductPicApplication _productPicApplication;
+
+    private readonly ICategoryRepository _categoryRepository;
+
     [BindProperty]
     public UpdateViewModel ViewModel { get; set; }
 
+    [BindProperty]
+    public List<KeyValueViewModel> categories { get; set; }
+
+    [BindProperty]
+    public ViewModels.Pages.Admin.ProductPics.CommonViewModel ViewModelPic { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
+        var Categories = (await _categoryRepository.GetParents());
+        foreach (var category in Categories)
+        {
+            categories.Add(new KeyValueViewModel()
+            {
+                Id = category.Id,
+                Name = category.Name,
+            });
+        }
+
         if (id.HasValue == false)
         {
             AddToastError(Resources.Messages.Errors.IdIsNull);

@@ -43,15 +43,43 @@ namespace ViewModels.Pages.Admin.ProductPics
         //**********
 
         //**********
-        [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
         [Display
             (Name = nameof(Resources.DataDictionary.Picture),
             ResourceType = typeof(Resources.DataDictionary))]
 
-        public string PicAddress { get; set; }
+        public string PicAddress1 { get; set; }
+        //**********
+
+        //**********
+        [Display
+            (Name = nameof(Resources.DataDictionary.Picture),
+            ResourceType = typeof(Resources.DataDictionary))]
+
+        public string PicAddress2 { get; set; }
+        //**********
+
+        //**********
+        [Display
+            (Name = nameof(Resources.DataDictionary.Picture),
+            ResourceType = typeof(Resources.DataDictionary))]
+
+        public string PicAddress3 { get; set; }
+        //**********
+
+        //**********
+        [Display
+            (Name = nameof(Resources.DataDictionary.Picture),
+            ResourceType = typeof(Resources.DataDictionary))]
+
+        public string PicAddress4 { get; set; }
+        //**********
+
+        //**********
+        [Display
+            (Name = nameof(Resources.DataDictionary.Picture),
+            ResourceType = typeof(Resources.DataDictionary))]
+
+        public string PicAddress5 { get; set; }
         //**********
     }
 }
