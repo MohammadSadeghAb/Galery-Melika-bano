@@ -44,6 +44,17 @@
                     </div>
 
                     <div class="mb-3">
+                        <label asp-for="ViewModel.FatherName" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                            <input asp-for="ViewModel.FatherName" class="form-control" dir="ltr" />
+                        </div>
+
+                        <span asp-validation-for="ViewModel.FatherName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
                         <label asp-for="ViewModel.Username" class="form-label"></label>
 
                         <div class="input-group">
@@ -96,6 +107,75 @@
                         </div>
 
                         <span asp-validation-for="ViewModel.EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.NationalCode" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-flag-fill"></i></div>
+                            <input asp-for="ViewModel.NationalCode" class="form-control" dir="ltr" />
+                        </div>
+
+                        <span asp-validation-for="ViewModel.NationalCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.PostalCode" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-mailbox2"></i></div>
+                            <input asp-for="ViewModel.PostalCode" class="form-control" dir="ltr" />
+                        </div>
+
+                        <span asp-validation-for="ViewModel.PostalCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.ProvinceAddress" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
+                            <input asp-for="ViewModel.ProvinceAddress" class="form-control" dir="ltr" />
+                        </div>
+
+                        <span asp-validation-for="ViewModel.ProvinceAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.CityAddress" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
+                            <input asp-for="ViewModel.CityAddress" class="form-control" dir="ltr" />
+                        </div>
+
+                        <span asp-validation-for="ViewModel.CityAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.Address" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
+                            <input asp-for="ViewModel.Address" class="form-control" dir="ltr" />
+                        </div>
+
+                        <span asp-validation-for="ViewModel.Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.Gender" class="form-label"></label>
+
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-gender-male"></i></div>
+                            <select asp-for="ViewModel.Gender" class="form-control" dir="ltr">
+                                <option>@(Resources.DataDictionary.Male)</option>
+                                <option>@(Resources.DataDictionary.Female)</option>
+                            </select>
+                        </div>
+
+                        <span asp-validation-for="ViewModel.Gender" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">

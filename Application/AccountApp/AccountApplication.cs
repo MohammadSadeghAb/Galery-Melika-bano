@@ -22,12 +22,19 @@ namespace Application.AccountApp
 		{
 			return await _userApplication.AddUser(new CreateViewModel
 			{
+				IsActive = true,
+				Gender = model.Gender,
+				Address = model.Address,
 				FullName = model.FullName,
 				Password = model.Password,
 				Username = model?.Username,
-				CellPhoneNumber = model?.CellPhoneNumber,
+				PostalCode = model.PostalCode,
+				FatherName = model.FatherName,
+				CityAddress = model.CityAddress,
 				EmailAddress = model.EmailAddress,
-				IsActive = true,
+				NationalCode = model.NationalCode,
+				ProvinceAddress = model.ProvinceAddress,
+				CellPhoneNumber = model?.CellPhoneNumber,
 			});
 		}
 
