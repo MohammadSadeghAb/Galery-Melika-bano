@@ -114,7 +114,7 @@ namespace Application.ProductApp
             return res;
         }
 
-        public async Task<OperationResultWithData<DetailsViewModel>> GetProduct(Guid Id)
+        public async Task<OperationResultWithData<DetailsViewModel>> GetProduct(Guid? Id)
         {
             var res = new OperationResultWithData<DetailsViewModel>();
 

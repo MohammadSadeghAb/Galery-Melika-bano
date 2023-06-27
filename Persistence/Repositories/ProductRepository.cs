@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class ProductRepository : RepositoryBase<Guid, Product>, IProductRepository
+    public class ProductRepository : RepositoryBase<Guid?, Product>, IProductRepository
     {
         private readonly DatabaseContext _context;
         public ProductRepository(DatabaseContext context) : base(context)

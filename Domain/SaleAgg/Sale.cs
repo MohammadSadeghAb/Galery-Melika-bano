@@ -24,7 +24,7 @@ namespace Domain.SaleAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public Guid ProductId { get; set; }
+        public Guid? ProductId { get; set; }
         //**********
 
         //**********
@@ -40,7 +40,7 @@ namespace Domain.SaleAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public int Price { get; set; }
+        public int? Price { get; set; }
         //**********
 
     }

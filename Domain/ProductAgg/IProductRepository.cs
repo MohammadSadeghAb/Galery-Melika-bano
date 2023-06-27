@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.ProductAgg
 {
-    public interface IProductRepository : IRepository<Guid, Product>
+    public interface IProductRepository : IRepository<Guid?, Product>
     {
         Task<IList<Product>> GetAllAsync();
 
