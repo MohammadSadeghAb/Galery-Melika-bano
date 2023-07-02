@@ -83,12 +83,23 @@ public class CreatePicModel : BasePageModel
         //{
         //    return Page();
         //}
-
         Upload1(UplodPic1);
-        Upload2(UplodPic2);
-        Upload3(UplodPic3);
-        Upload4(UplodPic4);
-        Upload5(UplodPic5);
+        if (Upload2 != null)
+        {
+            Upload2(UplodPic2);
+        }
+        if (Upload3 != null)
+        {
+            Upload3(UplodPic3);
+        }
+        if (Upload4 != null)
+        {
+            Upload4(UplodPic4);
+        }
+        if (Upload5 != null)
+        {
+            Upload5(UplodPic5);
+        }
 
         var res = await _application.AddProductPic(ViewModel);
 

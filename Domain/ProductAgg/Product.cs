@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Domain.ProductAgg
 {
-    public class Product : Entity, IEntityIdIsSetable, IEntityHasUpdateDateTime
+    public class Product : Entity, IEntityIdIsSetable, IEntityHasUpdateDateTime,IEntityHasIsActive
     {
         public Product()
         {
@@ -183,6 +183,10 @@ namespace Domain.ProductAgg
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
         public string? Dimensions { get; set; }
+        // **********
+
+        // **********
+        public bool IsActive { get; set; }
         // **********
 
         //// **********

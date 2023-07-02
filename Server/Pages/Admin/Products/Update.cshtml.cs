@@ -24,15 +24,11 @@ public class UpdateModel : Infrastructure.BasePageModel
     {
         _application = application;
         _categoryRepository = categoryRepository;
-        _productPicApplication = productPicApplication;
         ViewModel = new();
-        ViewModelPic = new();
         categories = new List<KeyValueViewModel>();
     }
 
     private readonly IProductApplication _application;
-
-    private readonly IProductPicApplication _productPicApplication;
 
     private readonly ICategoryRepository _categoryRepository;
 
@@ -41,9 +37,6 @@ public class UpdateModel : Infrastructure.BasePageModel
 
     [BindProperty]
     public List<KeyValueViewModel> categories { get; set; }
-
-    [BindProperty]
-    public ViewModels.Pages.Admin.ProductPics.CommonViewModel ViewModelPic { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {

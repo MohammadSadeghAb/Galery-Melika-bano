@@ -35,6 +35,7 @@ namespace Application.ProductApp
                 Price = product.Price,
                 Gender = product.Gender,
                 Number = product.Number,
+                IsActive = product.IsActive,
                 Color1_rgb = product.Color1_rgb,
                 Color1_text = product.Color1_text,
                 Name_Product = product.Name_Product,
@@ -90,6 +91,7 @@ namespace Application.ProductApp
                     Price = product.Price,
                     Gender = product.Gender,
                     Number = product.Number,
+                    IsActive = product.IsActive,
                     Dimensions = product.Dimensions,
                     Color1_rgb = product.Color1_rgb,
                     Color2_rgb = product.Color2_rgb,
@@ -127,6 +129,7 @@ namespace Application.ProductApp
                 Price = product.Price,
                 Gender = product.Gender,
                 Number = product.Number,
+                IsActive = product.IsActive,
                 Dimensions = product.Dimensions,
                 Color1_rgb = product.Color1_rgb,
                 Color2_rgb = product.Color2_rgb,
@@ -186,6 +189,7 @@ namespace Application.ProductApp
             productForUpdate.Price = product.Price;
             productForUpdate.Gender = product.Gender;
             productForUpdate.Number = product.Number;
+            productForUpdate.IsActive = product.IsActive;
             productForUpdate.Dimensions = product.Dimensions;
             productForUpdate.Color1_rgb = product.Color1_rgb;
             productForUpdate.Color2_rgb = product.Color2_rgb;
