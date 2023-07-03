@@ -92,6 +92,12 @@
 		</section-form-field>
 
 		<section-form-field>
+                <label asp-for="ViewModel.Min_Major"></label>
+                <input type="number" asp-for="ViewModel.Min_Major" />
+                <span asp-validation-for="ViewModel.Min_Major"></span>
+            </section-form-field>
+
+		<section-form-field>
 			<label asp-for="ViewModel.Dimensions"></label>
 			<input asp-for="ViewModel.Dimensions" />
 			<span asp-validation-for="ViewModel.Dimensions"></span>

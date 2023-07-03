@@ -15,6 +15,26 @@ namespace ViewModels.Pages.Admin.Products
         public Guid? Id { get; set; }
         //**********
 
+        //**********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.IsActive))]
+
+        public bool IsActive { get; set; }
+        //**********
+
+        // **********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.Majornumber))]
+
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public int Min_Major { get; set; }
+        // **********
+
         // **********
         [MaxLength
         (length: Constants.MaxLength.Name,

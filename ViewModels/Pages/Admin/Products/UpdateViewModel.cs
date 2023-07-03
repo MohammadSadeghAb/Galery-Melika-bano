@@ -11,6 +11,14 @@ namespace ViewModels.Pages.Admin.Products
 {
     public class UpdateViewModel : CommonViewModel
     {
+        //**********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.IsActive))]
+
+        public bool IsActive { get; set; }
+        //**********
+
         // **********
         [MaxLength
         (length: Constants.MaxLength.Color_Text,

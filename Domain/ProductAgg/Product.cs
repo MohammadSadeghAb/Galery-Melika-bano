@@ -38,6 +38,14 @@ namespace Domain.ProductAgg
         // **********
 
         // **********
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public int Min_Major { get; set; }
+        // **********
+
+        // **********
         [MaxLength
         (length: Constants.MaxLength.Color_Text,
         ErrorMessageResourceType = typeof(Validations),
