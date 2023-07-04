@@ -167,11 +167,7 @@ public class User :
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
     // **********
 
     // **********
@@ -184,11 +180,7 @@ public class User :
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
-    public string ProvinceAddress { get; set; }
+    public string? ProvinceAddress { get; set; }
     // **********
 
     // **********
@@ -201,11 +193,8 @@ public class User :
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
 
-    public string CityAddress { get; set; }
+    public string? CityAddress { get; set; }
     // **********
 
     // **********
@@ -230,16 +219,12 @@ public class User :
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.NationalCode))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
     [MaxLength
         (length: FixedLength.NationalCode,
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    public string NationalCode { get; set; }
+    public string? NationalCode { get; set; }
 	// **********
 
 	// **********
@@ -252,11 +237,7 @@ public class User :
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
-    public string Address { get; set; }
+    public string? Address { get; set; }
     // **********
 
     // **********

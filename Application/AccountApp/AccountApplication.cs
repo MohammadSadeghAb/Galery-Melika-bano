@@ -24,16 +24,11 @@ namespace Application.AccountApp
 			{
 				IsActive = true,
 				Gender = model.Gender,
-				Address = model.Address,
 				FullName = model.FullName,
 				Password = model.Password,
 				Username = model?.Username,
-				PostalCode = model.PostalCode,
 				FatherName = model.FatherName,
-				CityAddress = model.CityAddress,
 				EmailAddress = model.EmailAddress,
-				NationalCode = model.NationalCode,
-				ProvinceAddress = model.ProvinceAddress,
 				CellPhoneNumber = model?.CellPhoneNumber,
 			});
 		}

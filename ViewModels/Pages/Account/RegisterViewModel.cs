@@ -1,4 +1,10 @@
-﻿namespace ViewModels.Pages.Account
+﻿using Resources.Messages;
+using static Domain.SeedWork.Constants;
+using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
+using System.Xml.Linq;
+
+namespace ViewModels.Pages.Account
 {
 	public class RegisterViewModel : object
 	{
@@ -133,6 +139,39 @@
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
 		public string? EmailAddress { get; set; }
-		// **********
-	}
+        // **********
+
+        // **********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.Fathersname))]
+
+        [Required
+            (ErrorMessageResourceType = typeof(Validations),
+            ErrorMessageResourceName = nameof(Validations.Required))]
+
+        [MaxLength
+            (length: MaxLength.Name,
+            ErrorMessageResourceType = typeof(Validations),
+            ErrorMessageResourceName = nameof(Validations.MaxLength))]
+        public string FatherName { get; set; }
+        // **********
+
+        // **********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.Gender))]
+
+        [MaxLength
+            (length: MaxLength.Gender,
+            ErrorMessageResourceType = typeof(Validations),
+            ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+        [Required
+            (ErrorMessageResourceType = typeof(Validations),
+            ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public string Gender { get; set; }
+        // **********
+    }
 }
