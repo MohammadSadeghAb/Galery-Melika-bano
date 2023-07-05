@@ -10,12 +10,13 @@ namespace Server.Pages.Account
 		}
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnGet()
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync()
 		{
 			// SignOutAsync -> using Microsoft.AspNetCore.Authentication;
 			await HttpContext.SignOutAsync
 				(scheme: Infrastructure.Security.Utility.AuthenticationScheme);
 
+			AddToastSuccess(message: Resources.Messages.Successes.Youhaveloggedoutofyouraccount);
 			return RedirectToPage(pageName: "/Index");
 		}
 	}

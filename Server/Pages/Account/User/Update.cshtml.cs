@@ -1,40 +1,80 @@
-﻿////using System.Linq;
-////using Microsoft.EntityFrameworkCore;
-////using Microsoft.Extensions.Logging;
+using Application.UserApp;
+using Infrastructure;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Resources;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using ViewModels.Pages.Admin.Users;
 
-//namespace Server.Pages.Security.User
-//{
-//	[Microsoft.AspNetCore.Authorization.Authorize]
-//	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
-//	{
-//		public UpdateModel
-//			(Data.DatabaseContext databaseContext,
-//			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
-//		{
-//			Logger = logger;
+namespace Server.Pages.Account.User;
 
-//			ViewModel = new();
-//		}
+[Authorize]
 
-//		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
+public class UpdateModel : BasePageModel
+{
+    private readonly IUserApplication _application;
 
-//		[Microsoft.AspNetCore.Mvc.BindProperty]
-//		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
+    public UpdateModel(IUserApplication application)
+    {
+        _application = application;
+        ViewModel = new();
+    }
 
-//		public async System.Threading.Tasks.Task OnGetAsync()
-//		{
-//			await System.Threading.Tasks.Task.CompletedTask;
-//		}
+    [BindProperty]
+    public UpdateViewModel ViewModel { get; set; }
 
-//		public async
-//			System.Threading.Tasks.Task OnPostAsync()
-//		{
-//			if (ModelState.IsValid == false)
-//			{
-//				return;
-//			}
+    public async Task<IActionResult> OnGetAsync()
+    {
+        Guid id = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
 
-//			await System.Threading.Tasks.Task.CompletedTask;
-//		}
-//	}
-//}
+        if (id == null)
+        {
+            AddToastError(Resources.Messages.Errors.IdIsNull);
+
+            return RedirectToPage("/Index");
+        }
+
+        ViewModel = (await _application.GetUser(id)).Data;
+
+        if (ViewModel == null)
+        {
+            AddToastError(Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+            return RedirectToPage("/Index");
+        }
+
+        AddPageWarning(Resources.Messages.Errors.Completeyourinformationbeforeordering);
+
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (ModelState.IsValid == false)
+        {
+            return Page();
+        }
+
+        var res = await _application.UpdateUser(ViewModel);
+
+        if (res.Succeeded == false || res.ErrorMessages.Count() > 0)
+        {
+            foreach (var item in res.ErrorMessages)
+            {
+                AddToastError(item);
+            }
+
+            return Page();
+        }
+
+        var successMessage = string.Format(Resources.Messages.Successes.Yourinformationhasbeeneditedsuccessfully);
+
+        AddToastSuccess(successMessage);
+
+        return RedirectToPage("/Index");
+    }
+}

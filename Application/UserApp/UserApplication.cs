@@ -49,7 +49,7 @@ namespace Application.UserApp
 
             var hashedPassword = _hasher.Hash(user?.Password);
 
-			var _user = new User(user?.EmailAddress)
+			var _user = new Domain.Users.User(user?.EmailAddress)
 			{
 				Password = hashedPassword,
 				IsEmailAddressVerified = true,
@@ -105,7 +105,7 @@ namespace Application.UserApp
 			return res;
 		}
 
-		private static void CheckIfUserIsUndeletable(OperationResult res, User? userForDelete)
+		private static void CheckIfUserIsUndeletable(OperationResult res, Domain.Users.User? userForDelete)
 		{
 			if (userForDelete.IsUndeletable)
 			{
@@ -115,7 +115,7 @@ namespace Application.UserApp
 			}
 		}
 
-		private static void CheckIfUserIsProgrammer(OperationResult res, User? userForDelete)
+		private static void CheckIfUserIsProgrammer(OperationResult res, Domain.Users.User? userForDelete)
 		{
 			if (userForDelete.IsProgrammer)
 			{
@@ -125,9 +125,9 @@ namespace Application.UserApp
 			}
 		}
 
-		public async Task<OperationResultWithData<User>> GetUserByUserName(string username)
+		public async Task<OperationResultWithData<Domain.Users.User>> GetUserByUserName(string username)
 		{
-			var res = new OperationResultWithData<User>();
+			var res = new OperationResultWithData<Domain.Users.User>();
 
 			var user = await _repository.GetByUserName(username);
 
@@ -136,14 +136,14 @@ namespace Application.UserApp
 			return res;
 		}
 
-		public async Task<OperationResultWithData<DetailsViewModel>> GetUser(Guid Id)
+		public async Task<OperationResultWithData<ViewModels.Pages.Admin.Users.DetailsViewModel>> GetUser(Guid Id)
 		{
-			var res = new OperationResultWithData<DetailsViewModel>();
+			var res = new OperationResultWithData<ViewModels.Pages.Admin.Users.DetailsViewModel>();
 
 			var user = await _repository.GetAsync(Id);
 
-			var _user = new DetailsViewModel
-			{
+			var _user = new ViewModels.Pages.Admin.Users.DetailsViewModel
+            {
 				EmailAddress = user?.EmailAddress,
 				Id = user?.Id,
 				InsertDateTime = user?.InsertDateTime,
@@ -235,18 +235,18 @@ namespace Application.UserApp
 			return res;
 		}
 
-		public async Task<OperationResultWithData<IList<DetailsViewModel>>> GetAllUsers()
+		public async Task<OperationResultWithData<IList<ViewModels.Pages.Admin.Users.DetailsViewModel>>> GetAllUsers()
 		{
-			var res = new OperationResultWithData<IList<DetailsViewModel>>();
+			var res = new OperationResultWithData<IList<ViewModels.Pages.Admin.Users.DetailsViewModel>>();
 
 			var users = await _repository.GetAllAsync();
 
-			var _data = new List<DetailsViewModel>();
+			var _data = new List<ViewModels.Pages.Admin.Users.DetailsViewModel>();
 
 			foreach (var user in users)
 			{
-				_data.Add(new DetailsViewModel
-				{
+				_data.Add(new ViewModels.Pages.Admin.Users.DetailsViewModel
+                {
 					EmailAddress = user.EmailAddress,
 					Id = user.Id,
 					InsertDateTime = user.InsertDateTime,

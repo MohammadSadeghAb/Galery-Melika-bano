@@ -4,6 +4,7 @@ using Framework.OperationResult;
 using Framework.Password;
 using ViewModels.Pages.Account;
 using ViewModels.Pages.Admin.Users;
+using User = Domain.Users.User;
 
 namespace Application.AccountApp
 {
