@@ -1,7 +1,118 @@
 ﻿@page
 @model Server.Pages.User.IndexModel
 @{
-    Layout = "Layouts/Rtl/_Layout";
+    var pagetitle = Resources.DataDictionary.Card;
+
+    ViewData["pagetitle"] = pagetitle;
+
+    Layout = "Layouts/Ltr/_Layout";
+
+    var Sales = Model._context.Sales.Where(x => x.UserId == Model.UserId).ToList();
 }
 
-User
+<br />
+<br />
+<div class="w-100 border"></div>
+<br />
+<br />
+
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-8 p-2">
+            @if (Sales.Count == 0)
+            {
+                <div class="border rounded-1 p-5 text-center">
+                    <h1>سبد خالیه!</h1>
+                </div>
+            }
+            @if (Sales.Count != 0)
+            {
+                <div class="border rounded-1 p-2">
+                    @foreach (var item in Sales)
+                    {
+                        var product = Model._context.Products.FirstOrDefault(x => x.Id == item.ProductId);
+                        var pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == product.Id);
+                        var category = Model._context.Categories.FirstOrDefault(x => x.Id == product.CategoryParent_Id);
+
+                        int? price = (item.Price * item.Number);
+
+                        if (item.Number <= product.Number)
+                        {
+                            Model.pricetotal = Model.pricetotal + price;
+
+                            Model.numbertotals = Model.numbertotals + item.Number;
+                        }
+
+                        <div class="row">
+                            <div class="col-md-6 my-2">
+                                @if (pic == null)
+                                {
+                                    <img width="100%" height="300" src="~/images/download.png" class="rounded-3" alt="@(product.Name_Product)">
+                                }
+                                @if (pic != null)
+                                {
+                                    <img width="100%" height="300" src="~/ProductPic/@(pic.PicAddress1)" class="rounded-3" alt="@(product.Name_Product)">
+                                }
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <div class="w-100 rounded-2 bg-danger p-2 text-white mb-2">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h3>@(product.Name_Product)</h3>
+                                        </div>
+                                        @if (item.Number <= product.Number)
+                                        {
+                                            <div class="col-3">
+                                                <p class="text-light">موجود</p>
+                                            </div>
+                                        }
+                                        @if (item.Number > product.Number)
+                                        {
+                                            <div class="col-3">
+                                                <p class="text-light">ناموجود</p>
+                                            </div>
+                                        }
+                                        <div class="col-12">
+                                            <h6 class="text-light">@(category.Name)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5>@(Resources.DataDictionary.Gender) : @(product.Gender)</h5>
+                                        <h5>@(Resources.DataDictionary.Type) : @(product.Type)</h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5>@(Resources.DataDictionary.Number) : @(item.Number)</h5>
+                                        <h5>@(Resources.DataDictionary.PriceTotal) : @(price)</h5>
+                                    </div>
+                                    <div class="col-12">
+                                        <br />
+                                        <br />
+                                        <form method="post">
+                                            <button type="submit" asp-route-id="@(item.Id)" class="btn btn-danger">@(Html.DtatGetIconDelete()) @(Resources.ButtonCaptions.Delete)</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-md-4 p-2">
+            @if (Sales.Count != 0)
+            {
+                <div class="border rounded-1 p-2">
+                    <p>@(Resources.DataDictionary.Total) : @(Model.numbertotals)</p>
+                    <p>@(Resources.DataDictionary.PriceTotal) : @(Model.pricetotal)</p>
+                    <hr />
+                    <form method="post" asp-page-handler="Create">
+                        <button type="submit" class="w-100 btn btn-danger">@(Resources.DataDictionary.Order)</button>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using Domain.SaleAgg;
+﻿using Domain.ProductAgg;
+using Domain.SaleAgg;
 using Domain.TotalSaleAgg;
 using Framework.OperationResult;
 using Resources.Messages;
@@ -27,6 +28,7 @@ namespace Application.TotalSaleApp
 
             var _totalsale = new TotalSale()
             {
+                Color = totalsale.Color,
                 UserId = totalsale.UserId,
                 Number = totalsale.Number,
                 Products = totalsale.Products,
@@ -63,21 +65,26 @@ namespace Application.TotalSaleApp
             return res;
         }
 
-        public async Task<OperationResultWithData<IList<CommonViewModel>>> GetAllTotalSale()
+        public async Task<OperationResultWithData<IList<DetailsViewModel>>> GetAllTotalSale()
         {
-            var res = new OperationResultWithData<IList<CommonViewModel>>();
+            var res = new OperationResultWithData<IList<DetailsViewModel>>();
 
             var totalsales = await _repository.GetAllAsync();
 
-            var _data = new List<CommonViewModel>();
+            var _data = new List<DetailsViewModel>();
 
             foreach (var totalsale in totalsales)
             {
-                _data.Add(new CommonViewModel
+                _data.Add(new DetailsViewModel
                 {
                     Id = totalsale.Id,
+                    Color = totalsale.Color,
                     UserId = totalsale.UserId,
                     Number = totalsale.Number,
+                    Posted = totalsale.Posted,
+                    Packing = totalsale.Packing,
+                    Accepted = totalsale.Accepted,
+                    Delivery = totalsale.Delivery,
                     Products = totalsale.Products,
                     TotalPrice = totalsale.TotalPrice,
                     FactorNumber = totalsale.FactorNumber,
@@ -90,17 +97,22 @@ namespace Application.TotalSaleApp
             return res;
         }
 
-        public async Task<OperationResultWithData<CommonViewModel>> GetTotalSale(Guid Id)
+        public async Task<OperationResultWithData<DetailsViewModel>> GetTotalSale(Guid Id)
         {
-            var res = new OperationResultWithData<CommonViewModel>();
+            var res = new OperationResultWithData<DetailsViewModel>();
 
             var totalsale = await _repository.GetAsync(Id);
 
-            var _totalsale = new CommonViewModel
+            var _totalsale = new DetailsViewModel
             {
                 Id = totalsale.Id,
+                Color = totalsale.Color,
                 Number = totalsale.Number,
                 UserId = totalsale.UserId,
+                Posted = totalsale.Posted,
+                Packing = totalsale.Packing,
+                Accepted = totalsale.Accepted,
+                Delivery = totalsale.Delivery,
                 Products = totalsale.Products,
                 TotalPrice = totalsale.TotalPrice,
                 FactorNumber = totalsale.FactorNumber,
@@ -109,6 +121,29 @@ namespace Application.TotalSaleApp
 
             res.Data = _totalsale;
 
+            return res;
+        }
+
+        public async Task<OperationResult> UpdateTotalSale(UpdateViewModel totalsale)
+        {
+            var res = new OperationResult();
+
+            var totalsaleForUpdate = await _repository.GetAsync(totalsale.Id.Value);
+
+            if (totalsaleForUpdate == null)
+            {
+                res.AddErrorMessage(Errors.ThereIsNotAnyDataWithThisId);
+                res.Succeeded = false;
+                return res;
+            }
+
+            totalsaleForUpdate.Posted = totalsale.Posted;
+            totalsaleForUpdate.Packing = totalsale.Packing;
+            totalsaleForUpdate.Accepted = totalsale.Accepted;
+            totalsaleForUpdate.Delivery = totalsale.Delivery;
+
+            await _repository.SaveChangesAsync();
+            res.Succeeded = true;
             return res;
         }
     }

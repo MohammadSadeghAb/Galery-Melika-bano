@@ -19,7 +19,7 @@ namespace Persistence.Repositories
 
         public async Task<IList<TotalSale>> GetAllAsync()
         {
-            return await _context.TotalSales.ToListAsync();
+            return await _context.TotalSales.OrderBy(x => x.FactorNumber).ToListAsync();
         }
     }
 }

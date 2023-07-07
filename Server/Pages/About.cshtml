@@ -2,15 +2,32 @@
 @model Server.Pages.AboutModel
 
 @{
-	var pageTitle =
-		Resources.PageTitles.About;
+    var pageTitle =
+        Resources.PageTitles.About;
 
-	ViewData["PageTitle"] = pageTitle;
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Ltr/_Layout";
 }
 
-<h3>
-	@(pageTitle)
-</h3>
+<br />
+<br />
+<div class="w-100 border"></div>
+<br />
+<br />
 
-<hr />
+<div class="container">
+    <div class="p-3 border rounded-3 bg-light mt-2 shadow-lg">
+        <h3 class="w-100 rounded-2 bg-danger p-2 text-white">
+            <i class="bi bi-telephone"></i> @(pageTitle)
+        </h3>
 
+        <p>تولید و پخش انواع محصولات برای کودکان و نوجوانان باطرح حجاب و ایرانی</p>
+        <br />
+        <p>سفارش به صورت تک و عمده</p>
+        <br />
+        <p>#ما_معتقدیم_لوازم_تحریر_فرزندانمان_فرهنگساز_است</p>
+        <br />
+        <p>ارسال از مشهد به سراسر کشور</p>
+    </div>
+</div>

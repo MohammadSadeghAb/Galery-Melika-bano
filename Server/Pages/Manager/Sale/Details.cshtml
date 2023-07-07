@@ -1,0 +1,78 @@
+﻿@page
+@model Server.Pages.Manager.Sale.DetailsModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.ButtonCaptions.Details} {Resources.DataDictionary.Sale}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<section-form-field>
+			<label asp-for="ViewModelTotalSale.Products"></label>
+			<input asp-for="Product.Data.Name_Product" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModelTotalSale.UserId"></label>
+			<input asp-for="User.Data.FullName" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModelTotalSale.Number"></label>
+			<input asp-for="ViewModelTotalSale.Number" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModelTotalSale.TotalPrice"></label>
+			<input asp-for="ViewModelTotalSale.TotalPrice" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModelTotalSale.Color"></label>
+			<input asp-for="ViewModelTotalSale.Color" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModelTotalSale.FactorNumber"></label>
+			<input asp-for="ViewModelTotalSale.FactorNumber" />
+		</section-form-field>
+
+		<section-form-check>
+			<label asp-for="ViewModelTotalSale.Accepted"></label>
+			<input asp-for="ViewModelTotalSale.Accepted" />
+		</section-form-check>
+
+		<section-form-check>
+			<label asp-for="ViewModelTotalSale.Packing"></label>
+			<input asp-for="ViewModelTotalSale.Packing" />
+		</section-form-check>
+
+		<section-form-check>
+			<label asp-for="ViewModelTotalSale.Posted"></label>
+			<input asp-for="ViewModelTotalSale.Posted" />
+		</section-form-check>
+
+		<section-form-check>
+			<label asp-for="ViewModelTotalSale.Delivery"></label>
+			<input asp-for="ViewModelTotalSale.Delivery" />
+		</section-form-check>
+	</fieldset>
+
+	<section-form-footer>
+		<a asp-page="TotalSale">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-route-id="@(Model.User.Data.Id)" asp-page="../User/Details">
+			[ @(Html.DtatGetIconDetails()) @(Resources.ButtonCaptions.Details) @(Resources.DataDictionary.User) ]
+		</a>
+	</section-form-footer>
+</section-form>

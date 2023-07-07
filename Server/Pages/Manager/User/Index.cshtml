@@ -1,0 +1,86 @@
+﻿@page
+@model Server.Pages.Manager.User.IndexModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Users}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<section-page-body>
+    <section-table>
+        <table>
+            <caption>
+                @(pageTitle)
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>
+                        @(Resources.DataDictionary.RowNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Action)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.FullName)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Province)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.City)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.CellPhoneNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.InsertDateTime)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                @for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+                {
+                    var item = Model.ViewModel[index];
+
+                    <tr>
+                        @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+                        <table-actions>
+                            <a asp-page="Details" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDetails())
+                            </a>
+                            @*<a asp-page="Update" asp-route-id="@(item.Id)">
+                        @(Html.DtatGetIconUpdate())
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@(item.Id)">
+                        @(Html.DtatGetIconDelete())
+                        </a>*@
+                        </table-actions>
+
+                        <td>
+                            @(item.FullName)
+                        </td>
+
+                        <td>
+                            @(item.ProvinceAddress)
+                        </td>
+
+                        <td>
+                            @(item.CityAddress)
+                        </td>
+
+                        <td>
+                            @(item.CellPhoneNumber)
+                        </td>
+
+                        @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section-table>
+</section-page-body>

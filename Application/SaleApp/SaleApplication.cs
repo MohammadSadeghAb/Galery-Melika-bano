@@ -34,6 +34,7 @@ namespace Application.SaleApp
 
             var _sale = new Sale()
             {
+                Color = sale.Color,
                 Price = sale.Price,
                 Number = sale.Number,
                 UserId = sale.UserId,
@@ -82,6 +83,7 @@ namespace Application.SaleApp
                 _data.Add(new DetailsViewModel
                 {
                     Id = sale.Id,
+                    Color = sale.Color,
                     Price = sale.Price,
                     UserId = sale.UserId,
                     Number = sale.Number,
@@ -105,6 +107,7 @@ namespace Application.SaleApp
             {
                 Id = sale?.Id,
                 Price = sale.Price,
+                Color = sale.Color,
                 UserId = sale.UserId,
                 Number = sale.Number,
                 ProductId = sale.ProductId,

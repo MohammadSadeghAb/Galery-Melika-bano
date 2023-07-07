@@ -15,12 +15,12 @@ public class IndexModel : Infrastructure.BasePageModel
 	{
 		Logger = logger;
 		UserApplication = userApplication;
-		ViewModel = new List<DetailsViewModel>();
+        ViewModel = new List<ViewModels.Pages.Admin.Users.DetailsViewModel>();
 	}
 
 	private ILogger<IndexModel> Logger { get; }
 	public IUserApplication UserApplication { get; }
-	public IList<DetailsViewModel> ViewModel { get; private set; }
+	public IList<ViewModels.Pages.Admin.Users.DetailsViewModel> ViewModel { get; private set; }
 
 
 	public async Task OnGetAsync()

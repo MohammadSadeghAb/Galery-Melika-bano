@@ -79,6 +79,24 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The desired product has been added to the cart.
+        /// </summary>
+        public static string Thedesiredproducthasbeenaddedtothecart {
+            get {
+                return ResourceManager.GetString("Thedesiredproducthasbeenaddedtothecart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The item has been successfully removed from your shopping cart.
+        /// </summary>
+        public static string Theitemhasbeensuccessfullyremovedfromyourshoppingcart {
+            get {
+                return ResourceManager.GetString("Theitemhasbeensuccessfullyremovedfromyourshoppingcart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} successfully updated..
         /// </summary>
         public static string Updated {
@@ -102,6 +120,33 @@ namespace Resources.Messages {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have logged out of your account.
+        /// </summary>
+        public static string Youhaveloggedoutofyouraccount {
+            get {
+                return ResourceManager.GetString("Youhaveloggedoutofyouraccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your information has been edited successfully.
+        /// </summary>
+        public static string Yourinformationhasbeeneditedsuccessfully {
+            get {
+                return ResourceManager.GetString("Yourinformationhasbeeneditedsuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your order has been registered.
+        /// </summary>
+        public static string Yourorderhasbeenregistered {
+            get {
+                return ResourceManager.GetString("Yourorderhasbeenregistered", resourceCulture);
             }
         }
     }

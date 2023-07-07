@@ -43,5 +43,13 @@ namespace Domain.SaleAgg
         public int? Price { get; set; }
         //**********
 
+        //**********
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public string Color { get; set; }
+        //**********
+
     }
 }

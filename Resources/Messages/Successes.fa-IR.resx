@@ -123,6 +123,12 @@
   <data name="Deleted" xml:space="preserve">
     <value>{0} با موفقیت حذف گردید.</value>
   </data>
+  <data name="Thedesiredproducthasbeenaddedtothecart" xml:space="preserve">
+    <value>کالای مورد نظر به سبد کالا افزوده شد</value>
+  </data>
+  <data name="Theitemhasbeensuccessfullyremovedfromyourshoppingcart" xml:space="preserve">
+    <value>کالا از سبد خرید شما با موفقیت حذف گردید</value>
+  </data>
   <data name="Updated" xml:space="preserve">
     <value>{0} با موفقیت ویرایش گردید.</value>
   </data>
@@ -131,5 +137,14 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>{0} خوش اومدی!</value>
+  </data>
+  <data name="Youhaveloggedoutofyouraccount" xml:space="preserve">
+    <value>شما از حساب کاربری خود خارج شدید</value>
+  </data>
+  <data name="Yourinformationhasbeeneditedsuccessfully" xml:space="preserve">
+    <value>ویرایش اطلاعات شما با موفقیت انجام شد</value>
+  </data>
+  <data name="Yourorderhasbeenregistered" xml:space="preserve">
+    <value>سفارش شما ثبت گردید</value>
   </data>
 </root>

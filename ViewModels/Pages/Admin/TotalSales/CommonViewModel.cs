@@ -51,7 +51,7 @@ namespace ViewModels.Pages.Admin.TotalSales
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.Products))]
 
-        public List<Product> Products { get; set; }
+        public Guid? Products { get; set; }
         //**********
 
         //**********
@@ -63,7 +63,7 @@ namespace ViewModels.Pages.Admin.TotalSales
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.Number))]
 
-        public int Number { get; set; }
+        public int? Number { get; set; }
         //**********
 
         //**********
@@ -75,7 +75,7 @@ namespace ViewModels.Pages.Admin.TotalSales
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.PriceTotal))]
 
-        public int TotalPrice { get; set; }
+        public int? TotalPrice { get; set; }
         //**********
 
         //**********
@@ -87,7 +87,19 @@ namespace ViewModels.Pages.Admin.TotalSales
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.FactorNumber))]
 
-        public string FactorNumber { get; set; }
+        public int FactorNumber { get; set; }
+        //**********
+
+        //**********
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.Color))]
+
+        public string Color { get; set; }
         //**********
     }
 }

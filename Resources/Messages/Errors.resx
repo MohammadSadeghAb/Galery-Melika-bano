@@ -126,6 +126,9 @@
   <data name="CascadeDelete" xml:space="preserve">
     <value>There are some related data to this {0}, So you can not delete this item!</value>
   </data>
+  <data name="Completeyourinformationbeforeordering" xml:space="preserve">
+    <value>Complete your information before ordering</value>
+  </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Are you sure to delete this item?</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="EmailAddressIsNotVerified" xml:space="preserve">
     <value>Email address is not verified yet!</value>
+  </data>
+  <data name="Firstselectthedesirednumber" xml:space="preserve">
+    <value>First, select the desired number</value>
   </data>
   <data name="IdIsNull" xml:space="preserve">
     <value>Id is null!</value>
@@ -147,11 +153,23 @@
   <data name="NotFound" xml:space="preserve">
     <value>There is no {0} with this information!</value>
   </data>
+  <data name="Pleaseenterthefactornumber" xml:space="preserve">
+    <value>Please enter the factor number</value>
+  </data>
+  <data name="Pleaseregister/loginfirst" xml:space="preserve">
+    <value>Please register/login first</value>
+  </data>
+  <data name="Thedesireditemwasnotfound" xml:space="preserve">
+    <value>The desired item was not found</value>
+  </data>
   <data name="ThereIsNotAnyDataWithThisId" xml:space="preserve">
     <value>There is not any data with this id!</value>
   </data>
   <data name="ThereIsNotAnyDataWithThisName" xml:space="preserve">
     <value>There is not any data with this Name!</value>
+  </data>
+  <data name="Thisnumberofproductsisnotavailable" xml:space="preserve">
+    <value>This number of products is not available</value>
   </data>
   <data name="UnableTo" xml:space="preserve">
     <value>We are unable to {0} this {1}!</value>

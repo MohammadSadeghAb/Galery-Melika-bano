@@ -1,14 +1,32 @@
 ﻿@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
 
-<footer class="py-3 my-4">
+<footer class="py-3 my-4 border-top bg-white">
+
+    <div class="row m-3">
+        <div class="col-sm-12 col-md-4">
+            <h4>@(Resources.DataDictionary.Galery) @(Resources.DataDictionary.Melikabanoo)</h4>
+            <p class="mt-5">تولید و پخش انواع محصولات برای <br /> کودکان و نوجوانان با طرح حجاب و ایرانی</p>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h4>@(Resources.DataDictionary.Communicational)</h4>
+            <p class="mt-5">@(Resources.DataDictionary.CellPhoneNumber) : 09156497540</p>
+            <p>@(Resources.DataDictionary.Address) : مشهد</p>
+            <a href="https://eitaa.com/melikabano" target="_blank"><img src="~/images/Eitaa.png" style="width : 40px; height : 40px" class="rounded border" /></a>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <h4>@(Resources.DataDictionary.Galery) @(Resources.DataDictionary.Melikabanoo)</h4>
+            <p class="mt-5"><a class="text-decoration-none text-dark" asp-page="/About">@(Resources.PageTitles.About)</a></p>
+            <p><a class="text-decoration-none text-dark" asp-page="/Contact">@(Resources.PageTitles.Contact)</a></p>
+        </div>
+    </div>
+
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        <li class="nav-item"><a asp-page="/About" class="nav-link px-2 text-muted">About</a></li>
+        <li class="nav-item"><a asp-page="/Products" class="nav-link px-2 text-muted">Product</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Category</a></li>
+        <li class="nav-item"><a asp-page="/Index" class="nav-link px-2 text-muted">Home</a></li>
     </ul>
-    <p class="text-center text-muted">&copy; 2022 Company, Inc</p>
+    <p class="text-center text-muted">Modaresin &copy;</p>
 </footer>
 

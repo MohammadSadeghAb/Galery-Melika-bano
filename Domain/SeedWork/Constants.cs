@@ -34,7 +34,7 @@
 
 			public const int PostalCode = 10;
 			public const int NationalCode = 10;
-			public const int CellPhoneNumber = 14;
+			public const int CellPhoneNumber = 11;
 			public const int DatabasePassword = 80;
 		}
 
@@ -109,7 +109,7 @@
 				@"^[a-zA-Z0-9_]{6,20}$";
 
 			public const string CellPhoneNumber =
-				@"^00989\d{9}";
+				@"^09\d{9}";
 
 			public const string AToZDigitsUnderline =
 				@"^[a-zA-Z][a-zA-Z0-9_]*$";

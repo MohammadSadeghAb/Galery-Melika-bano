@@ -126,6 +126,9 @@
   <data name="CascadeDelete" xml:space="preserve">
     <value>از این {0} در جای دیگری استفاده شده است، لذا شما قادر به حذف آن نمی‌باشید!</value>
   </data>
+  <data name="Completeyourinformationbeforeordering" xml:space="preserve">
+    <value>قبل از سفارش اطلاعات خود را کامل کنید</value>
+  </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>آیا از حذف این آیتم اطمینان دارید؟</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="EmailAddressIsNotVerified" xml:space="preserve">
     <value>نشانی پست الکترونیکی هنوز تایید نشده است!</value>
+  </data>
+  <data name="Firstselectthedesirednumber" xml:space="preserve">
+    <value>اول تعداد مورد نظر را انتخاب کنید</value>
   </data>
   <data name="IdIsNull" xml:space="preserve">
     <value>شناسه اطلاعات باید مشخص شده باشد!</value>
@@ -147,11 +153,23 @@
   <data name="NotFound" xml:space="preserve">
     <value>{0} مورد نظر یافت نشد!</value>
   </data>
+  <data name="Pleaseenterthefactornumber" xml:space="preserve">
+    <value>لطفا شماره فاکتور را وارد کنید</value>
+  </data>
+  <data name="Pleaseregister/loginfirst" xml:space="preserve">
+    <value> لطفا اول ثبت نام/ورود کنید</value>
+  </data>
+  <data name="Thedesireditemwasnotfound" xml:space="preserve">
+    <value>کالای مورد نظر یافت نشد</value>
+  </data>
   <data name="ThereIsNotAnyDataWithThisId" xml:space="preserve">
     <value>اطلاعاتی با چنین شناسه‌ای وجود ندارد!</value>
   </data>
   <data name="ThereIsNotAnyDataWithThisName" xml:space="preserve">
     <value>اطلاعاتی با چنین نامی وجود ندارد!</value>
+  </data>
+  <data name="Thisnumberofproductsisnotavailable" xml:space="preserve">
+    <value>این تعداد از کالا موجود نمی باشد</value>
   </data>
   <data name="UnableTo" xml:space="preserve">
     <value>در حال حاضر امکان {0} این {1} وجود ندارد!</value>

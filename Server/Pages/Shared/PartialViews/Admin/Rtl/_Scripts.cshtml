@@ -34,3 +34,36 @@
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
 
 </environment>
+
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#profile-image-tag').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$('#profile-image').change(function () {
+		readURL(this);
+	})
+</script>
+
+<script>
+	function itpro(Number)
+	{
+		Number += '';
+		Number = Number.replace(',', '');
+		Number = Number.replace(',', '');
+
+		x = Number.split('.');
+		y = x[0];
+		z = x.lenght > 1 ? '.' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(y))
+		y = y.replace(rgx, '$1' + ',' + '$2');
+		return y + z;
+	}
+</script>

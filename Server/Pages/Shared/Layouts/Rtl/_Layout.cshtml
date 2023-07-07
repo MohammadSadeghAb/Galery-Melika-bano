@@ -17,17 +17,17 @@
 
 	<partial name="PartialViews/_FavoriteIcon" />
 
-	<partial name="PartialViews/Rtl/_StyleSheets" />
+	<partial name="PartialViews/Ltr/_StyleSheets" />
 
-	<link href="~/css/app.css" rel="stylesheet" />
+	<link rel="website icon" type="jpg" href="~/images/Logo.jpg" />
 
 	@(await RenderSectionAsync(name: "StyleSheets", required: false))
 </head>
 
-<body style="background-image: url(/images/bg/header-bg.png)" class="bg-image">
+<body>
 	<partial name="PartialViews/_DisplayToastMessages" />
 
-	<partial name="PartialViews/Ltr/_Header" />
+	<partial name="PartialViews/Rtl/_Header" />
 
 	<main role="main" class="my-5 py-4">
 		<div class="container">
@@ -37,13 +37,9 @@
 
 	<partial name="PartialViews/Ltr/_Footer" />
 
-	<partial name="PartialViews/Rtl/_Scripts" />
+	<partial name="PartialViews/Ltr/_Scripts" />
 
 	@(await RenderSectionAsync(name: "Scripts", required: false))
 </body>
 
 </html>
-
-
-
-

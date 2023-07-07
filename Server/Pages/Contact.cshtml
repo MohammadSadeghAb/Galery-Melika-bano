@@ -2,15 +2,24 @@
 @model Server.Pages.ContactModel
 
 @{
-	var pageTitle =
-		Resources.PageTitles.Contact;
+    var pageTitle =
+        Resources.PageTitles.Contact;
 
-	ViewData["PageTitle"] = pageTitle;
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Ltr/_Layout";
 }
 
-<h3>
-	@(pageTitle)
-</h3>
+<br />
+<br />
+<div class="w-100 border"></div>
+<br />
+<br />
 
-<hr />
+<div class="container">
+    <h3>
+        @(pageTitle)
+    </h3>
 
+    <hr />
+</div>

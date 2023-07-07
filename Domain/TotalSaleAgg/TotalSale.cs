@@ -25,7 +25,7 @@ namespace Domain.TotalSaleAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public List<Product> Products { get; set; }
+        public Guid? Products { get; set; }
         //**********
 
         //**********
@@ -33,7 +33,7 @@ namespace Domain.TotalSaleAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public int Number { get; set; }
+        public int? Number { get; set; }
         //**********
 
         //**********
@@ -41,7 +41,7 @@ namespace Domain.TotalSaleAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public int TotalPrice { get; set; }
+        public int? TotalPrice { get; set; }
         //**********
 
         //**********
@@ -49,7 +49,31 @@ namespace Domain.TotalSaleAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public string FactorNumber { get; set; }
+        public int FactorNumber { get; set; }
+        //**********
+
+        //**********
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public string Color { get; set; }
+        //**********
+
+        //**********
+        public bool Accepted { get; set; }
+        //**********
+
+        //**********
+        public bool Packing { get; set; }
+        //**********
+
+        //**********
+        public bool Posted { get; set; }
+        //**********
+
+        //**********
+        public bool Delivery { get; set; }
         //**********
     }
 }

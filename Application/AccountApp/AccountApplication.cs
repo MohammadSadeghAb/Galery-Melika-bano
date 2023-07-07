@@ -23,6 +23,7 @@ namespace Application.AccountApp
 		{
 			return await _userApplication.AddUser(new CreateViewModel
 			{
+				Role = "User",
 				IsActive = true,
 				Gender = model.Gender,
 				FullName = model.FullName,

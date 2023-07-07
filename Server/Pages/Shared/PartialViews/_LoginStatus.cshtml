@@ -1,53 +1,55 @@
-﻿<ul class="navbar-nav mb-2 mb-lg-0">
+﻿@if (User == null ||
+ User.Identity == null ||
+ User.Identity.IsAuthenticated == false)
+{
+    <p>
+        <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Register">
+            @(Resources.PageTitles.Register)
+        </a>
+        |
+        <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Login">
+            @(Resources.PageTitles.Login)
+        </a>
+    </p>
+}
+else
+{
+    if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Admin")
+    {
+        <p>
+            <a class="text-warning text-decoration-none btn btn-outline-light" asp-page="/Admin/Index">
+                @(Resources.DataDictionary.Dashboard)
+            </a>
+            |
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Logout">
+                @(Resources.PageTitles.Logout)
+            </a>
+        </p>
+    }
 
-	@if (User == null ||
-			User.Identity == null ||
-			User.Identity.IsAuthenticated == false)
-	{
-		<li class="nav-item">
-			<a class="nav-link" asp-page="/Account/Register">
-				@(Resources.PageTitles.Register)
-			</a>
-		</li>
+    if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Manager")
+    {
+        <p>
+            <a class="text-warning text-decoration-none btn btn-outline-light" asp-page="/Manager/Index">
+                @(Resources.DataDictionary.Dashboard)
+            </a>
+            |
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Logout">
+                @(Resources.PageTitles.Logout)
+            </a>
+        </p>
+    }
 
-		<li class="nav-item">
-			<a class="nav-link" asp-page="/Account/Login">
-				@(Resources.PageTitles.Login)
-			</a>
-		</li>
-	}
-	else
-	{
-		if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Admin")
-		{
-			<li>
-				<a class="nav-link text-warning" asp-page="/Admin/Index">
-					@(Resources.DataDictionary.Dashboard)
-				</a>
-			</li>
-
-
-			<li class="nav-item">
-				<a class="nav-link" asp-page="/Account/Logout">
-					@(Resources.PageTitles.Logout)
-				</a>
-			</li>
-		}
-
-		if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "User")
-		{
-			<li>
-				<a class="nav-link text-warning" asp-page="/User/Index">
-					@(Resources.DataDictionary.Dashboard)
-				</a>
-			</li>
-
-
-			<li class="nav-item">
-				<a class="nav-link" asp-page="/Account/Logout">
-					@(Resources.PageTitles.Logout)
-				</a>
-			</li>
-		}
-	}
-</ul>
+    if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "User")
+    {
+        <p>
+            <a class="text-danger text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Index">
+                @(Resources.DataDictionary.Card)
+            </a>
+            |
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Logout">
+                @(Resources.PageTitles.Logout)
+            </a>
+        </p>
+    }
+}

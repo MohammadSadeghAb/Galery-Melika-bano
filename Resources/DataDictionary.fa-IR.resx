@@ -565,10 +565,10 @@
     <value>ابعاد</value>
   </data>
   <data name="DiscountMajor" xml:space="preserve">
-    <value>تخفیف عمده</value>
+    <value>قیمت عمده</value>
   </data>
   <data name="DiscountSingle" xml:space="preserve">
-    <value>تخفیف تکی</value>
+    <value>قیمت تکی</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>کالا</value>
@@ -629,5 +629,53 @@
   </data>
   <data name="Melikabanoo" xml:space="preserve">
     <value>ملیکا بانو</value>
+  </data>
+  <data name="Addtocart" xml:space="preserve">
+    <value>افزودن به سبد خرید</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>پرداخت</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>انتخاب کنید</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>سبد خرید</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>ثبت سفارش</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>تعداد کل</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>خوش آمدید</value>
+  </data>
+  <data name="Majornumber" xml:space="preserve">
+    <value>تعداد عمده</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>اطلاعات</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
+    <value>تایید شده</value>
+  </data>
+  <data name="Confirming" xml:space="preserve">
+    <value>در حال تایید</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>تحویل داده شده</value>
+  </data>
+  <data name="Packing" xml:space="preserve">
+    <value>بسته بندی</value>
+  </data>
+  <data name="Posted" xml:space="preserve">
+    <value>ارسال شده</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>نفر</value>
+  </data>
+  <data name="Enterfactornumber" xml:space="preserve">
+    <value>شماره فاکتور را وارد کنید</value>
   </data>
 </root>

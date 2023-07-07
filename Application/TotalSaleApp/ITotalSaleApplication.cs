@@ -7,7 +7,8 @@ namespace Application.TotalSaleApp
     {
         Task<OperationResult> AddTotalSale(CommonViewModel totalsale);
         Task<OperationResult> DeleteTotalSale(Guid Id);
-        Task<OperationResultWithData<CommonViewModel>> GetTotalSale(Guid Id);
-        Task<OperationResultWithData<IList<CommonViewModel>>> GetAllTotalSale();
+        Task<OperationResult> UpdateTotalSale(UpdateViewModel totalsale);
+        Task<OperationResultWithData<DetailsViewModel>> GetTotalSale(Guid Id);
+        Task<OperationResultWithData<IList<DetailsViewModel>>> GetAllTotalSale();
     }
 }

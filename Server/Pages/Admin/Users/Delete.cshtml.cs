@@ -25,7 +25,7 @@ public class DeleteModel : Infrastructure.BasePageModel
 	public IUserApplication UserApplication { get; }
 
 	[BindProperty]
-	public DetailsViewModel ViewModel { get; private set; }
+	public ViewModels.Pages.Admin.Users.DetailsViewModel ViewModel { get; private set; }
 
 	public async Task<IActionResult> OnGetAsync(Guid? id)
 	{

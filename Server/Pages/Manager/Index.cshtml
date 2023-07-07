@@ -1,0 +1,86 @@
+﻿@page
+@model Server.Pages.Manager.IndexModel
+@{
+    var pageTitle =
+        Resources.PageTitles.AdminSettings;
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+
+    var users = Model._context.Users.Where(x => x.Role == "User").ToList();
+
+    var sales = Model._context.TotalSales.ToList();
+
+    var delivery = Model._context.TotalSales.Where(x => x.Delivery == true).ToList();
+
+    var posted = Model._context.TotalSales.Where(x => x.Posted == true).ToList();
+
+    var packing = Model._context.TotalSales.Where(x => x.Packing == true).ToList();
+
+    var accept = Model._context.TotalSales.Where(x => x.Accepted == true).ToList();
+}
+<div class="row">
+    <div class="col-12 w-100 text-center">
+        <h1>@(User.Claims.FirstOrDefault(x => x.Type == "FullName").Value) @(Resources.DataDictionary.Welcome)</h1>
+    </div>
+
+    <div class="col-lg-3 p-2"></div>
+
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-person"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Users)
+            </h4>
+            <h5 class="text-end">@(users.Count) @(Resources.DataDictionary.Person)</h5>
+        </div>
+    </div>
+
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-cart"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Sales)
+            </h4>
+            <h5 class="text-end">@(sales.Count)</h5>
+        </div>
+    </div>
+
+    <div class="col-lg-3 p-2"></div>
+
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-check2-square"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Accepted)
+            </h4>
+            <h5 class="text-end">@(accept.Count)</h5>
+        </div>
+    </div>
+
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-box-seam"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Packing)
+            </h4>
+            <h5 class="text-end">@(packing.Count)</h5>
+        </div>
+    </div>
+
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-mailbox"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Posted)
+            </h4>
+            <h5 class="text-end">@(posted.Count)</h5>
+        </div>
+    </div>
+
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-bag-heart"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Delivery)
+            </h4>
+            <h5 class="text-end">@(delivery.Count)</h5>
+        </div>
+    </div>
+
+</div>

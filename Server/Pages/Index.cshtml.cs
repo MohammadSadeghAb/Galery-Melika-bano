@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Application.CategoryApp;
 using Application.ProductApp;
+using Domain.ProductAgg;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Resources.Messages;
 using ViewModels.Pages.Admin.Products;
@@ -14,47 +17,55 @@ namespace Server.Pages
 {
 	public class IndexModel : BasePageModel
 	{
-		private readonly IProductApplication _application;
+		private readonly IProductApplication _product;
 
-		public IndexModel(IProductApplication application,
+		private readonly ICategoryApplication _category;
+
+		public IndexModel(IProductApplication product,
+						  ICategoryApplication category,
 						  DatabaseContext context)
 		{
 			_context = context;
-			_application = application;
-			ViewModel = new List<DetailsViewModel>();
+			_product = product;
+			_category = category;
+            ViewModelProduct = new List<Product>();
+			ViewModelCategory = new List<ViewModels.Pages.Admin.Categories.IndexViewModel>();
 		}
 
 		public DatabaseContext _context { get; set; }
 
-		public IList<DetailsViewModel> ViewModel { get; private set; }
+		public IList<Product> ViewModelProduct { get; private set; }
+
+		public IList<ViewModels.Pages.Admin.Categories.IndexViewModel> ViewModelCategory { get; set; }
+
+		[BindProperty]
+		public string Search { get; set; }
 
 		public async Task<IActionResult> OnGetAsync()
 		{
+
+			ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).ToListAsync();
+
+			ViewModelCategory = (await _category.GetIndexCategories()).Data;
+
 			return Page();
-
-			ViewModel = (await _application.GetAllProduct()).Data;
-
-			//if (User == null || User.Identity == null || User.Identity.IsAuthenticated == false)
-			//{
-			//	return RedirectToPage("Account/Login");
-			//}
-
-			//var role = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
-
-			//var fullName = User.Claims.FirstOrDefault(x => x.Type == "FullName")?.Value;
-
-			//if (role == Constants.Role.User)
-			//{
-			//	AddToastSuccess(string.Format(Successes.Welcome, fullName));
-			//	return RedirectToPage("User/Index");
-			//}
-			//else if (role == Constants.Role.Admin)
-			//{
-			//	AddToastSuccess(string.Format(Successes.Welcome, fullName));
-			//	return RedirectToPage("Admin/Index");
-			//}
-
-			//return RedirectToPage("Account/Login");
 		}
-	}
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (Search == null)
+            {
+                ViewModelProduct = await _context.Products.ToListAsync();
+                ViewModelCategory = (await _category.GetIndexCategories()).Data;
+            }
+
+            if (Search != null)
+            {
+                ViewModelProduct = await _context.Products.Where(x => x.Name_Product.Contains($"{Search}") & x.IsActive == true).ToListAsync();
+                ViewModelCategory = (await _category.GetIndexCategories()).Data;
+            }
+
+            return Page();
+        }
+    }
 }

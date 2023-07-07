@@ -1,0 +1,76 @@
+﻿@{
+    var currentCultureName =
+    System.Threading.Thread
+    .CurrentThread.CurrentUICulture.Name;
+}
+
+<!doctype html>
+
+<html lang="@(currentCultureName)" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <partial name="PartialViews/_FavoriteIcon" />
+
+    <partial name="PartialViews/Admin/Rtl/_StyleSheets" />
+
+    <title>@(ViewData[ViewDataKeyNames.PageTitle])</title>
+
+    @(await RenderSectionAsync(name: "StyleSheets", required: false))
+</head>
+
+<body>
+    <partial name="PartialViews/_DisplayToastMessages" />
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-4 pt-2 text-white min-vh-100">
+                    <span class="d-none my-3 d-sm-inline mx-1">@(User.Claims.FirstOrDefault(x => x.Type == "FullName").Value)</span>
+                    <ul class="w-100 nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start "
+                        id="menu">
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/Index" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-speedometer2"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Dashboard)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/Sale/TotalSale" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-cart"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Sales)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/User/Index" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-person"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Users)</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class="col py-3">
+                <div class="col py-3">
+
+                    <partial name="PartialViews/Manager/_Header" />
+
+                    <main role="main" class="my-5 py-4">
+                        <div class="container">
+                            @(RenderBody())
+                        </div>
+                    </main>
+
+                    <partial name="PartialViews/Manager/_Footer" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="PartialViews/Admin/Rtl/_Scripts" />
+
+    @(await RenderSectionAsync(name: "Scripts", required: false))
+</body>
+
+</html>

@@ -88,6 +88,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete your information before ordering.
+        /// </summary>
+        public static string Completeyourinformationbeforeordering {
+            get {
+                return ResourceManager.GetString("Completeyourinformationbeforeordering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure to delete this item?.
         /// </summary>
         public static string ConfirmDelete {
@@ -111,6 +120,15 @@ namespace Resources.Messages {
         public static string EmailAddressIsNotVerified {
             get {
                 return ResourceManager.GetString("EmailAddressIsNotVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First, select the desired number.
+        /// </summary>
+        public static string Firstselectthedesirednumber {
+            get {
+                return ResourceManager.GetString("Firstselectthedesirednumber", resourceCulture);
             }
         }
         
@@ -151,6 +169,33 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter the factor number.
+        /// </summary>
+        public static string Pleaseenterthefactornumber {
+            get {
+                return ResourceManager.GetString("Pleaseenterthefactornumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please register/login first.
+        /// </summary>
+        public static string Pleaseregister_loginfirst {
+            get {
+                return ResourceManager.GetString("Pleaseregister/loginfirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The desired item was not found.
+        /// </summary>
+        public static string Thedesireditemwasnotfound {
+            get {
+                return ResourceManager.GetString("Thedesireditemwasnotfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is not any data with this id!.
         /// </summary>
         public static string ThereIsNotAnyDataWithThisId {
@@ -165,6 +210,15 @@ namespace Resources.Messages {
         public static string ThereIsNotAnyDataWithThisName {
             get {
                 return ResourceManager.GetString("ThereIsNotAnyDataWithThisName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This number of products is not available.
+        /// </summary>
+        public static string Thisnumberofproductsisnotavailable {
+            get {
+                return ResourceManager.GetString("Thisnumberofproductsisnotavailable", resourceCulture);
             }
         }
         

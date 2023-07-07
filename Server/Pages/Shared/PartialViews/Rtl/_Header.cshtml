@@ -1,0 +1,89 @@
+﻿<header dir="rtl" class="fixed-top zindex-fixed bg-white shadow-sm p-3">
+    @*<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" asp-page="/Index"><img width="40" height="40" src="~/images/Logo.jpg" /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-page="/Index">@(Resources.PageTitles.Index)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Products">@(Resources.DataDictionary.Product)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">@(Resources.DataDictionary.Category)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/About">@(Resources.PageTitles.About)</a>
+                    </li>
+                </ul>
+                @if (ViewData["PageTitle"] == Resources.DataDictionary.Category)
+                {
+                    <partial name="PartialViews/_Searchboxcategory" />
+                }
+                @if (ViewData["PageTitle"] == Resources.DataDictionary.Products)
+                {
+                    <partial name="PartialViews/_Searchboxproducts" />
+                }
+            </div>
+        </div>
+    </nav>*@
+    <div class="row">
+        <div class="col-2 col-md-1" style="text-align : center;">
+            <a class="text-direction-none text-dark" style="cursor : pointer; width : 80px;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list p-2 mt-3 rounded-circle menu" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </a>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel"><img width="65" height="65" src="~/images/Logo.jpg" /></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav text-end">
+                        <li>
+                            <a asp-page="/Index" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                <i class="bi bi-house"></i> @(Resources.PageTitles.Index)
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-page="/Products" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                <i class="bi bi-bag"></i> @(Resources.DataDictionary.Products)
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-page="/Category" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-page="/About" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                <i class="bi bi-telephone"></i> @(Resources.PageTitles.About)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 col-md-1">
+            <img src="~/images/Logo.jpg" width="75" height="75" />
+        </div>
+        <div class="col-1 col-md-5">
+        </div>
+        <div class="col-7 col-md-5 p-3">
+           @if (ViewData["pagetitle"] == Resources.DataDictionary.Category)
+           {
+                <partial name="PartialViews/_Searchboxcategory" />
+           }
+            @if (ViewData["pagetitle"] == Resources.DataDictionary.Products)
+           {
+                <partial name="PartialViews/_Searchboxproducts" />
+           }
+        </div>
+    </div>
+</header>

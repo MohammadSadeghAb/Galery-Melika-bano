@@ -1,0 +1,141 @@
+﻿@page
+@model Server.Pages.ProductModel
+@{
+    var pageTitle = Model.ViewModel.Name_Product;
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Ltr/_Layout";
+
+    //var category = Model._context.Categories.FirstOrDefault(x => x.Id == Model.ViewModel.CategoryParent_Id);
+
+    var pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == Model.ViewModel.Id);
+}
+
+<br />
+<br />
+<div class="w-100 border mt-3"></div>
+<br />
+<br />
+
+<div class="container">
+    <div class="row border rounded-3 bg-light p-2 mt-2 shadow-lg">
+        <div class="col-12 col-md-5">
+            <div id="carouselExampleIndicators" class="carousel slide mt-2 mb-2">
+                <div class="carousel-inner">
+                    @if (pic == null)
+                    {
+                        <div class="carousel-item active">
+                            <img width="100%" height="300" src="~/images/download.png" class="rounded-3" alt="@(Model.ViewModel.Name_Product)">
+                        </div>
+                    }
+                    @if (pic != null)
+                    {
+                        if (pic.PicAddress1 != null)
+                        {
+                            <div class="carousel-item active">
+                                <img width="100%" height="300" src="~/ProductPic/@(pic.PicAddress1)" class="rounded-3" alt="@(Model.ViewModel.Name_Product)">
+                            </div>
+                        }
+                        if (pic.PicAddress2 != null)
+                        {
+                            <div class="carousel-item">
+                                <img width="100%" height="300" src="~/ProductPic/@(pic.PicAddress2)" class="rounded-3" alt="@(Model.ViewModel.Name_Product)">
+                            </div>
+                        }
+                        if (pic.PicAddress3 != null)
+                        {
+                            <div class="carousel-item">
+                                <img width="100%" height="300" src="~/ProductPic/@(pic.PicAddress3)" class="rounded-3" alt="@(Model.ViewModel.Name_Product)">
+                            </div>
+                        }
+                        if (pic.PicAddress4 != null)
+                        {
+                            <div class="carousel-item">
+                                <img width="100%" height="300" src="~/ProductPic/@(pic.PicAddress4)" class="rounded-3" alt="@(Model.ViewModel.Name_Product)">
+                            </div>
+                        }
+                        if (pic.PicAddress5 != null)
+                        {
+                            <div class="carousel-item">
+                                <img width="100%" height="300" src="~/ProductPic/@(pic.PicAddress5)" class="rounded-3" alt="@(Model.ViewModel.Name_Product)">
+                            </div>
+                        }
+                    }
+                </div>
+                @if (pic != null)
+                {
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                }
+            </div>
+        </div>
+        <div class="col-12 col-md-7 mt-2">
+            <div class="w-100 rounded-2 bg-danger p-2 text-white mb-2">
+                <h3>@(Model.ViewModel.Name_Product)</h3>
+                <h6 class="text-light">@(Model.category.Name)</h6>
+            </div>
+            <form method="post">
+                <div class="row">
+                    <div class="col-6">
+                        <h5>@(Resources.DataDictionary.Gender) : @(Model.ViewModel.Gender)</h5>
+                        <h5>@(Resources.DataDictionary.Type) : @(Model.ViewModel.Type)</h5>
+                        <h5>@(Resources.DataDictionary.Color) : </h5>
+                        @if (Model.ViewModel.Color1_rgb != null)
+                        {
+                            <label class="border rounded-circle" style="background-color : @(Model.ViewModel.Color1_rgb); width : 30px; height : 30px"></label>
+                        }
+                        @if (Model.ViewModel.Color2_rgb != null & Model.ViewModel.Color2_rgb != "#000000")
+                        {
+                            <label class="border rounded-circle" style="background-color : @(Model.ViewModel.Color2_rgb); width : 30px; height : 30px"></label>
+                        }
+                        @if (Model.ViewModel.Color3_rgb != null & Model.ViewModel.Color2_rgb != "#000000")
+                        {
+                            <label class="border rounded-circle" style="background-color : @(Model.ViewModel.Color3_rgb); width : 30px; height : 30px"></label>
+                        }
+                        @if (Model.ViewModel.Color4_rgb != null & Model.ViewModel.Color2_rgb != "#000000")
+                        {
+                            <label class="border rounded-circle" style="background-color : @(Model.ViewModel.Color4_rgb); width : 30px; height : 30px"></label>
+                        }
+                        <br />
+                        <label class="form-label mt-2">@(Resources.DataDictionary.Color) @(Resources.DataDictionary.Product) @(Resources.DataDictionary.Choose) : </label>
+                        <select asp-for="Color" class="w-100 form-control">
+                            @if (Model.ViewModel.Color1_text != null)
+                            {
+                                <option>@(Model.ViewModel.Color1_text)</option>
+                            }
+                            @if (Model.ViewModel.Color2_text != null)
+                            {
+                                <option>@(Model.ViewModel.Color2_text)</option>
+                            }
+                            @if (Model.ViewModel.Color3_text != null)
+                            {
+                                <option>@(Model.ViewModel.Color3_text)</option>
+                            }
+                            @if (Model.ViewModel.Color4_text != null)
+                            {
+                                <option>@(Model.ViewModel.Color4_text)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <h5>@(Resources.DataDictionary.DiscountSingle) : @(Model.ViewModel.Discount_Single)</h5>
+                        <h5>@(Resources.DataDictionary.DiscountMajor) : @(Model.ViewModel.Discount_Major)</h5>
+                        <br />
+                        <label class="form-label">@(Resources.DataDictionary.Number) : </label>
+                        <div class="input-group mb-3 w-100">
+                            <button type="button" onclick="Add()" class="btn btn-outline-danger rounded-3">+</button>
+                            <input asp-for="Number" value="0" id="myNumber" type="number" class="form-control rounded-3 text-center" readonly>
+                            <button type="button" onclick="Low()" class="btn btn-outline-danger rounded-3">-</button>
+                        </div>
+                        <button type="submit" asp-route-id="@(Model.ViewModel.Id)" class="btn btn-danger w-100">@(Resources.DataDictionary.Addtocart)</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

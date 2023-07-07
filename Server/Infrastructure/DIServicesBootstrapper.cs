@@ -3,11 +3,13 @@ using Application.CategoryApp;
 using Application.ProductApp;
 using Application.ProductPicApp;
 using Application.SaleApp;
+using Application.TotalSaleApp;
 using Application.UserApp;
 using Domain.CategoryAgg;
 using Domain.ProductAgg;
 using Domain.ProductPicAgg;
 using Domain.SaleAgg;
+using Domain.TotalSaleAgg;
 using Domain.Users;
 using Framework.Password;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,9 @@ namespace Infrastructure
 
 			services.AddTransient<ISaleApplication, SaleApplication>();
 			services.AddTransient<ISaleRepository, SaleRepository>();
+
+			services.AddTransient<ITotalSaleApplication, TotalSaleApplication>();
+			services.AddTransient<ITotalSaleRepository, TotalSaleRepository>();
 
 			services.AddTransient<ICategoryApplication, CategoryApplication>();
 			services.AddTransient<ICategoryRepository, CategoryRepository>();

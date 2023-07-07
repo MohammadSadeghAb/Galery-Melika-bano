@@ -27,7 +27,7 @@ public class DetailsModel : Infrastructure.BasePageModel
 	// **********
 
 	// **********
-	public DetailsViewModel ViewModel { get; private set; }
+	public ViewModels.Pages.Admin.Users.DetailsViewModel ViewModel { get; private set; }
 	// **********
 
 	public async Task<IActionResult> OnGetAsync(Guid? id)
