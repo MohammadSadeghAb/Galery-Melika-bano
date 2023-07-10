@@ -5,6 +5,7 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Resources;
 using System;
@@ -73,18 +74,23 @@ public class ProductModel : BasePageModel
 
     public async Task<IActionResult> OnPostAsync(Guid? id)
     {
+        ViewModel = (await _product.GetProduct(id.Value)).Data;
+
+        category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == ViewModel.CategoryParent_Id);
+
         if (User == null ||
             User.Identity == null ||
             User.Identity.IsAuthenticated == false)
         {
             AddToastError(message: Resources.Messages.Errors.Pleaseregister_loginfirst);
+            return Page();
         }
         else
         {
-            ViewModel = (await _product.GetProduct(id.Value)).Data;
             if (Number == 0)
             {
                 AddToastWarning(Resources.Messages.Errors.Firstselectthedesirednumber);
+                return Page();
             }
 
             if (Number > 0)
@@ -92,6 +98,7 @@ public class ProductModel : BasePageModel
                 if (Number > ViewModel.Number)
                 {
                     AddToastError(message: Resources.Messages.Errors.Thisnumberofproductsisnotavailable);
+                    return Page();
                 }
                 if (Number <= ViewModel.Number)
                 {
