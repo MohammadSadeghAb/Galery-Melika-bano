@@ -74,6 +74,14 @@ public class ProductModel : BasePageModel
 
     public async Task<IActionResult> OnPostAsync(Guid? id)
     {
+        if (id.HasValue == false)
+        {
+            AddToastError
+                (message: Resources.Messages.Errors.IdIsNull);
+
+            return RedirectToPage(pageName: "Index");
+        }
+
         ViewModel = (await _product.GetProduct(id.Value)).Data;
 
         category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == ViewModel.CategoryParent_Id);
