@@ -49,19 +49,19 @@ public class CreatePicModel : BasePageModel
 
     [BindProperty]
     [DataType(DataType.Upload)]
-    public IFormFile UplodPic2 { get; set; }
+    public IFormFile? UplodPic2 { get; set; }
 
     [BindProperty]
     [DataType(DataType.Upload)]
-    public IFormFile UplodPic3 { get; set; }
+    public IFormFile? UplodPic3 { get; set; }
 
     [BindProperty]
     [DataType(DataType.Upload)]
-    public IFormFile UplodPic4 { get; set; }
+    public IFormFile? UplodPic4 { get; set; }
 
     [BindProperty]
     [DataType(DataType.Upload)]
-    public IFormFile UplodPic5 { get; set; }
+    public IFormFile? UplodPic5 { get; set; }
 
     public async Task OnGetAsync()
     {
@@ -79,24 +79,26 @@ public class CreatePicModel : BasePageModel
     public async Task<IActionResult> OnPostAsync()
     {
 
-        //if (ModelState.Value)
-        //{
-        //    return Page();
-        //}
+        if (ModelState.IsValid == false)
+        {
+            return Page();
+        }
+
         Upload1(UplodPic1);
-        if (Upload2 != null)
+
+        if (UplodPic2 != null)
         {
             Upload2(UplodPic2);
         }
-        if (Upload3 != null)
+        if (UplodPic3 != null)
         {
             Upload3(UplodPic3);
         }
-        if (Upload4 != null)
+        if (UplodPic4 != null)
         {
             Upload4(UplodPic4);
         }
-        if (Upload5 != null)
+        if (UplodPic5 != null)
         {
             Upload5(UplodPic5);
         }
