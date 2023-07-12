@@ -8,20 +8,19 @@ using Persistence;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ViewModels.Pages.Admin.TotalSales;
 
 namespace Server.Pages.Manager.Sale;
 
 [Microsoft.AspNetCore.Authorization.Authorize
     (Roles = Constants.Role.Manager)]
 
-public class TotalSaleModel : BasePageModel
+public class TotalSalePostModel : BasePageModel
 {
     private readonly ITotalSaleApplication _application;
 
     public readonly DatabaseContext _context;
 
-    public TotalSaleModel(ITotalSaleApplication application,
+    public TotalSalePostModel(ITotalSaleApplication application,
                       DatabaseContext context)
     {
         _context = context;
@@ -36,7 +35,7 @@ public class TotalSaleModel : BasePageModel
 
     public async Task OnGetAsync()
     {
-        ViewModel = await _context.TotalSales.OrderBy(x => x.FactorNumber).ToListAsync();
+        ViewModel = await _context.TotalSales.OrderBy(x => x.FactorNumber).Where(x => x.Posted == true).ToListAsync();
     }
 
     public async Task<IActionResult> OnPostAsync()
@@ -45,12 +44,12 @@ public class TotalSaleModel : BasePageModel
         {
             AddToastError(message: Resources.Messages.Errors.Pleaseenterthefactornumber);
 
-            ViewModel = await _context.TotalSales.OrderBy(x => x.FactorNumber).ToListAsync();
+            ViewModel = await _context.TotalSales.OrderBy(x => x.FactorNumber).Where(x => x.Posted == true).ToListAsync();
 
             return Page();
         }
 
-        ViewModel = await _context.TotalSales.Where(x => x.FactorNumber == factor).ToListAsync();
+        ViewModel = await _context.TotalSales.Where(x => x.FactorNumber == factor && x.Posted == true).ToListAsync();
 
         return Page();
     }

@@ -1,7 +1,7 @@
 ﻿@page
-@model Server.Pages.Manager.Sale.TotalSaleModel
+@model Server.Pages.Manager.Sale.TotalSale_AcceptModel
 @{
-    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Sale}";
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Sale} {Resources.DataDictionary.Accepted}";
 
     ViewData["PageTitle"] = pageTitle;
 
@@ -79,7 +79,7 @@
                             <a asp-page="Details" asp-route-id="@(item.Id)">
                                 @(Html.DtatGetIconDetails())
                             </a>
-                            <a asp-page="Update_Accept" asp-route-id="@(item.Id)">
+                            <a asp-page="Update_Packing" asp-route-id="@(item.Id)">
                                 @(Html.DtatGetIconUpdate())
                             </a>
                         </table-actions>

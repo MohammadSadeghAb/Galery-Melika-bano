@@ -1,0 +1,152 @@
+﻿@page
+@model Server.Pages.Manager.Sale.TotalSalePostModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Sale} {Resources.DataDictionary.Packing}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+
+    bool check = false;
+}
+
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input asp-for="factor" class="form-control" placeholder="@(Resources.DataDictionary.Enterfactornumber)" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-danger">@(Resources.DataDictionary.Search)</button>
+        </div>
+    </div>
+</form>
+
+<br />
+
+<section-page-body>
+    <section-table>
+        <table>
+            <caption>
+                @(pageTitle)
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>
+                        @(Resources.DataDictionary.RowNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Action)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.FullName)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Product)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.FactorNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Accepted)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Packing)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Posted)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Delivery)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.InsertDateTime)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                @for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+                {
+                    var item = Model.ViewModel[index];
+
+                    var sale = Model._context.TotalSales.Where(x => x.FactorNumber == item.FactorNumber & x.Packing == true).ToList();
+
+                    var user = Model._context.Users.FirstOrDefault(x => x.Id == item.UserId);
+
+                    <tr>
+                        @if (sale.Count > 1 & check == false)
+                        {
+                            @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+                            <table-actions>
+                                <a asp-page="Update_Delivery" asp-route-id="@(item.Id)">
+                                    @(Html.DtatGetIconUpdate())
+                                </a>
+                            </table-actions>
+
+                            <td>
+                                @(user.FullName)
+                            </td>
+
+                            <td>
+                                @(sale.Count)
+                            </td>
+
+                            <td>
+                                @(item.FactorNumber)
+                            </td>
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Accepted))
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Packing))
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Posted))
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
+
+                            @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+                            check = true;
+                        }
+                        @if (sale.Count == 1)
+                        {
+                            @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+                            <table-actions>
+                                <a asp-page="Details" asp-route-id="@(item.Id)">
+                                    @(Html.DtatGetIconDetails())
+                                </a>
+                                <a asp-page="Update_Delivery" asp-route-id="@(item.Id)">
+                                    @(Html.DtatGetIconUpdate())
+                                </a>
+                            </table-actions>
+
+                            <td>
+                                @(user.FullName)
+                            </td>
+
+                            <td>
+                                @(sale.Count)
+                            </td>
+
+                            <td>
+                                @(item.FactorNumber)
+                            </td>
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Accepted))
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Packing))
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Posted))
+
+                            @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
+
+                            @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section-table>
+</section-page-body>

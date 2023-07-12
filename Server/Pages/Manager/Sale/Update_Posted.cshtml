@@ -1,0 +1,42 @@
+﻿@page
+@model Server.Pages.Manager.Sale.Update_PostedModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.ButtonCaptions.Update} {Resources.DataDictionary.Sale}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<form method="post">
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<input type="hidden" asp-for="ViewModel.Id" />
+
+			<section-form-check>
+				<input asp-for="ViewModel.Posted" />
+				<label asp-for="ViewModel.Posted"></label>
+			</section-form-check>
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+		<section-form-footer>
+			<a asp-page="TotalSale_Packing">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDetails())
+			</a>
+		</section-form-footer>
+	</section-form>
+</form>

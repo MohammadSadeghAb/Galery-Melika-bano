@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Pages.Manager.Sale.UpdateModel
+@model Server.Pages.Manager.Sale.Update_PackingModel
 @{
     var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.ButtonCaptions.Update} {Resources.DataDictionary.Sale}";
 
@@ -20,23 +20,8 @@
 			<input type="hidden" asp-for="ViewModel.Id" />
 
 			<section-form-check>
-				<input asp-for="ViewModel.Accepted" />
-				<label asp-for="ViewModel.Accepted"></label>
-			</section-form-check>
-
-			<section-form-check>
-				<label asp-for="ViewModel.Packing"></label>
 				<input asp-for="ViewModel.Packing" />
-			</section-form-check>
-
-			<section-form-check>
-				<label asp-for="ViewModel.Posted"></label>
-				<input asp-for="ViewModel.Posted" />
-			</section-form-check>
-
-			<section-form-check>
-				<label asp-for="ViewModel.Delivery"></label>
-				<input asp-for="ViewModel.Delivery" />
+				<label asp-for="ViewModel.Packing"></label>
 			</section-form-check>
 		</fieldset>
 
@@ -46,7 +31,7 @@
 		</section-form-buttons>
 
 		<section-form-footer>
-			<a asp-page="Index">
+			<a asp-page="TotalSale_Accept">
 				@(Html.DtatGetLinkCaptionForList())
 			</a>
 			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">

@@ -42,6 +42,26 @@
                             </a>
                         </li>
                         <li class="nav-item w-100">
+                            <a asp-page="/Manager/Sale/TotalSale_Accept" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-check2-square"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Sales) @(Resources.DataDictionary.Accepted)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/Sale/TotalSale_Packing" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-box-seam"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Sales) @(Resources.DataDictionary.Packing)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/Sale/TotalSalePost" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-mailbox"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Sales) @(Resources.DataDictionary.Posted)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/Sale/TotalSaleDelivery" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-bag-heart"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Sales) @(Resources.DataDictionary.Delivery)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100">
                             <a asp-page="/Manager/User/Index" class="d-flex align-items-center text-white nav-link px-0 my-2">
                                 <i class="d-flex fs-4 bi-person"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Users)</span>
                             </a>

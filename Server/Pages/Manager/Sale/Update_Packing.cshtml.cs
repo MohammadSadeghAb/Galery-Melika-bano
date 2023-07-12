@@ -3,21 +3,26 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Persistence;
 using Resources;
-using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System;
 using ViewModels.Pages.Admin.TotalSales;
 
 namespace Server.Pages.Manager.Sale;
 
 [Authorize(Roles = Infrastructure.Constants.Role.Manager)]
 
-public class UpdateModel : BasePageModel
+public class Update_PackingModel : BasePageModel
 {
     private readonly ITotalSaleApplication _application;
 
-    public UpdateModel(ITotalSaleApplication application)
+    private readonly DatabaseContext _context;
+
+    public Update_PackingModel(ITotalSaleApplication application, DatabaseContext context)
     {
+        _context = context;
         _application = application;
         ViewModel = new();
     }
@@ -31,7 +36,7 @@ public class UpdateModel : BasePageModel
         {
             AddToastError(Resources.Messages.Errors.IdIsNull);
 
-            return RedirectToPage("TotalSale");
+            return RedirectToPage("TotalSale_Accept");
         }
 
         ViewModel = (await _application.GetTotalSale(id.Value)).Data;
@@ -40,7 +45,7 @@ public class UpdateModel : BasePageModel
         {
             AddToastError(Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-            return RedirectToPage("TotalSale");
+            return RedirectToPage("TotalSale_Accept");
         }
 
         return Page();
@@ -52,6 +57,8 @@ public class UpdateModel : BasePageModel
         {
             return Page();
         }
+
+        ViewModel.Accepted = true;
 
         var res = await _application.UpdateTotalSale(ViewModel);
 
@@ -69,6 +76,6 @@ public class UpdateModel : BasePageModel
 
         AddToastSuccess(successMessage);
 
-        return RedirectToPage("TotalSale");
+        return RedirectToPage("TotalSale_Accept");
     }
 }
