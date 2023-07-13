@@ -142,6 +142,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dear customer, your purchase has been successfully registered. It will be sent and informed in the next few days. Thank you for choosing Mallika Bano gallery to buy..
+        /// </summary>
+        public static string Youritemhasbeenregistered {
+            get {
+                return ResourceManager.GetString("Youritemhasbeenregistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your order has been registered.
         /// </summary>
         public static string Yourorderhasbeenregistered {

@@ -144,6 +144,9 @@
   <data name="Yourinformationhasbeeneditedsuccessfully" xml:space="preserve">
     <value>Your information has been edited successfully</value>
   </data>
+  <data name="Youritemhasbeenregistered" xml:space="preserve">
+    <value>Dear customer, your purchase has been successfully registered. It will be sent and informed in the next few days. Thank you for choosing Mallika Bano gallery to buy.</value>
+  </data>
   <data name="Yourorderhasbeenregistered" xml:space="preserve">
     <value>Your order has been registered</value>
   </data>

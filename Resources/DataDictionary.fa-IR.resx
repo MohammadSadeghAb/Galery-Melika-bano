@@ -678,4 +678,7 @@
   <data name="Enterfactornumber" xml:space="preserve">
     <value>شماره فاکتور را وارد کنید</value>
   </data>
+  <data name="Buy" xml:space="preserve">
+    <value>خرید</value>
+  </data>
 </root>
