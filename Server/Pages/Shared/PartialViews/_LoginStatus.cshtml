@@ -44,7 +44,7 @@ else
     {
         <p>
             <a class="text-danger text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Index">
-                @(Resources.DataDictionary.Card)
+                @(Resources.PageTitles.Profile)
             </a>
             |
             <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Logout">

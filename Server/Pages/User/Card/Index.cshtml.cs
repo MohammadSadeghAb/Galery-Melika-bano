@@ -8,11 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Resources;
+using SmsPanel.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Server.Pages.User;
+namespace Server.Pages.User.Card;
 
 [Authorize]
 public class IndexModel : BasePageModel
@@ -27,6 +31,8 @@ public class IndexModel : BasePageModel
 
     public readonly DatabaseContext _context;
 
+    private readonly HttpClient _httpClient;
+
     public IndexModel(ITotalSaleRepository totalSale,
                       DatabaseContext context,
                       ISaleRepository sale,
@@ -39,6 +45,8 @@ public class IndexModel : BasePageModel
         _totalSale = totalSale;
         _application = application;
         ViewModel = new();
+        _httpClient = new HttpClient();
+        _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
     public Guid UserId { get; set; }
@@ -135,6 +143,32 @@ public class IndexModel : BasePageModel
 
         if (a == true)
         {
+            var stringContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
+                new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
+                new KeyValuePair<string, string>("Message",Resources.Messages.Successes.Youritemhasbeenregistered),
+                new KeyValuePair<string, string>("Sender","238")
+            });
+
+            var postTask = _httpClient.PostAsync("http://panelyab.com/api/send", stringContent);
+            postTask.Wait();
+
+            var response = postTask.Result;
+            if (response.IsSuccessStatusCode)
+            {
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var readTask = response.Content.ReadAsAsync<SendOutputModel>();
+                readTask.Wait();
+
+                var sendOutputModel = readTask.Result;
+                if (sendOutputModel.Status == 100)
+                {
+                    AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
+                    return RedirectToPage("/Index");
+                }
+            }
+
             AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
         }
 
