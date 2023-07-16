@@ -1,0 +1,122 @@
+﻿@page
+@model Server.Pages.Manager.Products.DetailsModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.ButtonCaptions.Details} {Resources.DataDictionary.Product}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<section-form-field>
+			<label asp-for="ViewModel.Name_Product"></label>
+			<input asp-for="ViewModel.Name_Product" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Gender"></label>
+			<input asp-for="ViewModel.Gender" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Type"></label>
+			<input asp-for="ViewModel.Type" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Price"></label>
+			<input asp-for="ViewModel.Price" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Number"></label>
+			<input asp-for="ViewModel.Number" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Discount_Single"></label>
+			<input asp-for="ViewModel.Discount_Single" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Discount_Major"></label>
+			<input asp-for="ViewModel.Discount_Major" />
+		</section-form-field>
+
+		<section-form-field>
+                <label asp-for="ViewModel.Min_Major"></label>
+                <input asp-for="ViewModel.Min_Major" />
+        </section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Dimensions"></label>
+			<input asp-for="ViewModel.Dimensions" />
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color1_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color1_text" />
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color1_rgb"></label>
+					<input class="form-control" style="background-color : @(Model.ViewModel.Color1_rgb)" />
+				</div>
+			</div>
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color2_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color2_text" />
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color2_rgb"></label>
+					<input class="form-control" style="background-color : @(Model.ViewModel.Color2_rgb)" />
+				</div>
+			</div>
+		</section-form-field>
+
+				<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color3_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color3_text" />
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color3_rgb"></label>
+					<input class="form-control" style="background-color : @(Model.ViewModel.Color3_rgb)" />
+				</div>
+			</div>
+		</section-form-field>
+
+		<section-form-field>
+			<div class="row">
+				<div class="col-sm-8">
+					<label asp-for="ViewModel.Color4_text"></label>
+					<input class="form-control" asp-for="ViewModel.Color4_text" />
+				</div>
+				<div class="col-sm-4">
+					<label asp-for="ViewModel.Color4_rgb"></label>
+					<input class="form-control" style="background-color : @(Model.ViewModel.Color4_rgb)" />
+				</div>
+			</div>
+		</section-form-field>
+	</fieldset>
+
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+	</section-form-footer>
+</section-form>

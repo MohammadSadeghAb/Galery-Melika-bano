@@ -1,0 +1,89 @@
+﻿@page
+@model Server.Pages.Manager.Products.IndexModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Products}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<section-page-body>
+    <section-table>
+        <table>
+            <caption>
+                @(pageTitle)
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>
+                        @(Resources.DataDictionary.RowNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Action)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.ProductName)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Category)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Number)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.DiscountSingle)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.DiscountMajor)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.InsertDateTime)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                @for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+                {
+                    var item = Model.ViewModel[index];
+
+                    var category = Model._context.Categories.FirstOrDefault(x => x.Id == item.CategoryParent_Id);
+
+                    <tr>
+                        @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+                        <table-actions>
+                            <a asp-page="Details" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDetails())
+                            </a>
+                        </table-actions>
+
+                        <td>
+                            @(item.Name_Product)
+                        </td>
+
+                        <td>
+                            @(category.Name)
+                        </td>
+
+                        <td>
+                            @(item.Number)
+                        </td>
+
+                        <td>
+                            @(item.Discount_Single)
+                        </td>
+
+                        <td>
+                            @(item.Discount_Major)
+                        </td>
+
+                        @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section-table>
+</section-page-body>
