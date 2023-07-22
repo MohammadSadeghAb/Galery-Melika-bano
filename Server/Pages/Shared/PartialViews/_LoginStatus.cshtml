@@ -2,7 +2,7 @@
  User.Identity == null ||
  User.Identity.IsAuthenticated == false)
 {
-    <p>
+    <p class="me-5">
         <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Register">
             @(Resources.PageTitles.Register)
         </a>
@@ -42,13 +42,13 @@ else
 
     if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "User")
     {
-        <p>
-            <a class="text-danger text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Index">
+        <p class="me-4">
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Index">
                 @(Resources.PageTitles.Profile)
             </a>
             |
-            <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Logout">
-                @(Resources.PageTitles.Logout)
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Card/Index">
+                @(Resources.DataDictionary.Card)
             </a>
         </p>
     }
