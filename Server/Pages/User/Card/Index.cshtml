@@ -30,6 +30,8 @@
                 <div class="border rounded-1 p-2">
                     @foreach (var item in Sales)
                     {
+                        Model.ViewModelSale.Number = item.Number;
+
                         var product = Model._context.Products.FirstOrDefault(x => x.Id == item.ProductId);
                         var pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == product.Id);
                         var category = Model._context.Categories.FirstOrDefault(x => x.Id == product.CategoryParent_Id);
@@ -87,11 +89,26 @@
                                         <h5>@(Resources.DataDictionary.PriceTotal) : @(price)</h5>
                                     </div>
                                     <div class="col-12">
-                                        <br />
-                                        <br />
-                                        <form method="post">
-                                            <button type="submit" asp-route-id="@(item.Id)" class="btn btn-danger">@(Html.DtatGetIconDelete()) @(Resources.ButtonCaptions.Delete)</button>
-                                        </form>
+                                        <div class="row">
+                                            @*<div class="col-6">
+                                                <br />
+                                                <br />
+                                                <form method="post" asp-page-handler="Delete">
+                                                    <button type="submit" asp-route-id="@(item.Id)" class="btn btn-danger">@(Html.DtatGetIconDelete()) @(Resources.ButtonCaptions.Delete)</button>
+                                                </form>
+                                            </div>*@
+                                            <div class="col-6">
+                                                <br />
+                                                <br />
+                                                <form method="post" asp-page-handler="Update">
+                                                    <div class="input-group mb-3 w-100">
+                                                        <button asp-route-id="@(item.Id)" asp-route-check="Add" type="submit" class="btn btn-outline-danger rounded-3">+</button>
+                                                        <input asp-for="ViewModelSale.Number" value="@(Model.ViewModelSale.Number)" type="number" class="form-control rounded-3 text-center" readonly>
+                                                        <button asp-route-id="@(item.Id)" asp-route-check="Low" type="submit" class="btn btn-outline-danger rounded-3">-</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

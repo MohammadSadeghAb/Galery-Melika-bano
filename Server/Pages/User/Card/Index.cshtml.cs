@@ -6,6 +6,8 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Parbad;
+using Parbad.Gateway.ZarinPal;
 using Persistence;
 using Resources;
 using SmsPanel.Models;
@@ -15,6 +17,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using ViewModels.Pages.Admin.Sales;
 
 namespace Server.Pages.User.Card;
 
@@ -45,6 +48,7 @@ public class IndexModel : BasePageModel
         _totalSale = totalSale;
         _application = application;
         ViewModel = new();
+        ViewModelSale = new();
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
@@ -52,6 +56,9 @@ public class IndexModel : BasePageModel
     public Guid UserId { get; set; }
 
     public TotalSale ViewModel { get; set; }
+
+    [BindProperty]
+    public UpdateViewMode ViewModelSale { get; set; }
 
     public int? pricetotal { get; set; } = 0;
 
@@ -72,13 +79,34 @@ public class IndexModel : BasePageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(Guid? id)
+    public async Task<IActionResult> OnPostAsync(Guid? id, string check)
     {
-        await _application.DeleteSale(id.Value);
-
         UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
 
-        AddToastSuccess(Resources.Messages.Successes.Theitemhasbeensuccessfullyremovedfromyourshoppingcart);
+        if (id.HasValue == false)
+        {
+            AddToastError(Resources.Messages.Errors.IdIsNull);
+            return Page();
+        }
+
+        ViewModelSale.Id = id.Value;
+
+        if (ViewModelSale.Number == 1 && check == "low")
+        {
+            await _application.DeleteSale(ViewModelSale.Id.Value);
+        }
+
+        if (check == "add")
+        {
+            ViewModelSale.Number = ViewModelSale.Number + 1;
+            await _application.UpdateSale(ViewModelSale);
+        }
+
+        if (check == "low")
+        {
+            ViewModelSale.Number = ViewModelSale.Number - 1;
+            await _application.UpdateSale(ViewModelSale);
+        }
 
         return Page();
     }
@@ -124,7 +152,7 @@ public class IndexModel : BasePageModel
                     Number = item.Number,
                     Products = item.ProductId,
                     UserId = item.UserId,
-                    TotalPrice = item.Price * item.Number,
+                    TotalPrice = item.Price,
                     FactorNumber = max + 1,
                 };
 
