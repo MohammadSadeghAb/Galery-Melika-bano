@@ -96,8 +96,9 @@ public class Update_PostedModel : BasePageModel
             {
                 new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
                 new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
-                new KeyValuePair<string, string>("Message","کالای شما ارسال شد"),
-                new KeyValuePair<string, string>("Sender","48")
+                new KeyValuePair<string, string>("Message","کالای شما ارسال گردید و طی چند روز آینده به دست شما خواهد رسید" +
+                "در صورت مشکل با ما تماس بگیرید : 09155591401"),
+                new KeyValuePair<string, string>("Sender","238")
             });
 
             var postTask = _httpClient.PostAsync("http://panelyab.com/api/send", stringContent);

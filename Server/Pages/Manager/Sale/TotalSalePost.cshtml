@@ -6,8 +6,6 @@
     ViewData["PageTitle"] = pageTitle;
 
     Layout = "Layouts/Manager/_Layout";
-
-    bool check = false;
 }
 
 <form method="post">
@@ -75,7 +73,7 @@
                     var user = Model._context.Users.FirstOrDefault(x => x.Id == item.UserId);
 
                     <tr>
-                        @if (sale.Count > 1 & check == false)
+                        @if (sale.Count > 1)
                         {
                             @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
 
@@ -106,8 +104,6 @@
                             @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
 
                             @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
-
-                            check = true;
                         }
                         @if (sale.Count == 1)
                         {
