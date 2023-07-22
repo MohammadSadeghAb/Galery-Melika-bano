@@ -34,9 +34,12 @@ public class ProductModel : BasePageModel
         _context = context;
         ViewModel = new();
         ViewModelSale = new();
+        ViewModelUpdate = new();
     }
 
     public DetailsViewModel ViewModel { get; set; }
+
+    public ViewModels.Pages.Admin.Sales.UpdateViewMode ViewModelUpdate { get; set; }
 
     public ViewModels.Pages.Admin.Sales.CreateViewModel ViewModelSale { get; set; }
 
@@ -110,22 +113,38 @@ public class ProductModel : BasePageModel
                 }
                 if (Number <= ViewModel.Number)
                 {
-                    ViewModelSale.Color = Color;
-                    ViewModelSale.Number = Number;
-                    ViewModelSale.ProductId = ViewModel.Id;
-                    ViewModelSale.UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
-                    if (Number < ViewModel.Min_Major)
+                    Guid userid = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+
+                    var checksale = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == userid && x.ProductId == id.Value);
+
+                    if (checksale != null)
                     {
-                        ViewModelSale.Price = ViewModel.Discount_Single;
-                    }
-                    if (Number >= ViewModel.Min_Major)
-                    {
-                        ViewModelSale.Price = ViewModel.Discount_Major;
+                        ViewModelUpdate.Id = checksale.Id;
+                        ViewModelUpdate.Number = checksale.Number + Number;
+                        await _sale.UpdateSale(ViewModelUpdate);
+
+                        AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
                     }
 
-                    await _sale.AddSale(ViewModelSale);
+                    if (checksale == null)
+                    {
+                        ViewModelSale.Color = Color;
+                        ViewModelSale.Number = Number;
+                        ViewModelSale.ProductId = ViewModel.Id;
+                        ViewModelSale.UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+                        if (Number < ViewModel.Min_Major)
+                        {
+                            ViewModelSale.Price = ViewModel.Discount_Single;
+                        }
+                        if (Number >= ViewModel.Min_Major)
+                        {
+                            ViewModelSale.Price = ViewModel.Discount_Major;
+                        }
 
-                    AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
+                        await _sale.AddSale(ViewModelSale);
+
+                        AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
+                    }
                 }
             }
         }
