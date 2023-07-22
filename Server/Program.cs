@@ -80,7 +80,7 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
-app.UseActivationKeys();
+//app.UseActivationKeys();
 
 app.UseRouting();
 
