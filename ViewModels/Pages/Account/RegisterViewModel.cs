@@ -13,7 +13,7 @@ namespace ViewModels.Pages.Account
 		}
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.FirstName),
+			(Name = nameof(Resources.DataDictionary.FullName),
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.Required
