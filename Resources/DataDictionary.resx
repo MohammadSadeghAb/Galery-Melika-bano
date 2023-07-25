@@ -676,4 +676,7 @@
   <data name="Enterfactornumber" xml:space="preserve">
     <value>Enter factor number</value>
   </data>
+  <data name="Buy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
 </root>
