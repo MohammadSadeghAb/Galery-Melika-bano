@@ -1,4 +1,4 @@
-﻿<header class="fixed-top zindex-fixed bg-white p-3">
+﻿<header class="fixed-top zindex-fixed bg-white p-3 shadow-sm">
     @*<nav class="navbar navbar-expand-lg bg-white shadow-sm">*@
     @*<div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -71,10 +71,20 @@
         <div class="col-2 col-md-1">
             <img src="~/images/Logo.jpg" width="75" height="75" />
         </div>
-        <div class="col-2 col-md-8">
+        <div class="col-1 col-md-8">
         </div>
-        <div class="col-6 col-md-2 p-3">
+        <div class="col-7 col-md-2 p-3">
             <partial name="PartialViews/_LoginStatus" />
+        </div>
+        <div class="col-12">
+            @if (ViewData["pagetitle"] == $"{Resources.DataDictionary.Products}")
+            {
+                <partial name="PartialViews/_SearchProducts" />
+            }
+            @if (ViewData["pagetitle"] == $"{Resources.PageTitles.Index}")
+            {
+                <partial name="PartialViews/_SearchIndex" />
+            }
         </div>
     </div>
 </header>
