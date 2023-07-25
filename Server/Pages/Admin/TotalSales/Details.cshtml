@@ -1,0 +1,62 @@
+﻿@page
+@model Server.Pages.Admin.TotalSales.DetailsModel
+@{
+    var pageTitle =
+	$"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.Sale}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<section-form-field>
+			<label asp-for="ViewModel.Products"></label>
+			<input asp-for="Product.Data.Name_Product" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.UserId"></label>
+			<input asp-for="User.Data.FullName" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Color"></label>
+			<input asp-for="ViewModel.Color" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.FactorNumber"></label>
+			<input asp-for="ViewModel.FactorNumber" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Number"></label>
+			<input asp-for="ViewModel.Number" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.TotalPrice"></label>
+			<input asp-for="ViewModel.TotalPrice" />
+		</section-form-field>
+	</fieldset>
+
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForUpdate())
+		</a>
+		<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDelete())
+		</a>
+	</section-form-footer>
+</section-form>

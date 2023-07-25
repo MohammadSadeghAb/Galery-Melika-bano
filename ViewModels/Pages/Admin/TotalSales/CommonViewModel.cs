@@ -7,10 +7,6 @@ namespace ViewModels.Pages.Admin.TotalSales
     public class CommonViewModel
     {
         //**********
-        [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
         [Display
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.Id))]
@@ -19,10 +15,6 @@ namespace ViewModels.Pages.Admin.TotalSales
         //**********
 
         //**********
-        [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
         [Display
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.InsertDateTime))]
