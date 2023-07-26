@@ -36,11 +36,15 @@
                         var pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == product.Id);
                         var category = Model._context.Categories.FirstOrDefault(x => x.Id == product.CategoryParent_Id);
 
-                        int? price = (item.Price * item.Number);
+                        int? totalprice = (item.Price * item.Number);
+
+                        decimal price = decimal.Parse(totalprice.ToString(), System.Globalization.NumberStyles.Currency);
 
                         if (item.Number <= product.Number)
                         {
-                            Model.pricetotal = Model.pricetotal + price;
+                            int? sum = Model.pricetotal.Value + totalprice;
+
+                            Model.pricetotal = int.Parse(sum.ToString(), System.Globalization.NumberStyles.Currency);
 
                             Model.numbertotals = Model.numbertotals + item.Number;
                         }
@@ -86,7 +90,7 @@
                                     </div>
                                     <div class="col-6">
                                         <h5>@(Resources.DataDictionary.Number) : @(item.Number)</h5>
-                                        <h5>@(Resources.DataDictionary.PriceTotal) : @(price)</h5>
+                                        <h5>@(Resources.DataDictionary.PriceTotal) : @(price.ToString("#,#"))</h5>
                                     </div>
                                     <div class="col-12">
                                         <div class="row">
@@ -121,9 +125,10 @@
         <div class="col-md-4 p-2">
             @if (Sales.Count != 0)
             {
+
                 <div class="border rounded-1 p-2">
                     <p>@(Resources.DataDictionary.Total) : @(Model.numbertotals)</p>
-                    <p>@(Resources.DataDictionary.PriceTotal) : @(Model.pricetotal)</p>
+                    <p>@(Resources.DataDictionary.PriceTotal) : @(Model.pricetotal.Value.ToString("#,#"))</p>
                     <hr />
                     <form method="post" asp-page-handler="Create">
                         <button type="submit" class="w-100 btn btn-danger">@(Resources.DataDictionary.Order)</button>
