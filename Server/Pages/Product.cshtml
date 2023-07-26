@@ -10,6 +10,10 @@
     //var category = Model._context.Categories.FirstOrDefault(x => x.Id == Model.ViewModel.CategoryParent_Id);
 
     var pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == Model.ViewModel.Id);
+
+    decimal price = decimal.Parse(Model.ViewModel.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
+
+    decimal pricemajor = decimal.Parse(Model.ViewModel.Discount_Major.ToString(), System.Globalization.NumberStyles.Currency);
 }
 
 <br />
@@ -125,8 +129,8 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <h5>@(Resources.DataDictionary.DiscountSingle) : @(Model.ViewModel.Discount_Single)</h5>
-                        <h5>@(Resources.DataDictionary.DiscountMajor) : @(Model.ViewModel.Discount_Major)</h5>
+                        <h5>@(Resources.DataDictionary.DiscountSingle) : @(price.ToString("#,#"))</h5>
+                        <h5>@(Resources.DataDictionary.DiscountMajor) : @(pricemajor.ToString("#,#"))</h5>
                         <br />
                         <label class="form-label">@(Resources.DataDictionary.Number) : </label>
                         <div class="input-group mb-3 w-100">
