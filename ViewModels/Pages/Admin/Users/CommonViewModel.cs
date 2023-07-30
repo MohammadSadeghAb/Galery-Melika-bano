@@ -139,6 +139,11 @@ public class CommonViewModel : object
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
+    [System.ComponentModel.DataAnnotations.RegularExpression
+        (pattern: Domain.SeedWork.Constants.RegularExpression.NationalCode,
+        ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        ErrorMessageResourceName = nameof(Resources.Messages.Validations.PostalCode))]
+
     public string? PostalCode { get; set; }
     // **********
 
@@ -193,7 +198,13 @@ public class CommonViewModel : object
         (length: FixedLength.NationalCode,
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
-	public string? NationalCode { get; set; }
+
+    [System.ComponentModel.DataAnnotations.RegularExpression
+        (pattern: Domain.SeedWork.Constants.RegularExpression.NationalCode,
+        ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        ErrorMessageResourceName = nameof(Resources.Messages.Validations.NationalCode))]
+
+    public string? NationalCode { get; set; }
 	// **********
 
 	// **********
