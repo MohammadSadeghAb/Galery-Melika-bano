@@ -10,7 +10,7 @@
 
 <br />
 <br />
-<div class="w-100 border-bottom mt-3"></div>
+<br />
 <br />
 <br />
 
@@ -19,7 +19,7 @@
         <div class="col-4 p-3">
             <div class="border p-3">
                     <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
+                    <a href="#" class=" bg-danger rounded-2 p-2 d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="mx-1"><i class="bi bi-circle-person"></i> @(User.Claims.FirstOrDefault(x => x.Type == "FullName").Value)</span>
                         </a>
@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 <hr />
-                <a asp-page="Card/Index" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" class="w-100 border text-dark btn btn-outline-light"><i class="bi bi-cart"></i> @(Resources.DataDictionary.Card)</a>
+                <a asp-page="Card/Index" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" class="w-100 border text-dark btn btn-outline-light"><i class="bi bi-cart"></i><span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Card)</span></a>
             </div>
         </div>
 
