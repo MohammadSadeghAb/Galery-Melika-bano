@@ -19,9 +19,27 @@
 <br />
 <br />
 <br />
-<br />
 
 <div class="container">
+    <section class="scrollport">
+        @foreach (var item in Model.ViewModelCategory)
+        {
+            if (c < 12 && item.IsActive == true)
+            {
+                <div>
+                    @{string pic = $"{item.Name}.png";}
+                    <div style="text-align : center;">
+                        <a asp-route-id="@(item.Id)" class="text-decoration-none" asp-page="/CategoryProducts">
+                            <img class="img rounded-circle ms-2" width="80" height="80" src="~/CategoryPic/@(pic)" />
+                            <h6 class="text-muted">@(item.Name)</h6>
+                        </a>
+                    </div>
+                </div>
+                c = c + 1;
+            }
+        }
+    </section>
+
     @if (Model.ViewModelProduct.Count == 0)
     {
         <div class="text-center border rounded-3 bg-light p-2 mt-2 shadow-lg">
@@ -79,7 +97,7 @@
 
     <br />
 
-    <div class="row border rounded-3 p-2 bg-light mt-2 shadow-lg">
+    @*<div class="row border rounded-3 p-2 bg-light mt-2 shadow-lg">
         <h3 class="w-100 rounded-2 bg-danger p-2 text-white">
             <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
         </h3>
@@ -100,5 +118,5 @@
                 }
             }
         }
-    </div>
+    </div>*@
 </div>
