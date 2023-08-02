@@ -76,12 +76,15 @@
         <div class="col-7 col-md-3 p-3">
             <partial name="PartialViews/_LoginStatus" />
         </div>
-        <div class="col-12">
-            @if (ViewData["pagetitle"] == $"{Resources.DataDictionary.Products}")
+        <div class="col-3 col-lg-1">
+            <img src="~/images/Logo2.png" width="130" height="40" />
+        </div>
+        <div class="col-9 col-lg-11">
+            @if (ViewData["PageTitle"] == $"{Resources.DataDictionary.Products}")
             {
                 <partial name="PartialViews/_SearchProducts" />
             }
-            @if (ViewData["pagetitle"] == $"{Resources.PageTitles.Index}")
+            @if (ViewData["PageTitle"] == $"{Resources.PageTitles.Index}")
             {
                 <partial name="PartialViews/_SearchIndex" />
             }
