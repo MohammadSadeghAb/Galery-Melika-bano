@@ -17,6 +17,7 @@
 }
 
 body {
+    font-family: iranyekan;
 }
 
 .menu:hover {
@@ -24,6 +25,21 @@ body {
     transition-delay : 0.02s;
     transform : scale(1.1);
 }
+
+.post2 {
+    cursor: pointer;
+    transition: 0.15s linear;
+}
+
+    .post2:hover {
+        transform: scale(0.95);
+        transition: 0.2s linear;
+    }
+
+    .post2-img{
+        aspect-ratio : 16/9;
+        object-fit : fill;
+    }
 
 .post {
     display: contents;
