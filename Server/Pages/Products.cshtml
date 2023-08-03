@@ -38,6 +38,23 @@
                 if (Pic == null)
                 {
                     decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
+                    <div class="col-12 col-lg-6">
+                        <a class="text-decoration-none text-dark" asp-page="/Product" asp-route-id="@(item.Id)">
+                            <div class="post2 row m-1 p-2 border rounded-2">
+                                <div class="col-5">
+                                    <img class="rounded-2 post2-img" src="~/images/download.png" width="100%" height="100%" />
+                                </div>
+                                <div class="col-7">
+                                    <br />
+                                    <p class="text-end">@(item.Name_Product)</p>
+                                    <br />
+                                    <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    @*decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
                     <div class="col-6 col-lg-3">
                         <a class="text-decoration-none" asp-route-id="@(item.Id)" asp-page="/Product">
                             <div class="post">
@@ -48,11 +65,28 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div>*@
                 }
                 if (Pic != null)
                 {
                     decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
+                    <div class="col-12 col-lg-6">
+                        <a class="text-decoration-none text-dark" asp-page="/Product" asp-route-id="@(item.Id)">
+                            <div class="post2 row m-1 p-2 border rounded-2">
+                                <div class="col-5">
+                                    <img class="rounded-2 post2-img" src="~/ProductPic/@(Pic.PicAddress1)" width="100%" height="100%" />
+                                </div>
+                                <div class="col-7">
+                                    <br />
+                                    <p class="text-end">@(item.Name_Product)</p>
+                                    <br />
+                                    <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    @*decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
                     <div class="col-6 col-lg-3">
                         <a class="text-decoration-none" asp-route-id="@(item.Id)" asp-page="/Product">
                             <div class="post">
@@ -63,7 +97,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div>*@
                 }
             }
         </div>

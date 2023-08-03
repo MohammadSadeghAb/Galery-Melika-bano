@@ -2,7 +2,7 @@
 @model Server.Pages.IndexModel
 
 @{
-    var pageTitle = $"{Resources.PageTitles.Index}";
+    var pageTitle = $"{Resources.DataDictionary.Melikabanoo}";
 
     ViewData["PageTitle"] = pageTitle;
 
@@ -27,10 +27,12 @@
             if (c < 12 && item.IsActive == true)
             {
                 <div>
-                    @{string pic = $"{item.Name}.png";}
+                    @{
+                        string pic = $"{item.Name}.png";
+                    }
                     <div style="text-align : center;">
                         <a asp-route-id="@(item.Id)" class="text-decoration-none" asp-page="/CategoryProducts">
-                            <img class="img rounded-circle ms-2" width="80" height="80" src="~/CategoryPic/@(pic)" />
+                            <img class="img rounded-circle ms-2" width="90" height="90" src="~/CategoryPic/@(pic)" />
                             <h6 class="text-muted">@(item.Name)</h6>
                         </a>
                     </div>
@@ -57,37 +59,71 @@
             @foreach (var item in Model.ViewModelProduct)
             {
                 var Pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == item.Id);
-                if (p < 12)
+                if (p < 8)
                 {
                     if (Pic == null)
                     {
                         decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
-                        <div class="col-6 col-lg-3">
-                            <a class="text-decoration-none m-2" asp-page="/Product" asp-route-id="@(item.Id)">
-                                <div class="post">
-                                    <img src="~/images/download.png" class="post-img" />
-                                    <div class="post-content">
-                                        <h3 class="text-muted">@(item.Name_Product)</h3>
-                                        <span class="date">@(price.ToString("#,#")) </span>
+                        <div class="col-12 col-lg-6">
+                            <a class="text-decoration-none text-dark" asp-page="/Product" asp-route-id="@(item.Id)">
+                                <div class="post2 row m-1 p-2 border rounded-2">
+                                    <div class="col-5">
+                                        <img class="rounded-2 post2-img" src="~/images/download.png" width="100%" height="100%" />
+                                    </div>
+                                    <div class="col-7">
+                                        <br />
+                                        <p class="text-end">@(item.Name_Product)</p>
+                                        <br />
+                                        <p class="text-start">@(price.ToString("#,#")) تومان </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
+
+                        @*decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
+        <div class="col-12 col-lg-3">
+        <a class="text-decoration-none m-2" asp-page="/Product" asp-route-id="@(item.Id)">
+        <div class="post">
+        <img src="~/images/download.png" class="post-img" />
+        <div class="post-content">
+        <h3 class="text-muted">@(item.Name_Product)</h3>
+        <span class="date">@(price.ToString("#,#")) </span>
+        </div>
+        </div>
+        </a>
+        </div>*@
                     }
                     if (Pic != null)
                     {
                         decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
-                        <div class="col-6 col-lg-3">
-                            <a class="text-decoration-none m-2" asp-page="/Product" asp-route-id="@(item.Id)">
-                                <div class="post">
-                                    <img src="~/ProductPic/@(Pic.PicAddress1)" class="post-img" />
-                                    <div class="post-content">
-                                        <h3 class="text-muted">@(item.Name_Product)</h3>
-                                        <span class="date">@(price.ToString("#,#")) </span>
+                        <div class="col-12 col-lg-6">
+                            <a class="text-decoration-none text-dark" asp-page="/Product" asp-route-id="@(item.Id)">
+                                <div class="post2 row m-1 p-2 border rounded-2">
+                                    <div class="col-5">
+                                        <img class="rounded-2 post2-img" src="~/ProductPic/@(Pic.PicAddress1)" width="100%" height="100%" />
+                                    </div>
+                                    <div class="col-7">
+                                        <br />
+                                        <p class="text-end">@(item.Name_Product)</p>
+                                        <br />
+                                        <p class="text-start">@(price.ToString("#,#")) تومان </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
+
+                        @*decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
+        <div class="col-12 col-lg-3">
+        <a class="text-decoration-none m-2" asp-page="/Product" asp-route-id="@(item.Id)">
+        <div class="post">
+        <img src="~/ProductPic/@(Pic.PicAddress1)" class="post-img" />
+        <div class="post-content">
+        <h3 class="text-muted">@(item.Name_Product)</h3>
+        <span class="date">@(price.ToString("#,#")) </span>
+        </div>
+        </div>
+        </a>
+        </div>*@
                     }
                 }
                 p = p + 1;
@@ -98,25 +134,25 @@
     <br />
 
     @*<div class="row border rounded-3 p-2 bg-light mt-2 shadow-lg">
-        <h3 class="w-100 rounded-2 bg-danger p-2 text-white">
-            <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
-        </h3>
-        @foreach (var item in Model.ViewModelCategory)
-        {
-            if (c < 12)
-            {
-                if (item.IsActive == true)
-                {
-                    string pic = $"{item.Name}.png";
-                    <div class="col-3 col-lg-1" style="text-align : center;">
-                        <a asp-route-id="@(item.Id)" class="text-decoration-none" asp-page="/CategoryProducts">
-                            <img class="rounded-circle" width="80" height="80" src="~/CategoryPic/@(pic)" />
-                            <h5 class="text-muted">@(item.Name)</h5>
-                        </a>
-                    </div>
-                    c = c + 1;
-                }
-            }
-        }
+    <h3 class="w-100 rounded-2 bg-danger p-2 text-white">
+    <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
+    </h3>
+    @foreach (var item in Model.ViewModelCategory)
+    {
+    if (c < 12)
+    {
+    if (item.IsActive == true)
+    {
+    string pic = $"{item.Name}.png";
+    <div class="col-3 col-lg-1" style="text-align : center;">
+    <a asp-route-id="@(item.Id)" class="text-decoration-none" asp-page="/CategoryProducts">
+    <img class="rounded-circle" width="80" height="80" src="~/CategoryPic/@(pic)" />
+    <h5 class="text-muted">@(item.Name)</h5>
+    </a>
+    </div>
+    c = c + 1;
+    }
+    }
+    }
     </div>*@
 </div>
