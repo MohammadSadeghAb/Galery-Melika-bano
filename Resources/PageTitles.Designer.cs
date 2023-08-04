@@ -241,6 +241,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Melikabano - About.
+        /// </summary>
+        public static string Melikabano_About {
+            get {
+                return ResourceManager.GetString("Melikabano-About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Melikabano - Category.
+        /// </summary>
+        public static string Melikabano_Category {
+            get {
+                return ResourceManager.GetString("Melikabano-Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Melikabano - Contact.
+        /// </summary>
+        public static string Melikabano_Contact {
+            get {
+                return ResourceManager.GetString("Melikabano-Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Melikabano - Index.
+        /// </summary>
+        public static string Melikabano_Index {
+            get {
+                return ResourceManager.GetString("Melikabano-Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Melikabano - Products.
+        /// </summary>
+        public static string Melikabano_Products {
+            get {
+                return ResourceManager.GetString("Melikabano-Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu Item Details.
         /// </summary>
         public static string MenuItemDetails {

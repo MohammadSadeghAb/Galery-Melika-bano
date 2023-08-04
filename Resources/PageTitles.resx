@@ -177,6 +177,21 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="Melikabano-About" xml:space="preserve">
+    <value>Melikabano - About</value>
+  </data>
+  <data name="Melikabano-Category" xml:space="preserve">
+    <value>Melikabano - Category</value>
+  </data>
+  <data name="Melikabano-Contact" xml:space="preserve">
+    <value>Melikabano - Contact</value>
+  </data>
+  <data name="Melikabano-Index" xml:space="preserve">
+    <value>Melikabano - Index</value>
+  </data>
+  <data name="Melikabano-Products" xml:space="preserve">
+    <value>Melikabano - Products</value>
+  </data>
   <data name="MenuItemDetails" xml:space="preserve">
     <value>Menu Item Details</value>
   </data>

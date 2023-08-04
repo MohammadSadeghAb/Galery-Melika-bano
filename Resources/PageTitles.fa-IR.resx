@@ -177,6 +177,21 @@
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="Melikabano-About" xml:space="preserve">
+    <value>ملیکا بانو - درباره ما</value>
+  </data>
+  <data name="Melikabano-Category" xml:space="preserve">
+    <value>ملیکا بانو - دسته بندی ها</value>
+  </data>
+  <data name="Melikabano-Contact" xml:space="preserve">
+    <value>ملیکا بانو - تماس با ما</value>
+  </data>
+  <data name="Melikabano-Index" xml:space="preserve">
+    <value>ملیکا بانو - صفحه نخست</value>
+  </data>
+  <data name="Melikabano-Products" xml:space="preserve">
+    <value>ملیکا بانو - کالا ها</value>
+  </data>
   <data name="MenuItemDetails" xml:space="preserve">
     <value>جزئیات آیتم منو</value>
   </data>
