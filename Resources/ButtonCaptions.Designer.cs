@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return to Index.
+        /// </summary>
+        public static string ReturntoIndex {
+            get {
+                return ResourceManager.GetString("ReturntoIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

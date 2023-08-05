@@ -681,4 +681,7 @@
   <data name="Buy" xml:space="preserve">
     <value>خرید</value>
   </data>
+  <data name="TrackingCode" xml:space="preserve">
+    <value>کد رهگیری</value>
+  </data>
 </root>

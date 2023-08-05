@@ -33,6 +33,7 @@
 			}
 
 			public const int PostalCode = 10;
+			public const int TrackingCode = 6;
 			public const int NationalCode = 10;
 			public const int CellPhoneNumber = 11;
 			public const int DatabasePassword = 80;

@@ -34,6 +34,7 @@ namespace Application.TotalSaleApp
                 Products = totalsale.Products,
                 TotalPrice = totalsale.TotalPrice,
                 FactorNumber = totalsale.FactorNumber,
+                TrackingCode = totalsale.TrackingCode,
             };
 
             await _repository.CreateAsync(_totalsale);
@@ -88,6 +89,7 @@ namespace Application.TotalSaleApp
                     Products = totalsale.Products,
                     TotalPrice = totalsale.TotalPrice,
                     FactorNumber = totalsale.FactorNumber,
+                    TrackingCode = totalsale.TrackingCode,
                     InsertDateTime = totalsale.InsertDateTime,
                 });
             }
@@ -116,6 +118,7 @@ namespace Application.TotalSaleApp
                 Products = totalsale.Products,
                 TotalPrice = totalsale.TotalPrice,
                 FactorNumber = totalsale.FactorNumber,
+                TrackingCode = totalsale.TrackingCode,
                 InsertDateTime = totalsale.InsertDateTime,
             };
 

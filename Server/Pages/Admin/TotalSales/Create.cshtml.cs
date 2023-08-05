@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Resources;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.TotalSales;
@@ -72,6 +73,9 @@ public class CreateModel : BasePageModel
         {
             return Page();
         }
+
+        Random random = new Random();
+        ViewModel.TrackingCode = random.Next(100000, 999999).ToString();
 
         var res = await _application.AddTotalSale(ViewModel);
 

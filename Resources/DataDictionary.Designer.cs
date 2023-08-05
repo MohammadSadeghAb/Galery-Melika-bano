@@ -1582,6 +1582,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tracking Code.
+        /// </summary>
+        public static string TrackingCode {
+            get {
+                return ResourceManager.GetString("TrackingCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {

@@ -679,4 +679,7 @@
   <data name="Buy" xml:space="preserve">
     <value>Buy</value>
   </data>
+  <data name="TrackingCode" xml:space="preserve">
+    <value>Tracking Code</value>
+  </data>
 </root>

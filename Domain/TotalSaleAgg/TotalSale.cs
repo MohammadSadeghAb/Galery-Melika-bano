@@ -53,6 +53,15 @@ namespace Domain.TotalSaleAgg
         //**********
 
         //**********
+        [MaxLength
+        (length: Constants.FixedLength.TrackingCode,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+        public string? TrackingCode { get; set; }
+        //**********
+
+        //**********
         [Required
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]

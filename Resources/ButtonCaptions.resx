@@ -177,6 +177,9 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="ReturntoIndex" xml:space="preserve">
+    <value>Return to Index</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
