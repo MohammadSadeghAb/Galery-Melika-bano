@@ -1,0 +1,46 @@
+﻿@page
+@model Server.Pages.CheckOrderModel
+@{
+    var pageTitle =
+		Resources.DataDictionary.Melikabanoo;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Security";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Security";
+	}
+}
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+	<div class="row">
+		<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<fieldset>
+				<legend>
+					@(Resources.Messages.Successes.Yourorderhasbeenregistered)
+				</legend>
+
+				<hr />
+
+				<div class="border-bottom border-start p-2 my-2">
+					<p>به نام : @(User.Claims.FirstOrDefault(x => x.Type == "FullName").Value)</p>
+					<p>شماره فاکتور : @(Model.ViewModel.FactorNumber)</p>
+					<p>کد رهگیری : @(Model.ViewModel.TrackingCode)</p>
+					<p class="text-center">سفارش شما ثبت و به دست ادمین رسید طی چند روز آینده سفارش شما ارسال می شود</p>
+				</div>
+
+
+				<div class="mb-3">
+					<a asp-page="/Index" class="w-100 btn btn-danger">@(Resources.ButtonCaptions.ReturntoIndex)</a>
+				</div>
+			</fieldset>
+
+		</div>
+	</div>
+</div>

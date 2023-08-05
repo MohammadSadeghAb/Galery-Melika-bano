@@ -130,6 +130,9 @@ public class IndexModel : BasePageModel
 
         int max = 0;
 
+        Random random = new Random();
+        int tracking = random.Next(100000, 999999);
+
         var check = _context.TotalSales.ToList();
 
         if (check.Count != 0)
@@ -154,7 +157,8 @@ public class IndexModel : BasePageModel
                     UserId = item.UserId,
                     TotalPrice = item.Price,
                     FactorNumber = max + 1,
-                };
+                    TrackingCode = tracking.ToString(),
+            };
 
                 _sale.Remove(item);
 
@@ -195,13 +199,14 @@ public class IndexModel : BasePageModel
                 if (sendOutputModel.Status == 100)
                 {
                     AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
-                    return RedirectToPage("/Index");
+                    //return RedirectToPage("/Index");
+                    return RedirectToPage("/CheckOrder");
                 }
             }
 
             AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
         }
 
-        return RedirectToPage("/Index");
+        return RedirectToPage("/CheckOrder");
     }
 }
