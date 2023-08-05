@@ -1,4 +1,5 @@
 ﻿using Domain.ProductAgg;
+using Domain.SeedWork;
 using Resources.Messages;
 using System.ComponentModel.DataAnnotations;
 
@@ -80,6 +81,19 @@ namespace ViewModels.Pages.Admin.TotalSales
             Name = nameof(Resources.DataDictionary.FactorNumber))]
 
         public int FactorNumber { get; set; }
+        //**********
+
+        //**********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.TrackingCode))]
+
+        [MaxLength
+        (length: Constants.FixedLength.TrackingCode,
+        ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+
+        public string? TrackingCode { get; set; }
         //**********
 
         //**********
