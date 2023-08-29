@@ -82,7 +82,7 @@ namespace ViewModels.Pages.Admin.NEWS
 
         [DatabaseGenerated
             (DatabaseGeneratedOption.None)]
-        public DateTime InsertDateTime { get; private set; }
+        public DateTime InsertDateTime { get; set; }
         // **********
 
         // **********
@@ -92,7 +92,7 @@ namespace ViewModels.Pages.Admin.NEWS
 
         [DatabaseGenerated
             (DatabaseGeneratedOption.None)]
-        public DateTime UpdateDateTime { get; private set; }
+        public DateTime UpdateDateTime { get; set; }
         // **********
     }
 }

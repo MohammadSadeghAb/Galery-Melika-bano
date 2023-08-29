@@ -12,6 +12,11 @@ namespace Domain.NewsAgg
 {
     public class News : Entity, IEntityHasIsActive, IEntityHasUpdateDateTime
     {
+        public News()
+        {
+            UpdateDateTime = InsertDateTime;
+        }
+
         //**********
         public bool IsActive { get; set; }
         //**********
