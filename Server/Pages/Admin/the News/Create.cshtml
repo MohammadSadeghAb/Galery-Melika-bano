@@ -1,0 +1,64 @@
+﻿@page
+@model Server.Pages.Admin.the_News.CreateModel
+@{
+    var pageTitle =
+    $"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.Thenews}";
+
+    ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <section-form-field>
+                <label asp-for="UplodPic"></label>
+                <input asp-for="UplodPic" />
+                <span asp-validation-for="UplodPic"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.Title"></label>
+                <input asp-for="ViewModel.Title" />
+                <span asp-validation-for="ViewModel.Title"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.Description"></label>
+                <textarea asp-for="ViewModel.Description"></textarea>
+                <span asp-validation-for="ViewModel.Description"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.Ordering"></label>
+                <input asp-for="ViewModel.Ordering" />
+                <span asp-validation-for="ViewModel.Ordering"></span>
+            </section-form-field>
+
+            <section-form-check>
+                <label asp-for="ViewModel.IsActive"></label>
+                <input asp-for="ViewModel.IsActive" />
+            </section-form-check>
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+        <section-form-footer>
+            <a asp-page="Index">
+                @(Html.DtatGetLinkCaptionForList())
+            </a>
+        </section-form-footer>
+    </section-form>
+
+</form>

@@ -682,4 +682,10 @@
   <data name="TrackingCode" xml:space="preserve">
     <value>Tracking Code</value>
   </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Thenews" xml:space="preserve">
+    <value>The news</value>
+  </data>
 </root>

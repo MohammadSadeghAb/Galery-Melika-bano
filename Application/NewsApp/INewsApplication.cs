@@ -12,11 +12,11 @@ namespace Application.NewsApp
 {
     public interface INewsApplication
     {
-        Task<OperationResult> AddProduct(CommonViewModel news);
-        Task<OperationResult> DeleteProduct(Guid Id);
-        Task<OperationResult> UpdateProduct(CommonViewModel news);
-        Task<OperationResultWithData<CommonViewModel>> GetProduct(Guid? Id);
-        Task<OperationResultWithData<IList<CommonViewModel>>> GetAllProduct();
+        Task<OperationResult> AddNews(CommonViewModel news);
+        Task<OperationResult> DeleteNews(Guid Id);
+        Task<OperationResult> UpdateNews(CommonViewModel news);
+        Task<OperationResultWithData<CommonViewModel>> GetNews(Guid? Id);
+        Task<OperationResultWithData<IList<CommonViewModel>>> GetAllNews();
         Task<OperationResultWithData<News>> GetNewsByTitle(string title);
     }
 }

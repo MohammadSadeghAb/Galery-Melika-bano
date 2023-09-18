@@ -1078,6 +1078,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        public static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Parent.
         /// </summary>
         public static string NoParent {
@@ -1551,6 +1560,15 @@ namespace Resources {
         public static string SubMenuItems {
             get {
                 return ResourceManager.GetString("SubMenuItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The news.
+        /// </summary>
+        public static string Thenews {
+            get {
+                return ResourceManager.GetString("Thenews", resourceCulture);
             }
         }
         

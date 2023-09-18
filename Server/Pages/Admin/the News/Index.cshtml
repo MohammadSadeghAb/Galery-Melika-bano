@@ -1,0 +1,94 @@
+﻿@page
+@model Server.Pages.Admin.the_News.IndexModel
+@{
+    var pageTitle =
+	$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.News}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
+<section-page-body>
+
+	<section-page-actions>
+		<a asp-page="Create">
+			@(Html.DtatGetLinkCaptionForCreate())
+		</a>
+	</section-page-actions>
+
+	<section-table>
+		<table>
+			<caption>
+				@(pageTitle)
+			</caption>
+
+			<thead>
+				<tr>
+					<th>
+						@(Resources.DataDictionary.RowNumber)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Action)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Title)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Ordering)
+					</th>
+					<th>
+						@(Resources.DataDictionary.IsActive)
+					</th>
+					<th>
+						@(Resources.DataDictionary.InsertDateTime)
+					</th>
+					<th>
+						@(Resources.DataDictionary.UpdateDateTime)
+					</th>
+				</tr>
+			</thead>
+
+			<tbody class="text-center">
+				@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+				{
+					var item = Model.ViewModel[index];
+
+					<tr>
+						@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+						<table-actions>
+							<a asp-page="Details" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDetails())
+							</a>
+							<a asp-page="Update" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconUpdate())
+							</a>
+
+							<a asp-page="Delete" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDelete())
+							</a>
+						</table-actions>
+
+						<td>
+							@(item.Title)
+						</td>
+
+						<td>
+							@(item.Ordering)
+						</td>
+
+						@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
+
+						@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+						@(Html.DtatDisplayDateTimeWithTd(value: item.UpdateDateTime))
+					</tr>
+				}
+			</tbody>
+		</table>
+	</section-table>
+</section-page-body>

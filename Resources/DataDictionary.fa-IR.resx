@@ -684,4 +684,10 @@
   <data name="TrackingCode" xml:space="preserve">
     <value>کد رهگیری</value>
   </data>
+  <data name="News" xml:space="preserve">
+    <value>اخبار</value>
+  </data>
+  <data name="Thenews" xml:space="preserve">
+    <value>خبر</value>
+  </data>
 </root>

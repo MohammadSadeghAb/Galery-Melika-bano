@@ -19,7 +19,7 @@ namespace Persistence.Repositories
 
         public async Task<IList<News>> GetAllAsync()
         {
-            return await _context.News.ToListAsync();
+            return await _context.News.OrderBy(x=> x.Ordering).ToListAsync();
         }
     }
 }

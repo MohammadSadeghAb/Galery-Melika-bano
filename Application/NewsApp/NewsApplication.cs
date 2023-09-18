@@ -21,7 +21,7 @@ namespace Application.NewsApp
             _repository = repository;
         }
 
-        public async Task<OperationResult> AddProduct(CommonViewModel news)
+        public async Task<OperationResult> AddNews(CommonViewModel news)
         {
             var res = new OperationResult();
 
@@ -51,7 +51,7 @@ namespace Application.NewsApp
             return res;
         }
 
-        public async Task<OperationResult> DeleteProduct(Guid Id)
+        public async Task<OperationResult> DeleteNews(Guid Id)
         {
             var res = new OperationResult();
             var newsForDelete = await _repository.GetAsync(Id);
@@ -74,7 +74,7 @@ namespace Application.NewsApp
             return res;
         }
 
-        public async Task<OperationResultWithData<IList<CommonViewModel>>> GetAllProduct()
+        public async Task<OperationResultWithData<IList<CommonViewModel>>> GetAllNews()
         {
             var res = new OperationResultWithData<IList<CommonViewModel>>();
 
@@ -113,7 +113,7 @@ namespace Application.NewsApp
             return res;
         }
 
-        public async Task<OperationResultWithData<CommonViewModel>> GetProduct(Guid? Id)
+        public async Task<OperationResultWithData<CommonViewModel>> GetNews(Guid? Id)
         {
             var res = new OperationResultWithData<CommonViewModel>();
 
@@ -136,7 +136,7 @@ namespace Application.NewsApp
             return res;
         }
 
-        public async Task<OperationResult> UpdateProduct(CommonViewModel news)
+        public async Task<OperationResult> UpdateNews(CommonViewModel news)
         {
             var res = new OperationResult();
 

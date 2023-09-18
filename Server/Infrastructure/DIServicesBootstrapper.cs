@@ -1,11 +1,13 @@
 ﻿using Application.AccountApp;
 using Application.CategoryApp;
+using Application.NewsApp;
 using Application.ProductApp;
 using Application.ProductPicApp;
 using Application.SaleApp;
 using Application.TotalSaleApp;
 using Application.UserApp;
 using Domain.CategoryAgg;
+using Domain.NewsAgg;
 using Domain.ProductAgg;
 using Domain.ProductPicAgg;
 using Domain.SaleAgg;
@@ -36,7 +38,10 @@ namespace Infrastructure
 			services.AddTransient<ITotalSaleApplication, TotalSaleApplication>();
 			services.AddTransient<ITotalSaleRepository, TotalSaleRepository>();
 
-			services.AddTransient<ICategoryApplication, CategoryApplication>();
+            services.AddTransient<INewsApplication, NewsApplication>();
+            services.AddTransient<INewsRepository, NewsRepository>();
+
+            services.AddTransient<ICategoryApplication, CategoryApplication>();
 			services.AddTransient<ICategoryRepository, CategoryRepository>();
 
 			services.AddTransient<IAccountApplication, AccountApplication>();
