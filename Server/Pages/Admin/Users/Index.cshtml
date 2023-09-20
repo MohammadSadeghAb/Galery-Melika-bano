@@ -37,10 +37,10 @@
 						@(Resources.DataDictionary.Action)
 					</th>
 					<th>
-						@(Resources.DataDictionary.EmailAddress)
+						@(Resources.DataDictionary.FullName)
 					</th>
 					<th>
-						@(Resources.DataDictionary.IsVerified)
+						@(Resources.DataDictionary.Username)
 					</th>
 					<th>
 						@(Resources.DataDictionary.Role)
@@ -50,12 +50,6 @@
 					</th>
 					<th>
 						@(Resources.DataDictionary.Ordering)
-					</th>
-					<th>
-						@(Resources.DataDictionary.IsProgrammer)
-					</th>
-					<th>
-						@(Resources.DataDictionary.IsSystemic)
 					</th>
 					<th>
 						@(Resources.DataDictionary.InsertDateTime)
@@ -91,10 +85,12 @@
 						</table-actions>
 
 						<td>
-							@(item.EmailAddress)
+							@(item.FullName)
 						</td>
 
-						@(Html.DtatDisplayBooleanWithTd(value: item.IsEmailAddressVerified))
+						<td>
+							@(item.Username)
+						</td>
 
 						<td>
 							@(item.Role)
@@ -103,10 +99,6 @@
 						@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
 
 						@(Html.DtatDisplayIntegerWithTd(value: item.Ordering))
-
-						@(Html.DtatDisplayBooleanWithTd(value: item.IsProgrammer))
-
-						@(Html.DtatDisplayBooleanWithTd(value: item.IsSystemic))
 
 						@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
 

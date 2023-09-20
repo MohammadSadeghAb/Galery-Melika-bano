@@ -124,10 +124,6 @@ public class User :
 	// **********
 
 	// **********
-	[Required
-		(ErrorMessageResourceType = typeof(Validations),
-		ErrorMessageResourceName = nameof(Validations.Required))]
-
 	[MaxLength
 		(length: MaxLength.EmailAddress,
 		ErrorMessageResourceType = typeof(Validations),
@@ -197,22 +193,22 @@ public class User :
     public string? CityAddress { get; set; }
     // **********
 
-    // **********
-    [Display
-        (ResourceType = typeof(Resources.DataDictionary),
-        Name = nameof(Resources.DataDictionary.Fathersname))]
+    //// **********
+    //[Display
+    //    (ResourceType = typeof(Resources.DataDictionary),
+    //    Name = nameof(Resources.DataDictionary.Fathersname))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
+    //[Required
+    //    (ErrorMessageResourceType = typeof(Validations),
+    //    ErrorMessageResourceName = nameof(Validations.Required))]
 
-    [MaxLength
-        (length: MaxLength.Name,
-        ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.MaxLength))]
+    //[MaxLength
+    //    (length: MaxLength.Name,
+    //    ErrorMessageResourceType = typeof(Validations),
+    //    ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    public string FatherName { get; set; }
-    // **********
+    //public string FatherName { get; set; }
+    //// **********
 
     // **********
     [Display

@@ -20,6 +20,7 @@ namespace Server.Pages.Account
 		public LoginModel(IAccountApplication accountApplication, ApplicationSettings applicationSettings)
 		{
 			ViewModel = new();
+			ViewModel.RememberMe = true;
 			_accountApplication = accountApplication;
 			_applicationSettings = applicationSettings;
 		}

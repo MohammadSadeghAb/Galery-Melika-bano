@@ -124,12 +124,12 @@ namespace ViewModels.Pages.Account
 			(Name = nameof(Resources.DataDictionary.EmailAddress),
 			ResourceType = typeof(Resources.DataDictionary))]
 
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+        [System.ComponentModel.DataAnnotations.Required
+            (AllowEmptyStrings = false,
+            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+            ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-		[System.ComponentModel.DataAnnotations.MaxLength
+        [System.ComponentModel.DataAnnotations.MaxLength
 			(length: Domain.SeedWork.Constants.MaxLength.EmailAddress,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
@@ -141,21 +141,21 @@ namespace ViewModels.Pages.Account
 		public string? EmailAddress { get; set; }
         // **********
 
-        // **********
-        [Display
-            (ResourceType = typeof(Resources.DataDictionary),
-            Name = nameof(Resources.DataDictionary.Fathersname))]
+        //// **********
+        //[Display
+        //    (ResourceType = typeof(Resources.DataDictionary),
+        //    Name = nameof(Resources.DataDictionary.Fathersname))]
 
-        [Required
-            (ErrorMessageResourceType = typeof(Validations),
-            ErrorMessageResourceName = nameof(Validations.Required))]
+        //[Required
+        //    (ErrorMessageResourceType = typeof(Validations),
+        //    ErrorMessageResourceName = nameof(Validations.Required))]
 
-        [MaxLength
-            (length: MaxLength.Name,
-            ErrorMessageResourceType = typeof(Validations),
-            ErrorMessageResourceName = nameof(Validations.MaxLength))]
-        public string FatherName { get; set; }
-        // **********
+        //[MaxLength
+        //    (length: MaxLength.Name,
+        //    ErrorMessageResourceType = typeof(Validations),
+        //    ErrorMessageResourceName = nameof(Validations.MaxLength))]
+        //public string FatherName { get; set; }
+        //// **********
 
         // **********
         [Display

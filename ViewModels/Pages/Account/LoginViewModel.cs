@@ -4,6 +4,7 @@
 	{
 		public LoginViewModel() : base()
 		{
+			RememberMe = true;
 		}
 
 		// **********

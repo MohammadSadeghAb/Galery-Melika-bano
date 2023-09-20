@@ -29,7 +29,7 @@ namespace Application.AccountApp
 				FullName = model.FullName,
 				Password = model.Password,
 				Username = model?.Username,
-				FatherName = model.FatherName,
+				//FatherName = model.FatherName,
 				EmailAddress = model.EmailAddress,
 				CellPhoneNumber = model?.CellPhoneNumber,
 			});

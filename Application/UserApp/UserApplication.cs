@@ -57,7 +57,7 @@ namespace Application.UserApp
 				CityAddress = user.CityAddress,
 				PostalCode = user.PostalCode,
 				ProvinceAddress = user.ProvinceAddress,
-				FatherName = user.FatherName,
+				//FatherName = user.FatherName,
 				Gender = user.Gender,
 				EmailAddress = user.EmailAddress,
 				Ordering = user.Ordering,
@@ -163,7 +163,7 @@ namespace Application.UserApp
 				Username = user.Username,
 				Address = user.Address,
 				Gender = user.Gender,
-				FatherName = user.FatherName,
+				//FatherName = user.FatherName,
 				CityAddress = user.CityAddress,
 				PostalCode = user.PostalCode,
 				NationalCode = user.NationalCode,
@@ -224,7 +224,7 @@ namespace Application.UserApp
 			userForUpdate.CityAddress = user.CityAddress;
 			userForUpdate.ProvinceAddress = user.ProvinceAddress;
 			userForUpdate.Gender = user.Gender;
-			userForUpdate.FatherName = user.FatherName;
+			//userForUpdate.FatherName = user.FatherName;
 			userForUpdate.NationalCode = user.NationalCode;
 			userForUpdate.PostalCode = user.PostalCode;
 			userForUpdate.Role = user.Role;
@@ -262,7 +262,7 @@ namespace Application.UserApp
 					PostalCode = user.PostalCode,
 					NationalCode = user.NationalCode,
 					Gender = user.Gender,
-					FatherName = user.FatherName,
+					//FatherName = user.FatherName,
 					FullName = user.FullName,
 					ProvinceAddress = user.ProvinceAddress,
 					CityAddress = user.CityAddress,
