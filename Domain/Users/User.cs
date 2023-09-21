@@ -94,7 +94,7 @@ public class User :
 		ErrorMessageResourceType = typeof(Validations),
 		ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-	public string? Username { get; set; }
+	public string Username { get; set; }
 	// **********
 
 	// **********
@@ -108,7 +108,7 @@ public class User :
 		ErrorMessageResourceType = typeof(Validations),
 		ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-	public string? Password { get; set; }
+	public string Password { get; set; }
 	// **********
 
 	// **********
@@ -133,11 +133,11 @@ public class User :
 		(pattern: RegularExpression.EmailAddress,
 		ErrorMessageResourceType = typeof(Validations),
 		ErrorMessageResourceName = nameof(Validations.EmailAddress))]
-	public string EmailAddress { get; set; }
+	public string? EmailAddress { get; set; }
 	// **********
 
 	// **********
-	public Guid EmailAddressVerificationKey { get; private set; }
+	public Guid? EmailAddressVerificationKey { get; private set; }
 	// **********
 
 	// **********
@@ -246,11 +246,7 @@ public class User :
         ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-    [Required
-        (ErrorMessageResourceType = typeof(Validations),
-        ErrorMessageResourceName = nameof(Validations.Required))]
-
-    public string Gender { get; set; }
+    public string? Gender { get; set; }
 	// **********
 
 	// **********

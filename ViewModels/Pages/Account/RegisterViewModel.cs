@@ -11,24 +11,6 @@ namespace ViewModels.Pages.Account
 		public RegisterViewModel() : base()
 		{
 		}
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.FullName),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constants.MaxLength.FirstName,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-		public string FullName { get; set; }
-		// **********
-
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
@@ -49,7 +31,7 @@ namespace ViewModels.Pages.Account
 			(pattern: Domain.SeedWork.Constants.RegularExpression.Username,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
-		public string? Username { get; set; }
+		public string Username { get; set; }
 		// **********
 
 		// **********
@@ -74,7 +56,7 @@ namespace ViewModels.Pages.Account
 
 		[System.ComponentModel.DataAnnotations.DataType
 			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
-		public string? Password { get; set; }
+		public string Password { get; set; }
 		// **********
 
 		// **********
@@ -99,79 +81,7 @@ namespace ViewModels.Pages.Account
 
 		[System.ComponentModel.DataAnnotations.DataType
 			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
-		public string? ConfirmPassword { get; set; }
+		public string ConfirmPassword { get; set; }
 		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(Domain.SeedWork.Constants.FixedLength.CellPhoneNumber,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-		[System.ComponentModel.DataAnnotations.RegularExpression
-			(Domain.SeedWork.Constants.RegularExpression.CellPhoneNumber,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
-		public string? CellPhoneNumber { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.EmailAddress),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-        [System.ComponentModel.DataAnnotations.Required
-            (AllowEmptyStrings = false,
-            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-            ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-
-        [System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constants.MaxLength.EmailAddress,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constants.RegularExpression.EmailAddress,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
-		public string? EmailAddress { get; set; }
-        // **********
-
-        //// **********
-        //[Display
-        //    (ResourceType = typeof(Resources.DataDictionary),
-        //    Name = nameof(Resources.DataDictionary.Fathersname))]
-
-        //[Required
-        //    (ErrorMessageResourceType = typeof(Validations),
-        //    ErrorMessageResourceName = nameof(Validations.Required))]
-
-        //[MaxLength
-        //    (length: MaxLength.Name,
-        //    ErrorMessageResourceType = typeof(Validations),
-        //    ErrorMessageResourceName = nameof(Validations.MaxLength))]
-        //public string FatherName { get; set; }
-        //// **********
-
-        // **********
-        [Display
-            (ResourceType = typeof(Resources.DataDictionary),
-            Name = nameof(Resources.DataDictionary.Gender))]
-
-        [MaxLength
-            (length: MaxLength.Gender,
-            ErrorMessageResourceType = typeof(Validations),
-            ErrorMessageResourceName = nameof(Validations.MaxLength))]
-
-        [Required
-            (ErrorMessageResourceType = typeof(Validations),
-            ErrorMessageResourceName = nameof(Validations.Required))]
-
-        public string Gender { get; set; }
-        // **********
     }
 }

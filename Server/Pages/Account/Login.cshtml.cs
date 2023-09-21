@@ -107,20 +107,20 @@ namespace Server.Pages.Account
 		{
 			// **************************************************
 			Claim claim = new Claim
-				(type: "FullName", value: string.Concat(user.FullName));
-			claims.Add(item: claim);
-			// **************************************************
+                (type: "FullName", value: string.Concat(user.FullName));
+            claims.Add(item: claim);
+            // **************************************************
 
-			// **************************************************
-			claim =
-				new Claim
-				(type: "Id", value: user.Id.ToString());
+            // **************************************************
+            claim =
+                new Claim
+                (type: "Id", value: user.Id.ToString());
 
-			claims.Add(item: claim);
-			// **************************************************
+            claims.Add(item: claim);
+            // **************************************************
 
-			// **************************************************
-			claim =
+            // **************************************************
+            claim =
 				new Claim
 				(type: ClaimTypes.Role, value: user.Role ?? "User");
 
@@ -136,11 +136,11 @@ namespace Server.Pages.Account
 			// **************************************************
 
 			// **************************************************
-			claim =
-				new Claim
-				(type: ClaimTypes.Email, value: user.EmailAddress);
+			//claim =
+			//	new Claim
+			//	(type: ClaimTypes.Email, value: user.EmailAddress);
 
-			claims.Add(item: claim);
+			//claims.Add(item: claim);
 
 			return claim;
 		}

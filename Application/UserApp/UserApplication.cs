@@ -27,15 +27,15 @@ namespace Application.UserApp
 				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.Username));
 			}
 
-			if (_repository.Exist(x => x.EmailAddress == user.EmailAddress))
-			{
-				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.EmailAddress));
-			}
+			//if (_repository.Exist(x => x.EmailAddress == user.EmailAddress))
+			//{
+			//	res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.EmailAddress));
+			//}
 
-			if (_repository.Exist(x => x.CellPhoneNumber == user.CellPhoneNumber) && user.CellPhoneNumber != null)
-			{
-				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.CellPhoneNumber));
-			}
+			//if (_repository.Exist(x => x.CellPhoneNumber == user.CellPhoneNumber) && user.CellPhoneNumber != null)
+			//{
+			//	res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.CellPhoneNumber));
+			//}
 
 			if (0 < res.ErrorMessages.Count)
 			{

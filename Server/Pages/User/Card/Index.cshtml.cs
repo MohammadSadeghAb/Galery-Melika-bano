@@ -118,7 +118,7 @@ public class IndexModel : BasePageModel
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
 
         if (user.Address == null || user.ProvinceAddress == null || user.CityAddress == null ||
-            user.NationalCode == null || user.PostalCode == null)
+            user.CellPhoneNumber == null)
         {
             return RedirectToPage("/Account/User/Update");
         }

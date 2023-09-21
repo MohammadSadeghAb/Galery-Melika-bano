@@ -35,7 +35,7 @@ public class CommonViewModel : object
 	(AllowEmptyStrings = false,
 	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-	public string FullName { get; set; }
+	public string? FullName { get; set; }
 	// **********
 
 	// **********
@@ -234,6 +234,6 @@ public class CommonViewModel : object
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-    public string Gender { get; set; }
+    public string? Gender { get; set; }
     // **********
 }

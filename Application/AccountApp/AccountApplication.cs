@@ -25,13 +25,9 @@ namespace Application.AccountApp
 			{
 				Role = "User",
 				IsActive = true,
-				Gender = model.Gender,
-				FullName = model.FullName,
+				FullName = model.Username,
 				Password = model.Password,
 				Username = model?.Username,
-				//FatherName = model.FatherName,
-				EmailAddress = model.EmailAddress,
-				CellPhoneNumber = model?.CellPhoneNumber,
 			});
 		}
 
