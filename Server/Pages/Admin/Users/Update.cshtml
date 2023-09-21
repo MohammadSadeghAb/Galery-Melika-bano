@@ -25,7 +25,7 @@
 
 			<section-form-field>
 				<label asp-for="ViewModel.EmailAddress"></label>
-				<input asp-for="ViewModel.EmailAddress" readonly="readonly" />
+				<input asp-for="ViewModel.EmailAddress" />
 				<span asp-validation-for="ViewModel.EmailAddress"></span>
 			</section-form-field>
 
@@ -62,6 +62,11 @@
 						<option>@(Resources.DataDictionary.Female)</option>
 					}
 					@if (Model.ViewModel.Gender == Resources.DataDictionary.Female)
+					{
+						<option>@(Resources.DataDictionary.Female)</option>
+						<option>@(Resources.DataDictionary.Male)</option>
+					}
+					@if (Model.ViewModel.Gender == null)
 					{
 						<option>@(Resources.DataDictionary.Female)</option>
 						<option>@(Resources.DataDictionary.Male)</option>
