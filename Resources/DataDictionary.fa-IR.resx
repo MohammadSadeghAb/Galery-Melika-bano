@@ -690,4 +690,13 @@
   <data name="Thenews" xml:space="preserve">
     <value>خبر</value>
   </data>
+  <data name="Print" xml:space="preserve">
+    <value>چاپ</value>
+  </data>
+  <data name="Receiver" xml:space="preserve">
+    <value>گیرنده</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>فرستنده</value>
+  </data>
 </root>

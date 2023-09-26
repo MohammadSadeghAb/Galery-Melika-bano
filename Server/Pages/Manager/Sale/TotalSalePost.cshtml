@@ -1,7 +1,7 @@
 ﻿@page
 @model Server.Pages.Manager.Sale.TotalSalePostModel
 @{
-    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Sale} {Resources.DataDictionary.Packing}";
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Sale} {Resources.DataDictionary.Posted}";
 
     ViewData["PageTitle"] = pageTitle;
 
@@ -81,6 +81,9 @@
                                 <a asp-page="Update_Delivery" asp-route-id="@(item.Id)">
                                     @(Html.DtatGetIconUpdate())
                                 </a>
+                                <a asp-page="Print" asp-route-id="@(item.Id)">
+                                    <i class="bi bi-printer-fill"></i>
+                                </a>
                             </table-actions>
 
                             <td>
@@ -115,6 +118,9 @@
                                 </a>
                                 <a asp-page="Update_Delivery" asp-route-id="@(item.Id)">
                                     @(Html.DtatGetIconUpdate())
+                                </a>
+                                <a asp-page="Print" asp-route-id="@(item.Id)">
+                                    <i class="bi bi-printer-fill"></i>
                                 </a>
                             </table-actions>
 

@@ -67,3 +67,29 @@
 		return y + z;
 	}
 </script>
+
+<script>
+	function PrintSender(){
+		var printContents = document.getElementById('Print_Sender').innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
+
+	function PrintReceiver() {
+		var printContents = document.getElementById('Print_Receiver').innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
+
+	function PrintProducts() {
+		var printContents = document.getElementById('Print_Products').innerHTML;
+		var originalContents = document.body.innerHTML;
+		document.body.innerHTML = printContents;
+		window.print();
+		document.body.innerHTML = originalContents;
+	}
+</script>

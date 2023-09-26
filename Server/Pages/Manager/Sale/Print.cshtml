@@ -1,0 +1,98 @@
+﻿@page
+@model Server.Pages.Manager.Sale.PrintModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Print} {Resources.DataDictionary.Sale}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<div class="row">
+    <div class="col-11">
+        <legend>
+            @($"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.Sender}")
+        </legend>
+    </div>
+    <div class="col-1">
+        <button onclick="PrintSender()" class="btn btn-light">
+            <i class="bi bi-printer-fill"></i>
+        </button>
+    </div>
+    <div id="Print_Sender" class="col-12">
+        <table class="table table-light table-bordered">
+            <tr>
+                <th>@(Resources.DataDictionary.FullName)</th>
+                <th>@(Resources.DataDictionary.Province)</th>
+                <th>@(Resources.DataDictionary.City)</th>
+                <th>@(Resources.DataDictionary.Address)</th>
+                <th>@(Resources.DataDictionary.CellPhoneNumber)</th>
+            </tr>
+            <tr>
+                <td>@(Model.AdminUser.FullName)</td>
+                <td>@(Model.AdminUser.ProvinceAddress)</td>
+                <td>@(Model.AdminUser.CityAddress)</td>
+                <td>@(Model.AdminUser.Address)</td>
+                <td>@(Model.AdminUser.CellPhoneNumber)</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="col-11 mt-5">
+        <legend>
+            @($"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.Receiver}")
+        </legend>
+    </div>
+    <div class="col-1 mt-5">
+        <button onclick="PrintReceiver()" class="btn btn-light">
+            <i class="bi bi-printer-fill"></i>
+        </button>
+    </div>
+    <div id="Print_Receiver" class="col-12">
+        <table class="table table-light table-bordered">
+            <tr>
+                <th>@(Resources.DataDictionary.FullName)</th>
+                <th>@(Resources.DataDictionary.Province)</th>
+                <th>@(Resources.DataDictionary.City)</th>
+                <th>@(Resources.DataDictionary.Address)</th>
+                <th>@(Resources.DataDictionary.CellPhoneNumber)</th>
+            </tr>
+            <tr>
+                <td>@(Model.ViewModelUser.FullName)</td>
+                <td>@(Model.ViewModelUser.ProvinceAddress)</td>
+                <td>@(Model.ViewModelUser.CityAddress)</td>
+                <td>@(Model.ViewModelUser.Address)</td>
+                <td>@(Model.ViewModelUser.CellPhoneNumber)</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="col-11 mt-5">
+        <legend>
+            @($"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Products}")
+        </legend>
+    </div>
+    <div class="col-1 mt-5">
+        <button onclick="PrintProducts()" class="btn btn-light">
+            <i class="bi bi-printer-fill"></i>
+        </button>
+    </div>
+    <div id="Print_Products" class="col-12">
+        <table class="table table-light table-bordered">
+            <tr>
+                <th>@(Resources.DataDictionary.ProductName)</th>
+                <th>@(Resources.DataDictionary.Number)</th>
+            </tr>
+            @foreach (var item in Model.TotalSales)
+            {
+                <tr>
+                    @{var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);}
+                    <td>@(product.Name_Product)</td>
+                    <td>@(item.Number)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
