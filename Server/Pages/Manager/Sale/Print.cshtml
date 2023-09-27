@@ -11,6 +11,64 @@
 <div class="row">
     <div class="col-11">
         <legend>
+            @($"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.Print}")
+        </legend>
+    </div>
+    <div class="col-1">
+        <button onclick="Print()" class="btn btn-light">
+            <i class="bi bi-printer-fill"></i>
+        </button>
+    </div>
+
+    <div id="Print" class="col-12 row">
+        <div class="col-12 p-2">
+            <div class="p-3 row">
+                <div class="col-6">
+                    <div class="border h-100 rounded-2 p-3">
+                        <h6 class="text-muted text-center">@(Resources.DataDictionary.Lable)</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="border h-100 rounded-2 p-3">
+                        <h6>@(Resources.DataDictionary.Sender) :</h6>
+                        <p>@(Resources.DataDictionary.LastName) : کرامتی</p>
+                        <p>@(Resources.DataDictionary.Address) : خراسان رضوی . مشهد . اصلانی35 . پلاک26/1 . طبقه 3</p>
+                        <p>@(Resources.DataDictionary.CellPhoneNumber) : 09900561401</p>
+                    </div>
+                </div>
+                <div class="col-6 mt-3">
+                    <div class="border h-100 rounded-2 p-3">
+                    <h4>@(Resources.DataDictionary.Address) @(Resources.DataDictionary.Receiver) :</h4>
+                    <h5>@(Resources.DataDictionary.FullName) : @(Model.ViewModelUser.FullName)</h5>
+                    <h5>@(Resources.DataDictionary.CellPhoneNumber) : @(Model.ViewModelUser.CellPhoneNumber)</h5>
+                    <h5>@(Resources.DataDictionary.Province) : @(Model.ViewModelUser.ProvinceAddress)</h5>
+                    <h5>@(Resources.DataDictionary.City) : @(Model.ViewModelUser.CityAddress)</h5>
+                    <h5>@(Resources.DataDictionary.Postalcode) : @(Model.ViewModelUser.PostalCode)</h5>
+                    </div>
+                </div>
+                <div class="col-6 mt-3">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>@(Resources.DataDictionary.ProductName)</th>
+                            <th>@(Resources.DataDictionary.Number)</th>
+                        </tr>
+                        @foreach (var item in Model.TotalSales)
+                        {
+                            <tr>
+                                @{
+                                    var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);
+                                }
+                                <td>@(product.Name_Product)</td>
+                                <td>@(item.Number)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-11">
+        <legend>
             @($"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.Sender}")
         </legend>
     </div>
@@ -94,5 +152,5 @@
                 </tr>
             }
         </table>
-    </div>
+    </div>*@
 </div>
