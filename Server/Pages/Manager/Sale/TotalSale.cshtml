@@ -40,7 +40,7 @@
                         @(Resources.DataDictionary.FullName)
                     </th>
                     <th>
-                        @(Resources.DataDictionary.ProductName)
+                        @(Resources.DataDictionary.TrackingCode)
                     </th>
                     <th>
                         @(Resources.DataDictionary.FactorNumber)
@@ -70,42 +70,92 @@
 
                     var user = Model._context.Users.FirstOrDefault(x => x.Id == item.UserId);
 
-                    var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);
+                    if (index == 0)
+                    {
+                        if (item.FactorNumber == Model.ViewModel[index].FactorNumber)
+                        {
+                            <tr>
+                                @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
 
-                    <tr>
-                        @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+                                <table-actions>
+                                    <a asp-page="Details" asp-route-id="@(item.Id)">
+                                        @(Html.DtatGetIconDetails())
+                                    </a>
+                                    <a asp-page="Update_Accept" asp-route-id="@(item.Id)">
+                                        @(Html.DtatGetIconUpdate())
+                                    </a>
+                                    <a asp-page="Print" asp-route-id="@(item.Id)">
+                                        <i class="bi bi-printer-fill"></i>
+                                    </a>
+                                </table-actions>
 
-                        <table-actions>
-                            <a asp-page="Details" asp-route-id="@(item.Id)">
-                                @(Html.DtatGetIconDetails())
-                            </a>
-                            <a asp-page="Update_Accept" asp-route-id="@(item.Id)">
-                                @(Html.DtatGetIconUpdate())
-                            </a>
-                        </table-actions>
+                                <td>
+                                    @(user.FullName)
+                                </td>
 
-                        <td>
-                            @(user.FullName)
-                        </td>
+                                <td>
+                                    @(item.TrackingCode)
+                                </td>
 
-                        <td>
-                            @(product.Name_Product)
-                        </td>
+                                <td>
+                                    @(item.FactorNumber)
+                                </td>
 
-                        <td>
-                            @(item.FactorNumber)
-                        </td>
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Accepted))
 
-                        @(Html.DtatDisplayBooleanWithTd(value: item.Accepted))
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Packing))
 
-                        @(Html.DtatDisplayBooleanWithTd(value: item.Packing))
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Posted))
 
-                        @(Html.DtatDisplayBooleanWithTd(value: item.Posted))
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
 
-                        @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
+                                @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        if (item.FactorNumber != Model.ViewModel[index-1].FactorNumber)
+                        {
+                            <tr>
+                                @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
 
-                        @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
-                    </tr>
+                                <table-actions>
+                                    <a asp-page="Details" asp-route-id="@(item.Id)">
+                                        @(Html.DtatGetIconDetails())
+                                    </a>
+                                    <a asp-page="Update_Accept" asp-route-id="@(item.Id)">
+                                        @(Html.DtatGetIconUpdate())
+                                    </a>
+                                    <a asp-page="Print" asp-route-id="@(item.Id)">
+                                        <i class="bi bi-printer-fill"></i>
+                                    </a>
+                                </table-actions>
+
+                                <td>
+                                    @(user.FullName)
+                                </td>
+
+                                <td>
+                                    @(item.TrackingCode)
+                                </td>
+
+                                <td>
+                                    @(item.FactorNumber)
+                                </td>
+
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Accepted))
+
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Packing))
+
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Posted))
+
+                                @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
+
+                                @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                            </tr>
+                        }
+                    }
                 }
             </tbody>
         </table>

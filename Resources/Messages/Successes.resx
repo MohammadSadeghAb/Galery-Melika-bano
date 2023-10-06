@@ -150,4 +150,7 @@
   <data name="Yourorderhasbeenregistered" xml:space="preserve">
     <value>Your order has been registered</value>
   </data>
+  <data name="Yourregistrationhasbeencompleted" xml:space="preserve">
+    <value>Your registration has been completed</value>
+  </data>
 </root>

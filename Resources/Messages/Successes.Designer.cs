@@ -158,5 +158,14 @@ namespace Resources.Messages {
                 return ResourceManager.GetString("Yourorderhasbeenregistered", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your registration has been completed.
+        /// </summary>
+        public static string Yourregistrationhasbeencompleted {
+            get {
+                return ResourceManager.GetString("Yourregistrationhasbeencompleted", resourceCulture);
+            }
+        }
     }
 }

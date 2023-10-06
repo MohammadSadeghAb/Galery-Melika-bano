@@ -107,5 +107,9 @@ namespace ViewModels.Pages.Admin.TotalSales
 
         public string Color { get; set; }
         //**********
+
+        //**********
+        public string? PicAddress { get; set; }
+        //**********
     }
 }

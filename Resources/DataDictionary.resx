@@ -697,4 +697,19 @@
   <data name="Sender" xml:space="preserve">
     <value>Sender</value>
   </data>
+  <data name="Lable" xml:space="preserve">
+    <value>Lable</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Unavailable" xml:space="preserve">
+    <value>Unavailable</value>
+  </data>
+  <data name="Bill" xml:space="preserve">
+    <value>Bill</value>
+  </data>
+  <data name="ShippingCost" xml:space="preserve">
+    <value>Shipping Cost</value>
+  </data>
 </root>

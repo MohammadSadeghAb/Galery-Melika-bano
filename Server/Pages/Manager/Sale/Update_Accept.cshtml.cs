@@ -63,17 +63,18 @@ public class UpdateModel : BasePageModel
             return Page();
         }
 
-        var res = await _application.UpdateTotalSale(ViewModel);
+        var sale = (await _application.GetTotalSale(ViewModel.Id.Value)).Data;
 
-        if (res.Succeeded == false || res.ErrorMessages.Count > 0)
+        var saleacceptrd = await _context.TotalSales.Where(x => x.FactorNumber == sale.FactorNumber).ToListAsync();
+
+        foreach (var item in saleacceptrd)
         {
-            foreach (var item in res.ErrorMessages)
-            {
-                AddToastError(item);
-            }
+            item.Accepted = ViewModel.Accepted;
 
-            return Page();
+            _context.TotalSales.Update(item);
         }
+
+        await _context.SaveChangesAsync();
 
         var successMessage = string.Format(Resources.Messages.Successes.Updated, DataDictionary.Sale);
 

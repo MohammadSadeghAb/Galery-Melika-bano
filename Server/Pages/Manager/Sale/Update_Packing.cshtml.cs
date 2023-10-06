@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using ViewModels.Pages.Admin.TotalSales;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Manager.Sale;
 
@@ -58,19 +60,18 @@ public class Update_PackingModel : BasePageModel
             return Page();
         }
 
-        ViewModel.Accepted = true;
+        var sale = (await _application.GetTotalSale(ViewModel.Id.Value)).Data;
 
-        var res = await _application.UpdateTotalSale(ViewModel);
+        var salepacking = await _context.TotalSales.Where(x => x.FactorNumber == sale.FactorNumber).ToListAsync();
 
-        if (res.Succeeded == false || res.ErrorMessages.Count > 0)
+        foreach (var item in salepacking)
         {
-            foreach (var item in res.ErrorMessages)
-            {
-                AddToastError(item);
-            }
+            item.Packing = ViewModel.Packing;
 
-            return Page();
+            _context.TotalSales.Update(item);
         }
+
+        await _context.SaveChangesAsync();
 
         var successMessage = string.Format(Resources.Messages.Successes.Updated, DataDictionary.Sale);
 

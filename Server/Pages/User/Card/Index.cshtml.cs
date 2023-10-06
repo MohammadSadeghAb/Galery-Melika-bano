@@ -4,6 +4,8 @@ using Domain.SaleAgg;
 using Domain.TotalSaleAgg;
 using Infrastructure;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Parbad;
@@ -13,6 +15,8 @@ using Resources;
 using SmsPanel.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -36,17 +40,21 @@ public class IndexModel : BasePageModel
 
     private readonly HttpClient _httpClient;
 
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
     public IndexModel(ITotalSaleRepository totalSale,
                       DatabaseContext context,
                       ISaleRepository sale,
                       ISaleApplication application,
-                      IProductApplication product)
+                      IProductApplication product,
+                      IWebHostEnvironment webHostEnvironment)
     {
         _sale = sale;
         _product = product;
         _context = context;
         _totalSale = totalSale;
         _application = application;
+        _webHostEnvironment = webHostEnvironment;
         ViewModel = new();
         ViewModelSale = new();
         _httpClient = new HttpClient();
@@ -62,7 +70,17 @@ public class IndexModel : BasePageModel
 
     public int? pricetotal { get; set; } = 0;
 
-    public int? numbertotals { get; set; } = 0;
+    [BindProperty]
+    [DataType(DataType.Upload)]
+    [System.ComponentModel.DataAnnotations.Display
+            (Name = nameof(Resources.DataDictionary.Picture),
+            ResourceType = typeof(Resources.DataDictionary))]
+    [Required
+            (AllowEmptyStrings = false,
+            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+            ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
+    public IFormFile UploadPic { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
@@ -142,6 +160,8 @@ public class IndexModel : BasePageModel
 
         bool a = false;
 
+        Upload(UploadPic);
+
         foreach (var item in sales)
         {
             var product = (await _product.GetProduct(item.ProductId)).Data;
@@ -156,6 +176,7 @@ public class IndexModel : BasePageModel
                     Products = item.ProductId,
                     UserId = item.UserId,
                     TotalPrice = item.Price,
+                    PicAddress = ViewModel.PicAddress,
                     FactorNumber = max + 1,
                     TrackingCode = tracking.ToString(),
             };
@@ -208,5 +229,22 @@ public class IndexModel : BasePageModel
         }
 
         return RedirectToPage("/CheckOrder");
+    }
+
+    public void Upload(IFormFile file)
+    {
+        var directoryPath = $"{Getwebroot()}\\SalePic";
+        if (!Directory.Exists(directoryPath))
+            Directory.CreateDirectory(directoryPath);
+
+        ViewModel.PicAddress = Path.Combine(Guid.NewGuid().ToString() + ".png");
+        string filepath = Path.Combine(directoryPath, ViewModel.PicAddress);
+        using var output = System.IO.File.Create(filepath);
+        file.CopyTo(output);
+    }
+
+    public string Getwebroot()
+    {
+        return _webHostEnvironment.WebRootPath;
     }
 }

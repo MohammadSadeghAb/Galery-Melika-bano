@@ -150,4 +150,7 @@
   <data name="Yourorderhasbeenregistered" xml:space="preserve">
     <value>سفارش شما ثبت گردید</value>
   </data>
+  <data name="Yourregistrationhasbeencompleted" xml:space="preserve">
+    <value>ثبت نام شما تکمیل شد</value>
+  </data>
 </root>

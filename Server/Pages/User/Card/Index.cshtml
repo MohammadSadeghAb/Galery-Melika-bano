@@ -12,7 +12,6 @@
 
 <br />
 <br />
-<div class="w-100 border-bottom "></div>
 <br />
 <br />
 
@@ -45,8 +44,6 @@
                             int? sum = Model.pricetotal.Value + totalprice;
 
                             Model.pricetotal = int.Parse(sum.ToString(), System.Globalization.NumberStyles.Currency);
-
-                            Model.numbertotals = Model.numbertotals + item.Number;
                         }
 
                         <div class="row">
@@ -69,13 +66,13 @@
                                         @if (item.Number <= product.Number)
                                         {
                                             <div class="col-3">
-                                                <p class="text-light">موجود</p>
+                                                <p class="text-light">@(Resources.DataDictionary.Available)</p>
                                             </div>
                                         }
                                         @if (item.Number > product.Number)
                                         {
                                             <div class="col-3">
-                                                <p class="text-light">ناموجود</p>
+                                                <p class="text-light">@(Resources.DataDictionary.Unavailable)</p>
                                             </div>
                                         }
                                         <div class="col-12">
@@ -127,10 +124,20 @@
             {
 
                 <div class="border rounded-1 p-2">
-                    <p>@(Resources.DataDictionary.Total) : @(Model.numbertotals)</p>
-                    <p>@(Resources.DataDictionary.PriceTotal) : @(Model.pricetotal.Value.ToString("#,#"))</p>
+                    <h6><i class="bi bi-tag"></i> @(Resources.DataDictionary.Price) : @(Model.pricetotal.Value.ToString("#,#"))</h6>
+                    <h6><i class="bi bi-truck"></i> @(Resources.DataDictionary.ShippingCost) : </h6>
+                    <h6><i class="bi bi-cash"></i> @(Resources.DataDictionary.PriceTotal) : @(Model.pricetotal.Value.ToString("#,#"))</h6>
+                    <div class="alert alert-danger">
+                        مبلغ قیمت کل را به حساب زیر واریز کرده و عکس رسید را باگزاری کنید
+                    </div>
+                    <div class="w-100 bg-light rounded-2 border p-2">
+                        <h5 class="text-start">6063731113567086</h5>
+                        <h6 class="text-end">به نام : فهیمه کرامتی</h6>
+                    </div>
                     <hr />
-                    <form method="post" asp-page-handler="Create">
+                    <form method="post" enctype="multipart/form-data" asp-page-handler="Create">
+                        <input class="form-control mb-2" asp-for="UploadPic" accept="image/*" />
+                        <span class="text-danger mb-2" asp-validation-for="UploadPic"></span>
                         <button type="submit" class="w-100 btn btn-danger">@(Resources.DataDictionary.Order)</button>
                     </form>
                 </div>

@@ -9,70 +9,80 @@
 }
 
 <section-form>
-	<fieldset disabled>
-		<section-form-header>
-			@(pageTitle)
-		</section-form-header>
+    <fieldset disabled>
+        <section-form-header>
+            @(pageTitle)
+        </section-form-header>
 
-		<partial name="PartialViews/_DisplayPageMessages" />
+        <partial name="PartialViews/_DisplayPageMessages" />
 
-		<section-form-field>
-			<label asp-for="ViewModelTotalSale.Products"></label>
-			<input asp-for="Product.Data.Name_Product" />
-		</section-form-field>
+        <label class="mb-2">@(Resources.DataDictionary.Picture)</label>
+        <img class="mb-2 rounded-2" src="~/SalePic/@(Model.ViewModelTotalSale.PicAddress)" width="100%" height="100%" />
 
-		<section-form-field>
-			<label asp-for="ViewModelTotalSale.UserId"></label>
-			<input asp-for="User.Data.FullName" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModelTotalSale.UserId"></label>
+            <input asp-for="User.Data.FullName" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModelTotalSale.Number"></label>
-			<input asp-for="ViewModelTotalSale.Number" />
-		</section-form-field>
+        @foreach (var item in Model.ViewModel)
+        {
+            var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);
+            decimal price = decimal.Parse(item.TotalPrice.ToString(), System.Globalization.NumberStyles.Currency);
+            <label class="form-lable mt-2 mb-1">@(Resources.DataDictionary.ProductName)</label>
+            <input class="form-control mb-2" value="@(product.Name_Product)" />
+            <div class="row">
+                <div class="col-4">
+                    <label class="form-lable mt-2 mb-1">@(Resources.DataDictionary.Number)</label>
+                    <input class="form-control mb-2" value="@(item.Number)" />
+                </div>
+                <div class="col-4">
+                    <label class="form-lable mt-2 mb-1">@(Resources.DataDictionary.Price)</label>
+                    <input class="form-control mb-2" value="@(price.ToString("#,#"))" />
+                </div>
+                <div class="col-4">
+                    <label class="form-lable mt-2 mb-1">@(Resources.DataDictionary.Color)</label>
+                    <input class="form-control mb-2" value="@(item.Color)" />
+                </div>
+            </div>
+        }
 
-		<section-form-field>
-			<label asp-for="ViewModelTotalSale.TotalPrice"></label>
-			<input asp-for="ViewModelTotalSale.TotalPrice" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModelTotalSale.FactorNumber"></label>
+            <input asp-for="ViewModelTotalSale.FactorNumber" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModelTotalSale.Color"></label>
-			<input asp-for="ViewModelTotalSale.Color" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModelTotalSale.TrackingCode"></label>
+            <input asp-for="ViewModelTotalSale.TrackingCode" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModelTotalSale.FactorNumber"></label>
-			<input asp-for="ViewModelTotalSale.FactorNumber" />
-		</section-form-field>
+        <section-form-check>
+            <label asp-for="ViewModelTotalSale.Accepted"></label>
+            <input asp-for="ViewModelTotalSale.Accepted" />
+        </section-form-check>
 
-		<section-form-check>
-			<label asp-for="ViewModelTotalSale.Accepted"></label>
-			<input asp-for="ViewModelTotalSale.Accepted" />
-		</section-form-check>
+        <section-form-check>
+            <label asp-for="ViewModelTotalSale.Packing"></label>
+            <input asp-for="ViewModelTotalSale.Packing" />
+        </section-form-check>
 
-		<section-form-check>
-			<label asp-for="ViewModelTotalSale.Packing"></label>
-			<input asp-for="ViewModelTotalSale.Packing" />
-		</section-form-check>
+        <section-form-check>
+            <label asp-for="ViewModelTotalSale.Posted"></label>
+            <input asp-for="ViewModelTotalSale.Posted" />
+        </section-form-check>
 
-		<section-form-check>
-			<label asp-for="ViewModelTotalSale.Posted"></label>
-			<input asp-for="ViewModelTotalSale.Posted" />
-		</section-form-check>
+        <section-form-check>
+            <label asp-for="ViewModelTotalSale.Delivery"></label>
+            <input asp-for="ViewModelTotalSale.Delivery" />
+        </section-form-check>
+    </fieldset>
 
-		<section-form-check>
-			<label asp-for="ViewModelTotalSale.Delivery"></label>
-			<input asp-for="ViewModelTotalSale.Delivery" />
-		</section-form-check>
-	</fieldset>
-
-	<section-form-footer>
-		<a asp-page="TotalSale">
-			@(Html.DtatGetLinkCaptionForList())
-		</a>
-		<a asp-route-id="@(Model.User.Data.Id)" asp-page="../User/Details">
-			[ @(Html.DtatGetIconDetails()) @(Resources.ButtonCaptions.Details) @(Resources.DataDictionary.User) ]
-		</a>
-	</section-form-footer>
+    <section-form-footer>
+        <a asp-page="TotalSale">
+            @(Html.DtatGetLinkCaptionForList())
+        </a>
+        <a asp-route-id="@(Model.User.Data.Id)" asp-page="../User/Details">
+            [ @(Html.DtatGetIconDetails()) @(Resources.ButtonCaptions.Details) @(Resources.DataDictionary.User) ]
+        </a>
+    </section-form-footer>
 </section-form>

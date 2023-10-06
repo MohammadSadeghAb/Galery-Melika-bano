@@ -37,6 +37,10 @@ namespace Domain.TotalSaleAgg
         //**********
 
         //**********
+        public string? PicAddress{ get; set; }
+        //**********
+
+        //**********
         [Required
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]

@@ -699,4 +699,19 @@
   <data name="Sender" xml:space="preserve">
     <value>فرستنده</value>
   </data>
+  <data name="Lable" xml:space="preserve">
+    <value>لیبیل</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>موجود</value>
+  </data>
+  <data name="Unavailable" xml:space="preserve">
+    <value>ناموجود</value>
+  </data>
+  <data name="Bill" xml:space="preserve">
+    <value>رسید</value>
+  </data>
+  <data name="ShippingCost" xml:space="preserve">
+    <value>هزینه ارسال</value>
+  </data>
 </root>

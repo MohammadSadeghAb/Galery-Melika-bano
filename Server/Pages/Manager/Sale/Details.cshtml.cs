@@ -1,11 +1,17 @@
 using Application.ProductApp;
 using Application.TotalSaleApp;
 using Application.UserApp;
+using Domain.TotalSaleAgg;
 using Framework.OperationResult;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.TotalSales;
 using static System.Net.Mime.MediaTypeNames;
@@ -21,23 +27,24 @@ public class DetailsModel : BasePageModel
 
     private readonly IUserApplication _user;
 
-    private readonly IProductApplication _product;
+    public readonly DatabaseContext _context;
 
-    public DetailsModel(IProductApplication product,
-                        IUserApplication user,
-                        ITotalSaleApplication totalsale)
+    public DetailsModel(IUserApplication user,
+                        ITotalSaleApplication totalsale,
+                        DatabaseContext context)
     {
         _user = user;
-        _product = product;
+        _context = context;
         _totalsale = totalsale;
         ViewModelTotalSale = new();
+        ViewModel = new List<TotalSale>();
     }
 
     public DetailsViewModel ViewModelTotalSale { get; set; }
 
-    public OperationResultWithData<ViewModels.Pages.Admin.Users.DetailsViewModel> User { get; set; }
+    public IList<TotalSale> ViewModel { get; set; }
 
-    public OperationResultWithData<ViewModels.Pages.Admin.Products.DetailsViewModel> Product { get; set; }
+    public OperationResultWithData<ViewModels.Pages.Admin.Users.DetailsViewModel> User { get; set; }
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
@@ -51,6 +58,8 @@ public class DetailsModel : BasePageModel
 
         ViewModelTotalSale = (await _totalsale.GetTotalSale(id.Value)).Data;
 
+        ViewModel = await _context.TotalSales.Where(x => x.FactorNumber == ViewModelTotalSale.FactorNumber).ToListAsync();
+
         if (ViewModelTotalSale == null)
         {
             AddToastError
@@ -60,8 +69,6 @@ public class DetailsModel : BasePageModel
         }
 
         User = await _user.GetUser(ViewModelTotalSale.UserId);
-
-        Product = await _product.GetProduct(ViewModelTotalSale.Products);
 
         return Page();
     }
