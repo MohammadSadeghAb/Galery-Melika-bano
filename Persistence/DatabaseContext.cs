@@ -4,6 +4,7 @@ using Domain.ProductAgg;
 using Domain.ProductPicAgg;
 using Domain.SaleAgg;
 using Domain.TotalSaleAgg;
+using Domain.TransportCostAgg;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ namespace Persistence
         public DbSet<ProductPic> ProductsPic { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<TransportCost> TransportCosts { get; set; }
 
 		public DbSet<News> News { get; set; }
 

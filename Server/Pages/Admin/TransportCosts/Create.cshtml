@@ -1,0 +1,52 @@
+﻿@page
+@model Server.Pages.Admin.TransportCosts.CreateModel
+@{
+    var pageTitle =
+    $"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.ShippingCost}";
+
+    ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Admin/Rtl/_Layout";
+}
+
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <section-form-field>
+                <label asp-for="ViewModel.Maximum_Weight"></label>
+                <input asp-for="ViewModel.Maximum_Weight" />
+                <span asp-validation-for="ViewModel.Maximum_Weight"></span>
+            </section-form-field>
+
+            <section-form-field>
+                <label asp-for="ViewModel.Price"></label>
+                <input asp-for="ViewModel.Price" />
+                <span asp-validation-for="ViewModel.Price"></span>
+            </section-form-field>
+
+            <section-form-check>
+                <label asp-for="ViewModel.IsActive"></label>
+                <input asp-for="ViewModel.IsActive" />
+            </section-form-check>
+        </fieldset>
+
+        <section-form-buttons>
+            <button-create />
+            <button-reset />
+        </section-form-buttons>
+
+        <section-form-footer>
+            <a asp-page="Index">
+                @(Html.DtatGetLinkCaptionForList())
+            </a>
+        </section-form-footer>
+    </section-form>
+
+</form>
