@@ -74,8 +74,8 @@ public class CreateModel : BasePageModel
             return Page();
         }
 
-        Random random = new Random();
-        ViewModel.TrackingCode = random.Next(100000, 999999).ToString();
+        //Random random = new Random();
+        //ViewModel.TrackingCode = random.Next(100000, 999999).ToString();
 
         var res = await _application.AddTotalSale(ViewModel);
 

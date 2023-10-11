@@ -46,6 +46,12 @@
             </section-form-field>
 
             <section-form-field>
+                <label asp-for="ViewModel.TrackingCode"></label>
+                <input asp-for="ViewModel.TrackingCode" />
+                <span asp-validation-for="ViewModel.TrackingCode"></span>
+            </section-form-field>
+
+            <section-form-field>
                 <label asp-for="ViewModel.Number"></label>
                 <input asp-for="ViewModel.Number" />
                 <span asp-validation-for="ViewModel.Number"></span>
