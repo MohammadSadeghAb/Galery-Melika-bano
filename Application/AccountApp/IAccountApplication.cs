@@ -8,5 +8,6 @@ namespace Application.AccountApp
 	{
 		Task<User> AuthenticateUser(LoginViewModel model);
 		Task<OperationResult> RegisterUser(RegisterViewModel model);
+		Task<OperationResult> UserRegister(UserRegistrationViewModel model);
 	}
 }

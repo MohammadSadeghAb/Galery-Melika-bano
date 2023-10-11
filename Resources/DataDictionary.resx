@@ -712,4 +712,7 @@
   <data name="ShippingCost" xml:space="preserve">
     <value>Shipping Cost</value>
   </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
 </root>

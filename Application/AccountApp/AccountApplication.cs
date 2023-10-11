@@ -19,7 +19,28 @@ namespace Application.AccountApp
 			_hasher = hasher;
 		}
 
-		public async Task<OperationResult> RegisterUser(RegisterViewModel model)
+		public async Task<OperationResult> UserRegister(UserRegistrationViewModel model)
+		{
+            return await _userApplication.AddUser(new CreateViewModel
+            {
+                Role = "User",
+                IsActive = true,
+				Gender = model.Gender,
+				Address = model.Address,
+				CityAddress = model.City,
+                FullName = model.FullName,
+                Password = model.Password,
+                Username = model?.Username,
+				PostalCode = model.PostalCode,
+				ProvinceAddress = model.Province,
+				NationalCode = model.NationalCode,
+				EmailAddress = model.EmailAddress,
+				CellPhoneNumber = model.CellPhoneNumber,
+            });
+        }
+
+
+        public async Task<OperationResult> RegisterUser(RegisterViewModel model)
 		{
 			return await _userApplication.AddUser(new CreateViewModel
 			{

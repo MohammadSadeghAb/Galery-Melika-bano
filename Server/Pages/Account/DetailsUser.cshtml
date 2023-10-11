@@ -1,0 +1,48 @@
+﻿@page
+@model Server.Pages.Account.DetailsUserModel
+@{
+    var pageTitle =
+		Resources.DataDictionary.Melikabanoo;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Security";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Security";
+	}
+}
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+	<div class="row">
+		<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<fieldset>
+				<legend>
+					@(Resources.Messages.Successes.Yourregistrationhasbeencompleted)
+				</legend>
+
+				<hr />
+
+				<div class="border-bottom border-start p-2 my-2">
+					<p>@(Resources.DataDictionary.FullName) : @(Model.ViewModel.FullName)</p>
+					<p>@(Resources.DataDictionary.Username) : @(Model.ViewModel.Username)</p>
+					<p>@(Resources.DataDictionary.CellPhoneNumber) : @(Model.ViewModel.CellPhoneNumber)</p>
+					<p>@(Resources.DataDictionary.Address) : @(Model.ViewModel.Address)</p>
+					<p class="text-center">اطلاعات شما ثبت شد</p>
+					<p class="text-center">برای سفارش شناسه کاربری خود را به ادمین بدهید</p>
+				</div>
+
+
+				<div class="mb-3">
+					<a asp-page="/Index" class="w-100 btn btn-danger">@(Resources.ButtonCaptions.ReturntoIndex)</a>
+				</div>
+			</fieldset>
+
+		</div>
+	</div>
+</div>
