@@ -35,6 +35,7 @@ namespace Application.ProductApp
                 Price = product.Price,
                 Gender = product.Gender,
                 Number = product.Number,
+                Weight = product.Weight,
                 IsActive = product.IsActive,
                 Min_Major = product.Min_Major,
                 Color1_rgb = product.Color1_rgb,
@@ -131,6 +132,7 @@ namespace Application.ProductApp
                 Price = product.Price,
                 Gender = product.Gender,
                 Number = product.Number,
+                Weight = product.Weight,
                 IsActive = product.IsActive,
                 Min_Major = product.Min_Major,
                 Dimensions = product.Dimensions,
@@ -192,6 +194,7 @@ namespace Application.ProductApp
             productForUpdate.Price = product.Price;
             productForUpdate.Gender = product.Gender;
             productForUpdate.Number = product.Number;
+            productForUpdate.Weight = product.Weight;
             productForUpdate.IsActive = product.IsActive;
             productForUpdate.Min_Major = product.Min_Major;
             productForUpdate.Dimensions = product.Dimensions;

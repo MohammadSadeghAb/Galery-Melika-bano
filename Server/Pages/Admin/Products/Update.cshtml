@@ -27,6 +27,12 @@
 		</section-form-field>
 
 		<section-form-field>
+                <label asp-for="ViewModel.Weight"></label>
+                <input asp-for="ViewModel.Weight" />
+                <span asp-validation-for="ViewModel.Weight"></span>
+            </section-form-field>
+
+		<section-form-field>
 			<label asp-for="ViewModel.Gender"></label>
 			<select asp-for="ViewModel.Gender">
 				@if (Model.ViewModel.Gender == Resources.DataDictionary.Both)

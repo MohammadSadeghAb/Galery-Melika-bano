@@ -23,6 +23,18 @@ namespace ViewModels.Pages.Admin.Products
         public bool IsActive { get; set; }
         //**********
 
+        //**********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.Weight))]
+
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public int Weight { get; set; }
+        //**********
+
         // **********
         [Display
             (ResourceType = typeof(Resources.DataDictionary),

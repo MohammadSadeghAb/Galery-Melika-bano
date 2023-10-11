@@ -37,6 +37,18 @@ namespace Domain.ProductAgg
         public string Name_Product { get; set; }
         // **********
 
+        //**********
+        [Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.Weight))]
+
+        [Required
+        (ErrorMessageResourceType = typeof(Validations),
+        ErrorMessageResourceName = nameof(Validations.Required))]
+
+        public int Weight { get; set; }
+        //**********
+
         // **********
         [Required
         (ErrorMessageResourceType = typeof(Validations),
