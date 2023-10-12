@@ -37,11 +37,15 @@
 
                         int? totalprice = (item.Price * item.Number);
 
+                        int totalweight = (product.Weight * item.Number);
+
                         decimal price = decimal.Parse(totalprice.ToString(), System.Globalization.NumberStyles.Currency);
 
                         if (item.Number <= product.Number)
                         {
                             int? sum = Model.pricetotal.Value + totalprice;
+
+                            Model.weighttotal = Model.weighttotal + totalweight;
 
                             Model.pricetotal = int.Parse(sum.ToString(), System.Globalization.NumberStyles.Currency);
                         }
@@ -122,11 +126,18 @@
         <div class="col-md-4 p-2">
             @if (Sales.Count != 0)
             {
+                var transportcost = (await Model._transportCost.GetByWeight(Model.weighttotal)).Data;
+
+                int pricecost = int.Parse(transportcost.Price.ToString(), System.Globalization.NumberStyles.Currency);
+
+                int sum = transportcost.Price + Model.pricetotal.Value;
+
+                int totalprice = int.Parse(sum.ToString(), System.Globalization.NumberStyles.Currency);
 
                 <div class="border rounded-1 p-2">
                     <h6><i class="bi bi-tag"></i> @(Resources.DataDictionary.Price) : @(Model.pricetotal.Value.ToString("#,#"))</h6>
-                    <h6><i class="bi bi-truck"></i> @(Resources.DataDictionary.ShippingCost) : </h6>
-                    <h6><i class="bi bi-cash"></i> @(Resources.DataDictionary.PriceTotal) : @(Model.pricetotal.Value.ToString("#,#"))</h6>
+                    <h6><i class="bi bi-truck"></i> @(Resources.DataDictionary.ShippingCost) : @(pricecost.ToString("#,#"))</h6>
+                    <h6><i class="bi bi-cash"></i> @(Resources.DataDictionary.PriceTotal) : @(totalprice.ToString("#,#"))</h6>
                     <div class="alert alert-danger">
                         مبلغ قیمت کل را به حساب زیر واریز کرده و عکس رسید را باگزاری کنید
                     </div>

@@ -1,5 +1,6 @@
 using Application.ProductApp;
 using Application.SaleApp;
+using Application.TransportCostApp;
 using Domain.SaleAgg;
 using Domain.TotalSaleAgg;
 using Infrastructure;
@@ -42,11 +43,14 @@ public class IndexModel : BasePageModel
 
     private readonly IWebHostEnvironment _webHostEnvironment;
 
+    public readonly ITransportCostApplication _transportCost;
+
     public IndexModel(ITotalSaleRepository totalSale,
                       DatabaseContext context,
                       ISaleRepository sale,
                       ISaleApplication application,
                       IProductApplication product,
+                      ITransportCostApplication transportCost,
                       IWebHostEnvironment webHostEnvironment)
     {
         _sale = sale;
@@ -54,6 +58,7 @@ public class IndexModel : BasePageModel
         _context = context;
         _totalSale = totalSale;
         _application = application;
+        _transportCost = transportCost;
         _webHostEnvironment = webHostEnvironment;
         ViewModel = new();
         ViewModelSale = new();
@@ -69,6 +74,8 @@ public class IndexModel : BasePageModel
     public UpdateViewMode ViewModelSale { get; set; }
 
     public int? pricetotal { get; set; } = 0;
+
+    public int weighttotal { get; set; } = 0;
 
     [BindProperty]
     [DataType(DataType.Upload)]
