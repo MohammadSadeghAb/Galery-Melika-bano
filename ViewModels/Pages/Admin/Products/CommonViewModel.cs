@@ -118,7 +118,7 @@ namespace ViewModels.Pages.Admin.Products
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.Number))]
 
-        public double Number { get; set; }
+        public int Number { get; set; }
         // **********
 
         // **********

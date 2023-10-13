@@ -40,6 +40,8 @@ public class CreateModel : BasePageModel
     [BindProperty]
     public CommonViewModel ViewModel { get; set; }
 
+    public ViewModels.Pages.Admin.Products.UpdateViewModel UpdateProduct { get; set; }
+
     public List<KeyValueViewModel> users { get; set; }
 
     public List<KeyValueViewModel> products { get; set; }
@@ -71,8 +73,60 @@ public class CreateModel : BasePageModel
     {
         if (ModelState.IsValid == false)
         {
+            var Users = (await _user.GetAllUsers()).Data;
+            foreach (var item in Users)
+            {
+                users.Add(new KeyValueViewModel()
+                {
+                    Id = item.Id,
+                    Name = item.FullName,
+                });
+            }
+
+            var Products = (await _product.GetAllProduct()).Data;
+            foreach (var item in Products)
+            {
+                products.Add(new KeyValueViewModel()
+                {
+                    Id = item.Id,
+                    Name = item.Name_Product,
+                });
+            }
+
             return Page();
         }
+
+        UpdateProduct = (await _product.GetProduct(ViewModel.Products)).Data;
+
+        if (UpdateProduct.Number < ViewModel.Number)
+        {
+            var Users = (await _user.GetAllUsers()).Data;
+            foreach (var item in Users)
+            {
+                users.Add(new KeyValueViewModel()
+                {
+                    Id = item.Id,
+                    Name = item.FullName,
+                });
+            }
+
+            var Products = (await _product.GetAllProduct()).Data;
+            foreach (var item in Products)
+            {
+                products.Add(new KeyValueViewModel()
+                {
+                    Id = item.Id,
+                    Name = item.Name_Product,
+                });
+            }
+
+            AddToastError(message: Resources.Messages.Errors.Thisnumberofproductsisnotavailable);
+            return Page();
+        }
+
+        UpdateProduct.Number = UpdateProduct.Number - ViewModel.Number.Value;
+
+        await _product.UpdateProduct(UpdateProduct);
 
         //Random random = new Random();
         //ViewModel.TrackingCode = random.Next(100000, 999999).ToString();

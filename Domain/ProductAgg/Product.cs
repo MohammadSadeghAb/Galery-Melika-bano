@@ -142,7 +142,7 @@ namespace Domain.ProductAgg
         (ErrorMessageResourceType = typeof(Validations),
         ErrorMessageResourceName = nameof(Validations.Required))]
 
-        public double Number { get; set; }
+        public int Number { get; set; }
         // **********
 
         // **********
