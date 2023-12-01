@@ -4,6 +4,7 @@ using Resources.Messages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,10 +35,6 @@ namespace Domain.TotalSaleAgg
         ErrorMessageResourceName = nameof(Validations.Required))]
 
         public int? Number { get; set; }
-        //**********
-
-        //**********
-        public string? PicAddress{ get; set; }
         //**********
 
         //**********

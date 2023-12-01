@@ -105,7 +105,7 @@
                                             <div class="col-6">
                                                 <br />
                                                 <br />
-                                                <form method="post" asp-page-handler="Update">
+                                                <form method="post" >
                                                     <div class="input-group mb-3 w-100">
                                                         <button asp-route-id="@(item.Id)" asp-route-check="Add" type="submit" class="btn btn-outline-danger rounded-3">+</button>
                                                         <input asp-for="ViewModelSale.Number" value="@(Model.ViewModelSale.Number)" type="number" class="form-control rounded-3 text-center" readonly>
@@ -135,20 +135,11 @@
                 int totalprice = int.Parse(sum.ToString(), System.Globalization.NumberStyles.Currency);
 
                 <div class="border rounded-1 p-2">
-                    <h6><i class="bi bi-tag"></i> @(Resources.DataDictionary.Price) : @(Model.pricetotal.Value.ToString("#,#"))</h6>
-                    <h6><i class="bi bi-truck"></i> @(Resources.DataDictionary.ShippingCost) : @(pricecost.ToString("#,#"))</h6>
-                    <h6><i class="bi bi-cash"></i> @(Resources.DataDictionary.PriceTotal) : @(totalprice.ToString("#,#"))</h6>
-                    <div class="alert alert-danger">
-                        مبلغ قیمت کل را به حساب زیر واریز کرده و عکس رسید را باگزاری کنید
-                    </div>
-                    <div class="w-100 bg-light rounded-2 border p-2">
-                        <h5 class="text-start">6063731113567086</h5>
-                        <h6 class="text-end">به نام : فهیمه کرامتی</h6>
-                    </div>
-                    <hr />
-                    <form method="post" enctype="multipart/form-data" asp-page-handler="Create">
-                        <input class="form-control mb-2" asp-for="UploadPic" accept="image/*" />
-                        <span class="text-danger mb-2" asp-validation-for="UploadPic"></span>
+                    <h6><i class="bi bi-tag"></i> @(Resources.DataDictionary.Price) : @(Model.pricetotal.Value.ToString("#,#")) تومان</h6>
+                    <h6><i class="bi bi-truck"></i> @(Resources.DataDictionary.ShippingCost) : @(pricecost.ToString("#,#")) تومان</h6>
+                    <h6><i class="bi bi-cash"></i> @(Resources.DataDictionary.PriceTotal) : @(totalprice.ToString("#,#")) تومان</h6>
+
+                    <form method="post" asp-page-handler="Create">
                         <button type="submit" class="w-100 btn btn-danger">@(Resources.DataDictionary.Order)</button>
                     </form>
                 </div>

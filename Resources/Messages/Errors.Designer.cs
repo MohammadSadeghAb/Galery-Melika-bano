@@ -169,6 +169,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment failed.
+        /// </summary>
+        public static string Paymentfailed {
+            get {
+                return ResourceManager.GetString("Paymentfailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the factor number.
         /// </summary>
         public static string Pleaseenterthefactornumber {

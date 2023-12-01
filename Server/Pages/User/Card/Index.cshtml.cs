@@ -1,4 +1,4 @@
-using Application.ProductApp;
+﻿using Application.ProductApp;
 using Application.SaleApp;
 using Application.TransportCostApp;
 using Domain.SaleAgg;
@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using Parbad;
 using Parbad.Gateway.ZarinPal;
 using Persistence;
@@ -17,12 +19,20 @@ using SmsPanel.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Policy;
+using System.Text;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.Sales;
+using ZarinPal.Class;
+using zarinpalasp.netcorerest.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
+using RestSharp;
 
 namespace Server.Pages.User.Card;
 
@@ -64,7 +74,18 @@ public class IndexModel : BasePageModel
         ViewModelSale = new();
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        
     }
+
+    public string merchant { get; set; }
+
+    public string amount { get; set; }
+
+    public string authority { get; set; }
+
+    public string description { get; set; }
+
+    public string callbackurl { get; set; }
 
     public Guid UserId { get; set; }
 
@@ -76,19 +97,7 @@ public class IndexModel : BasePageModel
     public int? pricetotal { get; set; } = 0;
 
     public int weighttotal { get; set; } = 0;
-
-    [BindProperty]
-    [DataType(DataType.Upload)]
-    [System.ComponentModel.DataAnnotations.Display
-            (Name = nameof(Resources.DataDictionary.Picture),
-            ResourceType = typeof(Resources.DataDictionary))]
-    [Required
-            (AllowEmptyStrings = false,
-            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-            ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-
-    public IFormFile UploadPic { get; set; }
-
+    
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id.HasValue == false)
@@ -138,6 +147,10 @@ public class IndexModel : BasePageModel
 
     public async Task<IActionResult> OnPostCreateAsync()
     {
+        int price = 0;
+
+        int weight = 0;
+
         UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
 
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
@@ -153,105 +166,217 @@ public class IndexModel : BasePageModel
             .AsNoTracking()
             .ToListAsync();
 
-        int max = 0;
-
-        Random random = new Random();
-        int tracking = random.Next(100000, 999999);
-
-        var check = _context.TotalSales.ToList();
-
-        if (check.Count != 0)
-        {
-            max = _context.TotalSales.Max(x => x.FactorNumber);
-        }
-
-        bool a = false;
-
-        Upload(UploadPic);
-
         foreach (var item in sales)
         {
-            var product = (await _product.GetProduct(item.ProductId)).Data;
-
-            if (item.Number <= product.Number)
-            {
-                product.Number = product.Number - item.Number;
-                var _saleModel = new TotalSale
-                {
-                    Color = item.Color,
-                    Number = item.Number,
-                    Products = item.ProductId,
-                    UserId = item.UserId,
-                    TotalPrice = item.Price,
-                    PicAddress = ViewModel.PicAddress,
-                    FactorNumber = max + 1,
-                    TrackingCode = tracking.ToString(),
-            };
-
-                _sale.Remove(item);
-
-                await _totalSale.CreateAsync(_saleModel);
-
-                await _product.UpdateProduct(product);
-
-                a = true;
-            }
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
+            product.Weight = product.Weight * item.Number;
+            weight = weight + product.Weight;
+            int sum = item.Price.Value * item.Number;
+            price = price + sum;
         }
 
-        await _sale.SaveChangesAsync();
-        await _totalSale.SaveChangesAsync();
+        var transportcost = (await _transportCost.GetByWeight(weight)).Data;
 
-        if (a == true)
+        price = price + transportcost.Price;
+
+        price = price * 10;
+
+        //int max = 0;
+
+        //Random random = new Random();
+        //int tracking = random.Next(100000, 999999);
+
+        //var check = _context.TotalSales.ToList();
+
+        //if (check.Count != 0)
+        //{
+        //    max = _context.TotalSales.Max(x => x.FactorNumber);
+        //}
+
+        //bool a = false;
+
+        //foreach (var item in sales)
+        //{
+        //    var product = (await _product.GetProduct(item.ProductId)).Data;
+
+        //    if (item.Number <= product.Number)
+        //    {
+        //        product.Number = product.Number - item.Number;
+        //        var _saleModel = new TotalSale
+        //        {
+        //            Color = item.Color,
+        //            Number = item.Number,
+        //            Products = item.ProductId,
+        //            UserId = item.UserId,
+        //            TotalPrice = item.Price,
+        //            FactorNumber = max + 1,
+        //            TrackingCode = tracking.ToString(),
+        //        };
+
+        //        _sale.Remove(item);
+
+        //        await _totalSale.CreateAsync(_saleModel);
+
+        //        await _product.UpdateProduct(product);
+
+        //        a = true;
+        //    }
+        //}
+
+        //await _sale.SaveChangesAsync();
+        //await _totalSale.SaveChangesAsync();
+
+        //if (a == true)
+        //{
+        //    int factor = max + 1;
+
+        //    var stringContent = new FormUrlEncodedContent(new[]
+        //    {
+        //        new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
+        //        new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
+        //        new KeyValuePair<string, string>("Message",$"{Resources.Messages.Successes.Youritemhasbeenregistered} {Resources.DataDictionary.FactorNumber} : {factor}"),
+        //        new KeyValuePair<string, string>("Sender","238")
+        //    });
+
+        //    var postTask = _httpClient.PostAsync("http://panelyab.com/api/send", stringContent);
+        //    postTask.Wait();
+
+        //    var response = postTask.Result;
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        var readTask = response.Content.ReadAsAsync<SendOutputModel>();
+        //        readTask.Wait();
+
+        //        var sendOutputModel = readTask.Result;
+        //        if (sendOutputModel.Status == 100)
+        //        {
+        //            AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
+        //            //return RedirectToPage("/Index");
+        //            return RedirectToPage("/CheckOrder");
+        //        }
+        //    }
+
+        //    AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
+        //}
+
+        //try
+        //{
+
+        //    using (var client = new HttpClient())
+        //    {
+        //        amount = $"{price}";
+        //        RequestParameters parameters = new RequestParameters(merchant, amount, description, callbackurl, "", "");
+
+        //        var json = JsonConvert.SerializeObject(parameters);
+
+        //        HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //        HttpResponseMessage response = await client.PostAsync(URLs.requestUrl, content);
+
+        //        string responseBody = await response.Content.ReadAsStringAsync();
+
+        //        JObject jo = JObject.Parse(responseBody);
+        //        string errorscode = jo["errors"].ToString();
+
+        //        JObject jodata = JObject.Parse(responseBody);
+        //        string dataauth = jodata["data"].ToString();
+        //        if (dataauth != "[]")
+        //        {
+        //            authority = jodata["data"]["authority"].ToString();
+
+        //            string gatewayUrl = URLs.gateWayUrl + authority;
+
+        //            return Redirect(gatewayUrl);
+
+        //        }
+        //        else
+        //        {
+
+        //            return BadRequest("error " + errorscode);
+
+
+        //        }
+
+        //    }
+
+
+        //}
+
+        //catch (Exception ex)
+        //{
+        //    throw new Exception(ex.Message);
+
+
+        //}
+
+        try
         {
-            int factor = max + 1;
+            amount = $"{price}";
+            merchant = "33cdb462-cda7-4457-af7d-1629eb13f77e";
+            description = "خرید از ملیکا بانو";
+            callbackurl = string.Concat(HttpContext.Request.Scheme, "://", HttpContext.Request.Host.Value, "/CheckOrder");
 
-            var stringContent = new FormUrlEncodedContent(new[]
+            zarinpalasp.netcorerest.Models.RequestParameters Parameters = new zarinpalasp.netcorerest.Models.RequestParameters(merchant, amount, description, callbackurl, "", "");
+
+
+
+            //be dalil in ke metadata be sorate araye ast va do meghdare mobile va email dar metadata gharar mmigirad
+            //shoma mitavanid in maghadir ra az kharidar begirid va set konid dar gheir in sorat khali ersal konid
+
+            var client = new RestClient(URLs.requestUrl);
+
+            RestSharp.Method method = RestSharp.Method.Post;
+
+            var request = new RestRequest("", method);
+
+            request.AddHeader("accept", "application/json");
+
+            request.AddHeader("content-type", "application/json");
+
+            request.AddJsonBody(Parameters);
+
+            var requestresponse = client.ExecuteAsync(request);
+
+            JObject jo = JObject.Parse(requestresponse.Result.Content);
+
+            string errorscode = jo["errors"].ToString();
+
+            JObject jodata = JObject.Parse(requestresponse.Result.Content);
+
+            string dataauth = jodata["data"].ToString();
+
+
+            if (dataauth != "[]")
             {
-                new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
-                new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
-                new KeyValuePair<string, string>("Message",$"{Resources.Messages.Successes.Youritemhasbeenregistered} {Resources.DataDictionary.FactorNumber} : {factor}"),
-                new KeyValuePair<string, string>("Sender","238")
-            });
 
-            var postTask = _httpClient.PostAsync("http://panelyab.com/api/send", stringContent);
-            postTask.Wait();
 
-            var response = postTask.Result;
-            if (response.IsSuccessStatusCode)
+                authority = jodata["data"]["authority"].ToString();
+
+                string gatewayUrl = URLs.gateWayUrl + authority;
+
+                return Redirect(gatewayUrl);
+
+            }
+            else
             {
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var readTask = response.Content.ReadAsAsync<SendOutputModel>();
-                readTask.Wait();
 
-                var sendOutputModel = readTask.Result;
-                if (sendOutputModel.Status == 100)
-                {
-                    AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
-                    //return RedirectToPage("/Index");
-                    return RedirectToPage("/CheckOrder");
-                }
+
+                return BadRequest("error " + errorscode);
+
+
             }
 
-            AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
+
+        }
+
+        catch (Exception ex)
+        {
+            //    throw new Exception(ex.Message);
+
+
         }
 
         return RedirectToPage("/CheckOrder");
-    }
-
-    public void Upload(IFormFile file)
-    {
-        var directoryPath = $"{Getwebroot()}\\SalePic";
-        if (!Directory.Exists(directoryPath))
-            Directory.CreateDirectory(directoryPath);
-
-        ViewModel.PicAddress = Path.Combine(Guid.NewGuid().ToString() + ".png");
-        string filepath = Path.Combine(directoryPath, ViewModel.PicAddress);
-        using var output = System.IO.File.Create(filepath);
-        file.CopyTo(output);
-    }
-
-    public string Getwebroot()
-    {
-        return _webHostEnvironment.WebRootPath;
     }
 }

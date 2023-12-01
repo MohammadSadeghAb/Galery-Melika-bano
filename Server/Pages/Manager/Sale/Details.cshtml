@@ -16,9 +16,6 @@
 
         <partial name="PartialViews/_DisplayPageMessages" />
 
-        <label class="mb-2">@(Resources.DataDictionary.Picture)</label>
-        <img class="mb-2 rounded-2" src="~/SalePic/@(Model.ViewModelTotalSale.PicAddress)" width="100%" height="100%" />
-
         <section-form-field>
             <label asp-for="ViewModelTotalSale.UserId"></label>
             <input asp-for="User.Data.FullName" />

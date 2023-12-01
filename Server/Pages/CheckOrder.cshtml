@@ -18,6 +18,8 @@
 	}
 }
 
+@if(Model.Status == "OK")
+{
 <div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 	<div class="row">
 		<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
@@ -44,3 +46,31 @@
 		</div>
 	</div>
 </div>
+}
+@if (Model.Status == "NOK" && Model.data == "[]")
+{
+	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+		<div class="row">
+			<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+				<fieldset>
+					<legend>
+						@(Resources.Messages.Errors.Paymentfailed)
+					</legend>
+
+					<hr />
+
+					<div class="border-bottom border-start p-2 my-2">
+						<p class="text-center">پرداخت با موفقیت انجام نشد</p>
+						<p class="text-center">در صورت کسر شدن مبلغ از حساب شما ظرف 72 ساعت آینده به صورت خودکار به حساب شما بازگشت داده میشود</p>
+					</div>
+
+
+					<div class="mb-3">
+						<a asp-page="/Index" class="w-100 btn btn-danger">@(Resources.ButtonCaptions.ReturntoIndex)</a>
+					</div>
+				</fieldset>
+
+			</div>
+		</div>
+	</div>
+}

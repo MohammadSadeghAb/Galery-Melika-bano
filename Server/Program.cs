@@ -4,6 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Parbad.Abstraction;
+using Parbad.Builder;
+using Parbad.Gateway.ParbadVirtual;
+using Parbad.Gateway.ZarinPal;
+using Parbad.Storage.EntityFrameworkCore.Builder;
+using Persistence;
 
 var webApplicationOptions =
 	new WebApplicationOptions

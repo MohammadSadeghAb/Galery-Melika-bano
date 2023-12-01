@@ -153,6 +153,9 @@
   <data name="NotFound" xml:space="preserve">
     <value>There is no {0} with this information!</value>
   </data>
+  <data name="Paymentfailed" xml:space="preserve">
+    <value>Payment failed</value>
+  </data>
   <data name="Pleaseenterthefactornumber" xml:space="preserve">
     <value>Please enter the factor number</value>
   </data>
