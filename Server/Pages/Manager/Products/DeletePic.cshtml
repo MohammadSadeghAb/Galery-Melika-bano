@@ -1,0 +1,43 @@
+﻿@page
+@model Server.Pages.Manager.Products.DeletePicModel
+@{
+    var pageTitle =
+    $"{Resources.ButtonCaptions.Delete} {Resources.DataDictionary.ProductPicture}";
+
+    ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<form method="post">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+            <section-form-field>
+                <label asp-for="productid"></label>
+                <select class="form-select" asp-for="productid"
+                        asp-items="@(new SelectList(Model.products,
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+                </select>
+            </section-form-field>
+        </fieldset>
+
+        <section-form-buttons>
+            <button-delete />
+        </section-form-buttons>
+
+        <section-form-footer>
+            <a asp-page="Index">
+                @(Html.DtatGetLinkCaptionForList())
+            </a>
+        </section-form-footer>
+    </section-form>
+
+</form>

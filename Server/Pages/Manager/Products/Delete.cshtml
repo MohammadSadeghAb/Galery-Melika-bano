@@ -1,0 +1,45 @@
+﻿@page
+@model Server.Pages.Manager.Products.DeleteModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.ButtonCaptions.Delete} {Resources.DataDictionary.Product}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<section-form-field>
+			<label asp-for="ViewModel.Name_Product"></label>
+			<input asp-for="ViewModel.Name_Product" />
+		</section-form-field>
+
+	</fieldset>
+
+	<form method="post">
+		<section-form-buttons>
+			<input type="hidden" asp-for="ViewModel.Id" />
+
+			<button-delete />
+		</section-form-buttons>
+	</form>
+
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDetails())
+		</a>
+		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForUpdate())
+		</a>
+	</section-form-footer>
+</section-form>

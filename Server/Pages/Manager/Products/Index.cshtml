@@ -8,7 +8,26 @@
     Layout = "Layouts/Manager/_Layout";
 }
 
+<section-page-header>
+    @(pageTitle)
+</section-page-header>
+
 <section-page-body>
+
+    <section-page-actions>
+        <a asp-page="Create">
+            @(Html.DtatGetLinkCaptionForCreate())
+        </a>
+
+        <a asp-page="CreatePic">
+            @(Html.DtatGetIconCreate()) @(Resources.DataDictionary.Picture)
+        </a>
+
+        <a asp-page="DeletePic">
+            @(Html.DtatGetIconDelete()) @(Resources.DataDictionary.Picture)
+        </a>
+    </section-page-actions>
+
     <section-table>
         <table>
             <caption>
@@ -56,8 +75,14 @@
 
                         <table-actions>
                             <a asp-page="Details" asp-route-id="@(item.Id)">
-                                @(Html.DtatGetIconDetails())
-                            </a>
+								@(Html.DtatGetIconDetails())
+							</a>
+							<a asp-page="Update" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconUpdate())
+							</a>
+							<a asp-page="Delete" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDelete())
+							</a>
                         </table-actions>
 
                         <td>
