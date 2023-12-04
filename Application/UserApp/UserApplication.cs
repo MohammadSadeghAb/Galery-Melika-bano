@@ -215,6 +215,7 @@ namespace Application.UserApp
 
 			userForUpdate.IsActive = user.IsActive;
 			userForUpdate.Ordering = user.Ordering;
+			userForUpdate.CellPhoneNumber = user.CellPhoneNumber;
 			userForUpdate.IsProgrammer = user.IsProgrammer;
 			userForUpdate.IsUndeletable = user.IsUndeletable;
 			userForUpdate.AdminDescription = fixedAdminDescription;
