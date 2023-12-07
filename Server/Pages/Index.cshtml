@@ -21,6 +21,8 @@
 <br />
 
 <div class="container">
+
+    <h4 class="text-right text-dark"><i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)</h4>
     <section class="scrollport">
         @foreach (var item in Model.ViewModelCategory)
         {
@@ -74,7 +76,14 @@
                                         <br />
                                         <p class="text-end">@(item.Name_Product)</p>
                                         <br />
-                                        <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                        @if (item.Number > 0)
+                                        {
+                                            <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                        }
+                                        @if (item.Number == 0)
+                                        {
+                                            <p class="text-start text-danger">@(Resources.DataDictionary.Endofinventory)</p>
+                                        }
                                     </div>
                                 </div>
                             </a>
@@ -106,7 +115,14 @@
                                         <br />
                                         <p class="text-end">@(item.Name_Product)</p>
                                         <br />
-                                        <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                        @if (item.Number > 0)
+                                        {
+                                            <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                        }
+                                        @if (item.Number == 0)
+                                        {
+                                            <p class="text-start text-danger">@(Resources.DataDictionary.Endofinventory)</p>
+                                        }
                                     </div>
                                 </div>
                             </a>

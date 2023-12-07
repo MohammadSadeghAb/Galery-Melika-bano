@@ -715,4 +715,7 @@
   <data name="Weight" xml:space="preserve">
     <value>Weight</value>
   </data>
+  <data name="Endofinventory" xml:space="preserve">
+    <value>End of inventory</value>
+  </data>
 </root>

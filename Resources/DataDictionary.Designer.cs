@@ -565,6 +565,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End of inventory.
+        /// </summary>
+        public static string Endofinventory {
+            get {
+                return ResourceManager.GetString("Endofinventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter factor number.
         /// </summary>
         public static string Enterfactornumber {
