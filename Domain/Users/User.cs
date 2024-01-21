@@ -19,14 +19,14 @@ public class User :
 		SuperUserId = new(g: "CC75D635-EF6D-4E86-907A-BC532CDC3ACC");
 	#endregion /Static(s)
 
-	public User(string emailAddress) : base()
+	public User() : base()
 	{
 		//SetUpdateDateTime();
 		UpdateDateTime = InsertDateTime;
 
 		//RoleId = roleId;
-		EmailAddress = emailAddress;
-		EmailAddressVerificationKey = Guid.NewGuid();
+		//EmailAddress = emailAddress;
+		//EmailAddressVerificationKey = Guid.NewGuid();
 
 	}
 
@@ -75,7 +75,7 @@ public class User :
 	// **********
 
 	// **********
-	public bool IsEmailAddressVerified { get; set; }
+	//public bool IsEmailAddressVerified { get; set; }
 	// **********
 
 	// **********
@@ -124,20 +124,20 @@ public class User :
 	// **********
 
 	// **********
-	[MaxLength
-		(length: MaxLength.EmailAddress,
-		ErrorMessageResourceType = typeof(Validations),
-		ErrorMessageResourceName = nameof(Validations.MaxLength))]
+	//[MaxLength
+	//	(length: MaxLength.EmailAddress,
+	//	ErrorMessageResourceType = typeof(Validations),
+	//	ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-	[RegularExpression
-		(pattern: RegularExpression.EmailAddress,
-		ErrorMessageResourceType = typeof(Validations),
-		ErrorMessageResourceName = nameof(Validations.EmailAddress))]
-	public string? EmailAddress { get; set; }
+	//[RegularExpression
+	//	(pattern: RegularExpression.EmailAddress,
+	//	ErrorMessageResourceType = typeof(Validations),
+	//	ErrorMessageResourceName = nameof(Validations.EmailAddress))]
+	//public string? EmailAddress { get; set; }
 	// **********
 
 	// **********
-	public Guid? EmailAddressVerificationKey { get; private set; }
+	//public Guid? EmailAddressVerificationKey { get; private set; }
 	// **********
 
 	// **********

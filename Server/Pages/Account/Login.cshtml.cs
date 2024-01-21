@@ -46,12 +46,12 @@ namespace Server.Pages.Account
 
 
 			// **************************************************
-			var user = new Domain.Users.User("Admin@domain.local");
+			var user = new Domain.Users.User();
 
 			if ((ViewModel.Username == _applicationSettings.AdminUserPass.Username) &&
 				 (ViewModel.Password == _applicationSettings.AdminUserPass.Password))
 			{
-				user = new Domain.Users.User("Admin@domain.local")
+				user = new Domain.Users.User()
 				{
 					FullName = "مدیر سیستم",
 					Username = "Admin",

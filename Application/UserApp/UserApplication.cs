@@ -49,17 +49,17 @@ namespace Application.UserApp
 
             var hashedPassword = _hasher.Hash(user?.Password);
 
-			var _user = new Domain.Users.User(user?.EmailAddress)
+			var _user = new Domain.Users.User()
 			{
 				Password = hashedPassword,
-				IsEmailAddressVerified = true,
+				//IsEmailAddressVerified = true,
 				Address = fixedAddress,
 				CityAddress = user.CityAddress,
 				PostalCode = user.PostalCode,
 				ProvinceAddress = user.ProvinceAddress,
 				//FatherName = user.FatherName,
 				Gender = user.Gender,
-				EmailAddress = user.EmailAddress,
+				//EmailAddress = user.EmailAddress,
 				Ordering = user.Ordering,
 				IsActive = user.IsActive,
 				AdminDescription = fixedDescription,
@@ -144,11 +144,11 @@ namespace Application.UserApp
 
 			var _user = new ViewModels.Pages.Admin.Users.DetailsViewModel
             {
-				EmailAddress = user?.EmailAddress,
+				//EmailAddress = user?.EmailAddress,
 				Id = user?.Id,
 				InsertDateTime = user?.InsertDateTime,
 				IsActive = user.IsActive,
-				IsEmailAddressVerified = user.IsEmailAddressVerified,
+				//IsEmailAddressVerified = user.IsEmailAddressVerified,
 				IsProgrammer = user.IsProgrammer,
 				IsSystemic = user.IsSystemic,
 				IsUndeletable = user.IsUndeletable,
@@ -193,10 +193,10 @@ namespace Application.UserApp
 				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.Username));
 			}
 
-			if (_repository.Exist(x => x.EmailAddress == user.EmailAddress) && user.EmailAddress != userForUpdate.EmailAddress)
-			{
-				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.EmailAddress));
-			}
+			//if (_repository.Exist(x => x.EmailAddress == user.EmailAddress) && user.EmailAddress != userForUpdate.EmailAddress)
+			//{
+			//	res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.EmailAddress));
+			//}
 
 			if (_repository.Exist(x => x.CellPhoneNumber == user.CellPhoneNumber) && user.CellPhoneNumber != userForUpdate.CellPhoneNumber && user.CellPhoneNumber != null)
 			{
@@ -248,11 +248,11 @@ namespace Application.UserApp
 			{
 				_data.Add(new ViewModels.Pages.Admin.Users.DetailsViewModel
                 {
-					EmailAddress = user.EmailAddress,
+					//EmailAddress = user.EmailAddress,
 					Id = user.Id,
 					InsertDateTime = user.InsertDateTime,
 					IsActive = user.IsActive,
-					IsEmailAddressVerified = user.IsEmailAddressVerified,
+					//IsEmailAddressVerified = user.IsEmailAddressVerified,
 					IsProgrammer = user.IsProgrammer,
 					IsSystemic = user.IsSystemic,
 					IsUndeletable = user.IsUndeletable,

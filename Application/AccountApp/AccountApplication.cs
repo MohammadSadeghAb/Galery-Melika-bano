@@ -34,7 +34,7 @@ namespace Application.AccountApp
 				PostalCode = model.PostalCode,
 				ProvinceAddress = model.Province,
 				NationalCode = model.NationalCode,
-				EmailAddress = model.EmailAddress,
+				//EmailAddress = model.EmailAddress,
 				CellPhoneNumber = model.CellPhoneNumber,
             });
         }

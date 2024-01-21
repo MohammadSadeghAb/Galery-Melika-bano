@@ -22,10 +22,10 @@ public class DetailsViewModel : UpdateViewModel
 	// **********
 
 	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsEmailAddressVerified))]
-	public bool IsEmailAddressVerified { get; init; }
+	//[System.ComponentModel.DataAnnotations.Display
+	//	(ResourceType = typeof(Resources.DataDictionary),
+	//	Name = nameof(Resources.DataDictionary.IsEmailAddressVerified))]
+	//public bool IsEmailAddressVerified { get; init; }
 	// **********
 
 	// **********

@@ -28,17 +28,17 @@ public class IndexItemViewModel : object
 	// **********
 
 	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.EmailAddress),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public string? EmailAddress { get; init; }
+	//[System.ComponentModel.DataAnnotations.Display
+	//	(Name = nameof(Resources.DataDictionary.EmailAddress),
+	//	ResourceType = typeof(Resources.DataDictionary))]
+	//public string? EmailAddress { get; init; }
 	// **********
 
 	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public bool? IsEmailAddressVerified { get; init; }
+	//[System.ComponentModel.DataAnnotations.Display
+	//	(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
+	//	ResourceType = typeof(Resources.DataDictionary))]
+	//public bool? IsEmailAddressVerified { get; init; }
 	// **********
 
 	// **********

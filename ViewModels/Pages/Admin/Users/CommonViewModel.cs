@@ -39,25 +39,25 @@ public class CommonViewModel : object
 	// **********
 
 	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.EmailAddress),
-		ResourceType = typeof(Resources.DataDictionary))]
+	//[System.ComponentModel.DataAnnotations.Display
+	//	(Name = nameof(Resources.DataDictionary.EmailAddress),
+	//	ResourceType = typeof(Resources.DataDictionary))]
 
-	[System.ComponentModel.DataAnnotations.Required
-		(AllowEmptyStrings = false,
-		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+	//[System.ComponentModel.DataAnnotations.Required
+	//	(AllowEmptyStrings = false,
+	//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.SeedWork.Constants.MaxLength.EmailAddress,
-		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+	//[System.ComponentModel.DataAnnotations.MaxLength
+	//	(length: Domain.SeedWork.Constants.MaxLength.EmailAddress,
+	//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
-	[System.ComponentModel.DataAnnotations.RegularExpression
-		(pattern: Domain.SeedWork.Constants.RegularExpression.EmailAddress,
-		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
-	public string? EmailAddress { get; set; }
+	//[System.ComponentModel.DataAnnotations.RegularExpression
+	//	(pattern: Domain.SeedWork.Constants.RegularExpression.EmailAddress,
+	//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
+	//public string? EmailAddress { get; set; }
 	// **********
 
 	// **********
