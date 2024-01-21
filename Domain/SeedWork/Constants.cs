@@ -45,7 +45,9 @@
 			{
 			}
 
-			public const int CellPhoneNumberVerificationKey = 6;
+            public const int Username = 6;
+
+            public const int CellPhoneNumberVerificationKey = 6;
 		}
 
 		public static class MaxLength : object
