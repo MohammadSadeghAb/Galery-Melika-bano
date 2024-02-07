@@ -11,6 +11,6 @@ namespace Application.UserApp
 		Task<OperationResult> UpdateUser(UpdateViewModel user);
 		Task<OperationResultWithData<ViewModels.Pages.Admin.Users.DetailsViewModel>> GetUser(Guid Id);
 		Task<OperationResultWithData<IList<ViewModels.Pages.Admin.Users.DetailsViewModel>>> GetAllUsers();
-		Task<OperationResultWithData<Domain.Users.User>> GetUserByUserName(string username);
+		Task<OperationResultWithData<Domain.Users.User>> GetUserByFullName(string Fullname);
 	}
 }

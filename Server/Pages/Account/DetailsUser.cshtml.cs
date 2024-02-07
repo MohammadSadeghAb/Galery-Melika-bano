@@ -21,9 +21,9 @@ namespace Server.Pages.Account
 
         public Domain.Users.User ViewModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string username)
+        public async Task<IActionResult> OnGetAsync(string fullname)
         {
-            if (username == null)
+            if (fullname == null)
             {
                 AddToastError
                     (message: Resources.Messages.Errors.IdIsNull);
@@ -31,7 +31,7 @@ namespace Server.Pages.Account
                 return RedirectToPage(pageName: "Index");
             }
 
-            ViewModel = (await _application.GetUserByUserName(username)).Data;
+            ViewModel = (await _application.GetUserByFullName(fullname)).Data;
 
             if (ViewModel == null)
             {

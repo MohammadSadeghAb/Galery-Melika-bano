@@ -18,9 +18,9 @@ namespace Persistence.Repositories
 
 		}
 
-		public async Task<User> GetByUserName(string userName)
+		public async Task<User> GetByFullName(string FullName)
 		{
-			return await _context.Users.FirstOrDefaultAsync(x => x.Username == userName);
+			return await _context.Users.FirstOrDefaultAsync(x => x.FullName == FullName);
 		}
 	}
 }

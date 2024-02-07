@@ -22,10 +22,10 @@ namespace Application.UserApp
 		{
 			var res = new OperationResult();
 
-			if (_repository.Exist(x => x.Username == user.Username))
-			{
-				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.Username));
-			}
+			//if (_repository.Exist(x => x.FullName == user.FullName))
+			//{
+			//	res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.FullName));
+			//}
 
 			//if (_repository.Exist(x => x.EmailAddress == user.EmailAddress))
 			//{
@@ -67,7 +67,7 @@ namespace Application.UserApp
 				IsUndeletable = user.IsUndeletable,
 				CellPhoneNumber = user.CellPhoneNumber,
 				Role = user.Role,
-				Username = user.Username,
+				//Username = user.Username,
 				NationalCode = user.NationalCode,
 				FullName = user.FullName,
 			};
@@ -125,11 +125,11 @@ namespace Application.UserApp
 			}
 		}
 
-		public async Task<OperationResultWithData<Domain.Users.User>> GetUserByUserName(string username)
+		public async Task<OperationResultWithData<Domain.Users.User>> GetUserByFullName(string fullname)
 		{
 			var res = new OperationResultWithData<Domain.Users.User>();
 
-			var user = await _repository.GetByUserName(username);
+			var user = await _repository.GetByFullName(fullname);
 
 			res.Data = user;
 
@@ -160,7 +160,7 @@ namespace Application.UserApp
 				FullName = user.FullName,
 				IsCellPhoneNumberVerified = user.IsCellPhoneNumberVerified,
 				IsProfilePublic = user.IsProfilePublic,
-				Username = user.Username,
+				//Username = user.Username,
 				Address = user.Address,
 				Gender = user.Gender,
 				//FatherName = user.FatherName,
@@ -188,10 +188,10 @@ namespace Application.UserApp
 				return res;
 			}
 
-			if (_repository.Exist(x => x.Username == user.Username) && user.Username != userForUpdate.Username)
-			{
-				res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.Username));
-			}
+			//if (_repository.Exist(x => x.Username == user.Username) && user.Username != userForUpdate.Username)
+			//{
+			//	res.AddErrorMessage(string.Format(Errors.AlreadyExists, DataDictionary.Username));
+			//}
 
 			//if (_repository.Exist(x => x.EmailAddress == user.EmailAddress) && user.EmailAddress != userForUpdate.EmailAddress)
 			//{
@@ -220,7 +220,7 @@ namespace Application.UserApp
 			userForUpdate.IsUndeletable = user.IsUndeletable;
 			userForUpdate.AdminDescription = fixedAdminDescription;
 			userForUpdate.FullName = user.FullName;
-			userForUpdate.Username = user.Username;
+			//userForUpdate.Username = user.Username;
 			userForUpdate.Address = user.Address;
 			userForUpdate.CityAddress = user.CityAddress;
 			userForUpdate.ProvinceAddress = user.ProvinceAddress;
@@ -268,7 +268,7 @@ namespace Application.UserApp
 					ProvinceAddress = user.ProvinceAddress,
 					CityAddress = user.CityAddress,
 					CellPhoneNumber = user.CellPhoneNumber,
-					Username = user.Username,
+					//Username = user.Username,
 				});
 			}
 

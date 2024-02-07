@@ -4,7 +4,7 @@
 	{
 		Task<IList<User>> GetAllAsync();
 
-		Task<User> GetByUserName(string userName);
+		Task<User> GetByFullName(string fullName);
 
 	}
 }

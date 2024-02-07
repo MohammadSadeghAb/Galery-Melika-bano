@@ -48,13 +48,13 @@ namespace Server.Pages.Account
 			// **************************************************
 			var user = new Domain.Users.User();
 
-			if ((ViewModel.Username == _applicationSettings.AdminUserPass.Username) &&
+			if ((ViewModel.FullName == _applicationSettings.AdminUserPass.Username) &&
 				 (ViewModel.Password == _applicationSettings.AdminUserPass.Password))
 			{
 				user = new Domain.Users.User()
 				{
 					FullName = "مدیر سیستم",
-					Username = "Admin",
+					//Username = "Admin",
 					Role = Role.Admin
 				};
 			}
@@ -128,11 +128,11 @@ namespace Server.Pages.Account
 			// **************************************************
 
 			// **************************************************
-			claim =
-				new Claim
-				(type: ClaimTypes.Name, value: user.Username);
+			//claim =
+			//	new Claim
+			//	(type: ClaimTypes.Name, value: user.Username);
 
-			claims.Add(item: claim);
+			//claims.Add(item: claim);
 			// **************************************************
 
 			// **************************************************

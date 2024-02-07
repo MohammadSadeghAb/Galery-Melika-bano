@@ -87,7 +87,7 @@
                     <span asp-validation-for="ViewModel.FatherName" class="text-danger"></span>
                     </div>*@
 
-                    <div class="mb-3">
+                    @* <div class="mb-3">
                         <label asp-for="ViewModel.Username" class="form-label"></label> <label class="text-danger">*</label>
 
                         <div class="input-group">
@@ -96,7 +96,7 @@
                         </div>
 
                         <span asp-validation-for="ViewModel.Username" class="text-danger"></span>
-                    </div>
+                    </div> *@
 
                     <div class="mb-3">
                         <label asp-for="ViewModel.Password" class="form-label"></label> <label class="text-danger">*</label>
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" asp-route-username="@(Model.ViewModel.Username)" class="btn btn-primary">@(Resources.ButtonCaptions.Register)</button>
+                        <button type="submit" asp-route-fullname="@(Model.ViewModel.FullName)" class="btn btn-primary">@(Resources.ButtonCaptions.Register)</button>
                         <button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
                     </div>
                 </fieldset>

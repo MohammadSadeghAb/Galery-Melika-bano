@@ -30,7 +30,7 @@ namespace Application.AccountApp
 				CityAddress = model.City,
                 FullName = model.FullName,
                 Password = model.Password,
-                Username = model?.Username,
+                //Username = model?.Username,
 				PostalCode = model.PostalCode,
 				ProvinceAddress = model.Province,
 				NationalCode = model.NationalCode,
@@ -46,15 +46,15 @@ namespace Application.AccountApp
 			{
 				Role = "User",
 				IsActive = true,
-				FullName = model.Username,
+				FullName = model.FullName,
 				Password = model.Password,
-				Username = model?.Username,
+				//Username = model?.Username,
 			});
 		}
 
 		public async Task<User> AuthenticateUser(LoginViewModel model)
 		{
-			var user = (await _userApplication?.GetUserByUserName(model?.Username)).Data;
+			var user = (await _userApplication?.GetUserByFullName(model?.FullName)).Data;
 
 			if (user != null)
 			{

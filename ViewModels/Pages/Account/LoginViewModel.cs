@@ -7,65 +7,82 @@
 			RememberMe = true;
 		}
 
-		// **********
-		//[System.ComponentModel.DataAnnotations.Display
-		//	(Name = "Username")]
+        // **********
+        //[System.ComponentModel.DataAnnotations.Display
+        //	(Name = "Username")]
 
-		//[System.ComponentModel.DataAnnotations.Display
-		//	(Name = "Username",
-		//	ResourceType = typeof(Resources.DataDictionary))]
+        //[System.ComponentModel.DataAnnotations.Display
+        //	(Name = "Username",
+        //	ResourceType = typeof(Resources.DataDictionary))]
 
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Username),
-			ResourceType = typeof(Resources.DataDictionary))]
+        //[System.ComponentModel.DataAnnotations.Display
+        //	(Name = nameof(Resources.DataDictionary.Username),
+        //	ResourceType = typeof(Resources.DataDictionary))]
 
-		//[System.ComponentModel.DataAnnotations.Required]
+        //[System.ComponentModel.DataAnnotations.Required]
 
-		//[System.ComponentModel.DataAnnotations.Required
-		//	(AllowEmptyStrings = false)]
+        //[System.ComponentModel.DataAnnotations.Required
+        //	(AllowEmptyStrings = false)]
 
-		//[System.ComponentModel.DataAnnotations.Required
-		//	(AllowEmptyStrings = false,
-		//	ErrorMessage = "You did not specify Username!")]
+        //[System.ComponentModel.DataAnnotations.Required
+        //	(AllowEmptyStrings = false,
+        //	ErrorMessage = "You did not specify Username!")]
 
-		//[System.ComponentModel.DataAnnotations.Required
-		//	(AllowEmptyStrings = false,
-		//	ErrorMessage = "You did not specify {0}!")]
+        //[System.ComponentModel.DataAnnotations.Required
+        //	(AllowEmptyStrings = false,
+        //	ErrorMessage = "You did not specify {0}!")]
 
-		//[System.ComponentModel.DataAnnotations.Required
-		//	(AllowEmptyStrings = false,
-		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		//	ErrorMessageResourceName = "Required")]
+        //[System.ComponentModel.DataAnnotations.Required
+        //	(AllowEmptyStrings = false,
+        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        //	ErrorMessageResourceName = "Required")]
 
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+        //[System.ComponentModel.DataAnnotations.Required
+        //	(AllowEmptyStrings = false,
+        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-		//[System.ComponentModel.DataAnnotations.MaxLength
-		//	(length: 20,
-		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+        //[System.ComponentModel.DataAnnotations.MaxLength
+        //	(length: 20,
+        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constants.MaxLength.Username,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+        //[System.ComponentModel.DataAnnotations.MaxLength
+        //	(length: Domain.SeedWork.Constants.MaxLength.Username,
+        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
-		//[System.ComponentModel.DataAnnotations.RegularExpression
-		//	(pattern: @"^[a-zA-Z0-9_]{6,20}$",
-		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
+        //[System.ComponentModel.DataAnnotations.RegularExpression
+        //	(pattern: @"^[a-zA-Z0-9_]{6,20}$",
+        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
 
-		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constants.RegularExpression.Username,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
-		public string? Username { get; set; }
-		// **********
+        //[System.ComponentModel.DataAnnotations.RegularExpression
+        //	(pattern: Domain.SeedWork.Constants.RegularExpression.Username,
+        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
+        //public string? Username { get; set; }
+        // **********
 
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
+        (Name = nameof(Resources.DataDictionary.FullName),
+        ResourceType = typeof(Resources.DataDictionary))]
+
+        [System.ComponentModel.DataAnnotations.MaxLength
+        	(length: Domain.SeedWork.Constants.MaxLength.FullName,
+        	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+        [System.ComponentModel.DataAnnotations.Required
+        (AllowEmptyStrings = false,
+        ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+        public string? FullName { get; set; }
+        // **********
+
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Password),
 			ResourceType = typeof(Resources.DataDictionary))]
 

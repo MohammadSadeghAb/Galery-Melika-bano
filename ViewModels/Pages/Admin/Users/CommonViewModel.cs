@@ -15,15 +15,15 @@ public class CommonViewModel : object
 
 
 	// **********
-	[System.ComponentModel.DataAnnotations.Display
-	(Name = nameof(Resources.DataDictionary.Username),
-	ResourceType = typeof(Resources.DataDictionary))]
+	//[System.ComponentModel.DataAnnotations.Display
+	//(Name = nameof(Resources.DataDictionary.Username),
+	//ResourceType = typeof(Resources.DataDictionary))]
 
-	[System.ComponentModel.DataAnnotations.Required
-	(AllowEmptyStrings = false,
-	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-	public string Username { get; set; }
+	//[System.ComponentModel.DataAnnotations.Required
+	//(AllowEmptyStrings = false,
+	//ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+	//ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+	//public string Username { get; set; }
 	// **********
 
 	// **********
@@ -31,7 +31,12 @@ public class CommonViewModel : object
 	(Name = nameof(Resources.DataDictionary.FullName),
 	ResourceType = typeof(Resources.DataDictionary))]
 
-	[System.ComponentModel.DataAnnotations.Required
+    [System.ComponentModel.DataAnnotations.MaxLength
+    (length: Domain.SeedWork.Constants.MaxLength.FullName,
+    ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+    [System.ComponentModel.DataAnnotations.Required
 	(AllowEmptyStrings = false,
 	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
