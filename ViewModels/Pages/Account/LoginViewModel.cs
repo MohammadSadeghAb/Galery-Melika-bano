@@ -57,11 +57,11 @@
         //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
         //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
 
-        //[System.ComponentModel.DataAnnotations.RegularExpression
-        //	(pattern: Domain.SeedWork.Constants.RegularExpression.Username,
-        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
-        //public string? Username { get; set; }
+        [System.ComponentModel.DataAnnotations.RegularExpression
+            (pattern: Domain.SeedWork.Constants.RegularExpression.Username,
+            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+            ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
+        public string? Username { get; set; }
         // **********
 
         // **********

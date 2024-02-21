@@ -30,7 +30,7 @@ namespace Application.AccountApp
 				CityAddress = model.City,
                 FullName = model.FullName,
                 Password = model.Password,
-                //Username = model?.Username,
+                Username = model?.Username,
 				PostalCode = model.PostalCode,
 				ProvinceAddress = model.Province,
 				NationalCode = model.NationalCode,
@@ -48,7 +48,7 @@ namespace Application.AccountApp
 				IsActive = true,
 				FullName = model.FullName,
 				Password = model.Password,
-				//Username = model?.Username,
+				Username = model.FullName,
 			});
 		}
 

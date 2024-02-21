@@ -12,30 +12,30 @@ namespace ViewModels.Pages.Account
 		{
 		}
 
-        // **********
-        //[System.ComponentModel.DataAnnotations.Display
-        //	(Name = nameof(Resources.DataDictionary.Username),
-        //	ResourceType = typeof(Resources.DataDictionary))]
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Username),
+			ResourceType = typeof(Resources.DataDictionary))]
 
-        //[System.ComponentModel.DataAnnotations.Required
-        //	(AllowEmptyStrings = false,
-        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+		//[System.ComponentModel.DataAnnotations.Required
+		//	(AllowEmptyStrings = false,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-        //[System.ComponentModel.DataAnnotations.MaxLength
-        //	(length: Domain.SeedWork.Constants.MaxLength.Username,
-        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+		[System.ComponentModel.DataAnnotations.MaxLength
+			(length: Domain.SeedWork.Constants.MaxLength.Username,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
-        //[System.ComponentModel.DataAnnotations.RegularExpression
-        //	(pattern: Domain.SeedWork.Constants.RegularExpression.Username,
-        //	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-        //	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
-        //public string Username { get; set; }
-        // **********
+		[System.ComponentModel.DataAnnotations.RegularExpression
+			(pattern: Domain.SeedWork.Constants.RegularExpression.Username,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
+		public string? Username { get; set; }
+		// **********
 
-        // **********
-        [System.ComponentModel.DataAnnotations.Display
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
             (Name = nameof(Resources.DataDictionary.FullName),
             ResourceType = typeof(Resources.DataDictionary))]
 

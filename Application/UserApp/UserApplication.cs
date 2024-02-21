@@ -67,7 +67,7 @@ namespace Application.UserApp
 				IsUndeletable = user.IsUndeletable,
 				CellPhoneNumber = user.CellPhoneNumber,
 				Role = user.Role,
-				//Username = user.Username,
+				Username = user.Username,
 				NationalCode = user.NationalCode,
 				FullName = user.FullName,
 			};
@@ -160,7 +160,7 @@ namespace Application.UserApp
 				FullName = user.FullName,
 				IsCellPhoneNumberVerified = user.IsCellPhoneNumberVerified,
 				IsProfilePublic = user.IsProfilePublic,
-				//Username = user.Username,
+				Username = user.Username,
 				Address = user.Address,
 				Gender = user.Gender,
 				//FatherName = user.FatherName,
@@ -220,7 +220,7 @@ namespace Application.UserApp
 			userForUpdate.IsUndeletable = user.IsUndeletable;
 			userForUpdate.AdminDescription = fixedAdminDescription;
 			userForUpdate.FullName = user.FullName;
-			//userForUpdate.Username = user.Username;
+			userForUpdate.Username = user.Username;
 			userForUpdate.Address = user.Address;
 			userForUpdate.CityAddress = user.CityAddress;
 			userForUpdate.ProvinceAddress = user.ProvinceAddress;
@@ -268,7 +268,7 @@ namespace Application.UserApp
 					ProvinceAddress = user.ProvinceAddress,
 					CityAddress = user.CityAddress,
 					CellPhoneNumber = user.CellPhoneNumber,
-					//Username = user.Username,
+					Username = user.Username,
 				});
 			}
 

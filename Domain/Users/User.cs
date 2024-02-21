@@ -89,12 +89,12 @@ public class User :
 	// **********
 
 	// **********
-	//[MaxLength
-	//	(length: Constants.MaxLength.Username,
-	//	ErrorMessageResourceType = typeof(Validations),
-	//	ErrorMessageResourceName = nameof(Validations.MaxLength))]
+	[MaxLength
+		(length: Constants.MaxLength.Username,
+		ErrorMessageResourceType = typeof(Validations),
+		ErrorMessageResourceName = nameof(Validations.MaxLength))]
 
-	//public string Username { get; set; }
+	public string Username { get; set; }
 	// **********
 
 	// **********
