@@ -718,4 +718,7 @@
   <data name="Endofinventory" xml:space="preserve">
     <value>End of inventory</value>
   </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
 </root>
