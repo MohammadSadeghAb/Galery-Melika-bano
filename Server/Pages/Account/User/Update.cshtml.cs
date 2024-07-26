@@ -59,6 +59,7 @@ public class UpdateModel : BasePageModel
             return Page();
         }
 
+        ViewModel.Role = "User";
         var res = await _application.UpdateUser(ViewModel);
 
         if (res.Succeeded == false || res.ErrorMessages.Count() > 0)

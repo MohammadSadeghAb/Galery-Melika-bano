@@ -128,7 +128,7 @@
                         <label asp-for="ViewModel.Address" class="form-label"></label>
 
                         <div class="input-group">
-                            <input asp-for="ViewModel.Address" class="form-control" dir="rtl" />
+                            <textarea asp-for="ViewModel.Address" class="form-control" style="height : 100px" dir="rtl" ></textarea>
                             <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
                         </div>
 
@@ -158,8 +158,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Update)</button>
+                        <button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
                         <button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+                        <a asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Index" class="btn btn-danger">@(Resources.ButtonCaptions.Back)</a>
                     </div>
                 </fieldset>
 

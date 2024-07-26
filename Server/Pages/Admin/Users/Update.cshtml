@@ -42,6 +42,12 @@
 			</section-form-field>
 
 			<section-form-field>
+				<label asp-for="ViewModel.CellPhoneNumber"></label>
+				<input asp-for="ViewModel.CellPhoneNumber" />
+				<span asp-validation-for="ViewModel.CellPhoneNumber"></span>
+			</section-form-field>
+
+			<section-form-field>
 				<label asp-for="ViewModel.PostalCode"></label>
 				<input asp-for="ViewModel.PostalCode" />
 				<span asp-validation-for="ViewModel.PostalCode"></span>

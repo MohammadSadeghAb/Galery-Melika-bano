@@ -28,7 +28,7 @@
                         <h6 class="text-muted text-center">@(Resources.DataDictionary.Lable)</h6>
                     </div>
                 </div> *@
-                <div class="col-6">
+                <div class="col-7">
                     <div class="border rounded-2 p-3">
                         <h6>@(Resources.DataDictionary.Sender) :</h6>
                         <p>@(Resources.DataDictionary.LastName) : کرامتی</p>
@@ -37,18 +37,21 @@
                     </div>
 
                     <div class="border rounded-2 p-3 mt-2">
-                        <h4>@(Resources.DataDictionary.Address) @(Resources.DataDictionary.Receiver) :</h4>
-                        <h5>@(Resources.DataDictionary.FullName) : @(Model.ViewModelUser.FullName)</h5>
-                        <h5>@(Resources.DataDictionary.CellPhoneNumber) : @(Model.ViewModelUser.CellPhoneNumber)</h5>
-                        <h5>@(Resources.DataDictionary.Province) : @(Model.ViewModelUser.ProvinceAddress)</h5>
-                        <h5>@(Resources.DataDictionary.City) : @(Model.ViewModelUser.CityAddress)</h5>
-                        <h5>@(Resources.DataDictionary.Postalcode) : @(Model.ViewModelUser.PostalCode)</h5>
+                        <h6>@(Resources.DataDictionary.Address) @(Resources.DataDictionary.Receiver) :</h6>
+                        <p>@(Resources.DataDictionary.FullName) : @(Model.ViewModelUser.FullName)</p>
+                        <p>@(Resources.DataDictionary.CellPhoneNumber) : @(Model.ViewModelUser.CellPhoneNumber)</p>
+                        <label>@(Resources.DataDictionary.Province) : @(Model.ViewModelUser.ProvinceAddress)</label> | <label>@(Resources.DataDictionary.City) : @(Model.ViewModelUser.CityAddress)</label>
+                        <p>@(Resources.DataDictionary.Address) : @(Model.ViewModelUser.Address)</p>
+                        <p>@(Resources.DataDictionary.Postalcode) : @(Model.ViewModelUser.PostalCode)</p>
                     </div>
                 </div>
-                <div class="col-6">
-                    <table class="table table-bordered">
+                <div class="col-5">
+                    <table class="table">
                         <tr style="font-size: 15px">
-                            <th>@(Resources.DataDictionary.ProductName)</th>
+                            <th scope="row">@(Resources.DataDictionary.ProductName)</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th>@(Resources.DataDictionary.Number)</th>
                         </tr>
                         @foreach (var item in Model.TotalSales)
@@ -57,15 +60,39 @@
                                 @{
                                     var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);
                                 }
-                                <td>@(product.Name_Product)</td>
-                                <td>@(item.Number)</td>
-                            </tr>
-                            <tr style ="font-size: 12px">
-                                <td>@(product.Name_Product)</td>
+                                <td colspan="4">@(product.Name_Product)</td>
                                 <td>@(item.Number)</td>
                             </tr>
                         }
                     </table>
+                    @* <div class="row p-2 border rounded-2">
+                        <div class="col-8">
+                            <h6>@(Resources.DataDictionary.ProductName)</h6>
+                            <hr />
+                            @foreach (var item in Model.TotalSales)
+                            {
+                                {
+                                    var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);
+                                    <p>@(product.Name_Product)</p>
+                                    <hr />
+                                }
+                                
+                            }
+                        </div>
+                        <div class="col-4">
+                            <h6>@(Resources.DataDictionary.Number)</h6>
+                            <hr />
+                            @foreach (var item in Model.TotalSales)
+                            {
+                                {
+                                    var product = Model._context.Products.FirstOrDefault(x => x.Id == item.Products);
+                                    <p>@(product.Number)</p>
+                                    <hr />
+                                }
+
+                            }
+                        </div>
+                    </div> *@
                 </div>
             </div>
         </div>
