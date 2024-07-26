@@ -20,6 +20,6 @@ public class UpdateViewModel : CommonViewModel
 	[Display
 		(ResourceType = typeof(DataDictionary),
 		Name = nameof(DataDictionary.Role))]
-	public string? Role { get; init; }
+	public string? Role { get; set; }
 	// **********
 }
