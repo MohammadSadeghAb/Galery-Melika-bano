@@ -119,7 +119,30 @@ namespace Application.ProductApp
             return res;
         }
 
-        public async Task<OperationResultWithData<DetailsViewModel>> GetProduct(Guid? Id)
+		public async Task<OperationResultWithData<IList<DetailsViewModel>>> Getnewest()
+		{
+            var res = new OperationResultWithData<IList<DetailsViewModel>>();
+
+            var products = await _repository.Getnewest();
+
+            var _data = new List<DetailsViewModel>();
+
+            foreach (var product in products)
+            {
+                _data.Add(new DetailsViewModel
+                {
+                    Id = product.Id,
+                    Number = product.Number,
+                    Name_Product= product.Name_Product,
+                    Discount_Single= product.Discount_Single,
+                });
+            }
+
+            res.Data = _data;
+            return res;
+		}
+
+		public async Task<OperationResultWithData<DetailsViewModel>> GetProduct(Guid? Id)
         {
             var res = new OperationResultWithData<DetailsViewModel>();
 

@@ -721,4 +721,7 @@
   <data name="More" xml:space="preserve">
     <value>More</value>
   </data>
+  <data name="LatestProducts" xml:space="preserve">
+    <value>Latest Products</value>
+  </data>
 </root>

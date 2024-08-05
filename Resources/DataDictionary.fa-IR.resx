@@ -723,4 +723,7 @@
   <data name="More" xml:space="preserve">
     <value>بیشتر</value>
   </data>
+  <data name="LatestProducts" xml:space="preserve">
+    <value>تازه ترین کالا ها</value>
+  </data>
 </root>

@@ -10,6 +10,8 @@ namespace Domain.ProductAgg
     {
         Task<IList<Product>> GetAllAsync();
 
-        Task<Product> GetByName(string productname);
+        Task<IList<Product>> Getnewest();
+
+		Task<Product> GetByName(string productname);
     }
 }

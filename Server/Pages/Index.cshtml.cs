@@ -36,7 +36,9 @@ namespace Server.Pages
 
 		public IList<Product> ViewModelProduct { get; private set; }
 
-		public IList<ViewModels.Pages.Admin.Categories.IndexViewModel> ViewModelCategory { get; set; }
+        public IList<DetailsViewModel> ViewModelProductNewset { get; set; }
+
+        public IList<ViewModels.Pages.Admin.Categories.IndexViewModel> ViewModelCategory { get; set; }
 
 		[BindProperty]
 		public string Search { get; set; }
@@ -47,6 +49,8 @@ namespace Server.Pages
 			ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).ToListAsync();
 
 			ViewModelCategory = (await _category.GetIndexCategories()).Data;
+
+			ViewModelProductNewset = (await _product.Getnewest()).Data;
 
 			return Page();
 		}

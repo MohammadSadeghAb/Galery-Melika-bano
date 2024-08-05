@@ -16,6 +16,7 @@ namespace Application.ProductApp
         Task<OperationResult> DeleteProduct(Guid Id);
         Task<OperationResult> UpdateProduct(UpdateViewModel product);
         Task<OperationResultWithData<DetailsViewModel>> GetProduct(Guid? Id);
+        Task<OperationResultWithData<IList<DetailsViewModel>>> Getnewest();
         Task<OperationResultWithData<IList<DetailsViewModel>>> GetAllProduct();
         Task<OperationResultWithData<Product>> GetProductByProductName(string productname);
     }
