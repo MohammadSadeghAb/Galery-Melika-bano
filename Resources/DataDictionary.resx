@@ -724,4 +724,7 @@
   <data name="LatestProducts" xml:space="preserve">
     <value>Latest Products</value>
   </data>
+  <data name="NumberRemaining" xml:space="preserve">
+    <value>Number Remaining</value>
+  </data>
 </root>

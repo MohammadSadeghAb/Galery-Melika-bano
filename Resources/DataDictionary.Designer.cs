@@ -1186,6 +1186,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number Remaining.
+        /// </summary>
+        public static string NumberRemaining {
+            get {
+                return ResourceManager.GetString("NumberRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OpeningTime.
         /// </summary>
         public static string OpeningTime {

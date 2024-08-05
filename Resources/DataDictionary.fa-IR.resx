@@ -726,4 +726,7 @@
   <data name="LatestProducts" xml:space="preserve">
     <value>تازه ترین کالا ها</value>
   </data>
+  <data name="NumberRemaining" xml:space="preserve">
+    <value>تعداد باقی مانده</value>
+  </data>
 </root>
