@@ -58,6 +58,9 @@
 						@(Resources.DataDictionary.Price)
 					</th>
 					<th>
+						@(Resources.DataDictionary.IsActive)
+					</th>
+					<th>
 						@(Resources.DataDictionary.InsertDateTime)
 					</th>
 					<th>
@@ -107,6 +110,8 @@
 						<td>
 							@(item.Price)
 						</td>
+
+						@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
 
 						@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
 
