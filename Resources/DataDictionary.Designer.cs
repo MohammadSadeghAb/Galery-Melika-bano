@@ -988,15 +988,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Latest Products.
-        /// </summary>
-        public static string LatestProducts {
-            get {
-                return ResourceManager.GetString("LatestProducts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Layout.
         /// </summary>
         public static string Layout {
@@ -1659,6 +1650,15 @@ namespace Resources {
         public static string SubMenuItems {
             get {
                 return ResourceManager.GetString("SubMenuItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Latest Products.
+        /// </summary>
+        public static string TheLatestProducts {
+            get {
+                return ResourceManager.GetString("TheLatestProducts", resourceCulture);
             }
         }
         

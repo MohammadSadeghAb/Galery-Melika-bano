@@ -88,9 +88,12 @@ public class CheckOrderModel : BasePageModel
 
 		foreach (var item in sales)
 		{
-			var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
-			product.Weight = product.Weight * item.Number;
-			weight = weight + product.Weight;
+			//var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
+            //product.Weight = product.Weight * item.Number;
+            var product = (await _product.GetProduct(item.ProductId)).Data;
+            var weights = product.Weight;
+            weights = weights * item.Number;
+			weight = weight + weights;
 			int sum = item.Price.Value * item.Number;
 			price = price + sum;
 		}

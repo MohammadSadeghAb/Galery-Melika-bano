@@ -721,10 +721,10 @@
   <data name="More" xml:space="preserve">
     <value>More</value>
   </data>
-  <data name="LatestProducts" xml:space="preserve">
-    <value>Latest Products</value>
-  </data>
   <data name="NumberRemaining" xml:space="preserve">
     <value>Number Remaining</value>
+  </data>
+  <data name="TheLatestProducts" xml:space="preserve">
+    <value>The Latest Products</value>
   </data>
 </root>

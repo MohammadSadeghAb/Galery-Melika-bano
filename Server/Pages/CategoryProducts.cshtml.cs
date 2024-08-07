@@ -34,7 +34,7 @@ public class CategoryProductsModel : BasePageModel
         }
 
         category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == id.Value);
-        ViewModelProducts = await _context.Products.Where(x => x.CategoryParent_Id == id.Value).ToListAsync();
+        ViewModelProducts = await _context.Products.Where(x => x.CategoryParent_Id == id.Value && x.IsActive == true).ToListAsync();
 
         return Page();
     }

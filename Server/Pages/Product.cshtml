@@ -25,7 +25,7 @@
 <br />
 
 <div class="container">
-    @* <div class="row">
+    <div class="row">
         <div class="col-12 col-md-4">
             <div class="p-1">
                 <div id="carouselExampleIndicators" class="carousel slide m-2">
@@ -103,7 +103,7 @@
                         <div class="col-6">
                             <div class="p-1 border border-1 rounded-2 bg-light">
                                 <div class="p-1">
-                                    <p class="text-muted">@(Resources.DataDictionary.NumberRemaining)</p>
+                                    <p class="text-muted">@* @(Resources.DataDictionary.NumberRemaining) *@ تعداد باقی مانده</p>
                                     <h6>@(Model.ViewModel.Number)</h6>
                                 </div>
                             </div>
@@ -248,8 +248,8 @@
                 </form>
             </div>
         </div>
-    </div> *@
-    <div class="row border rounded-3 bg-light p-2 mt-2 ms-5 me-5 shadow-lg">
+    </div>
+    @* <div class="row border rounded-3 bg-light p-2 mt-2 ms-5 me-5 shadow-lg">
         <div class="col-12 col-md-5">
             <div id="carouselExampleIndicators" class="carousel slide mt-2 mb-2">
                 <div class="carousel-inner">
@@ -367,5 +367,5 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> *@
 </div>

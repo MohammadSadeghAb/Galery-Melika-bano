@@ -168,11 +168,16 @@ public class IndexModel : BasePageModel
 
         foreach (var item in sales)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
-            product.Weight = product.Weight * item.Number;
-            weight = weight + product.Weight;
-            int sum = item.Price.Value * item.Number;
-            price = price + sum;
+            //var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
+            var product = (await _product.GetProduct(item.ProductId)).Data;
+            if (item.Number <= product.Number)
+            {
+                var weights = product.Weight;
+                weights = weights * item.Number;
+                weight = weight + weights;
+                int sum = item.Price.Value * item.Number;
+                price = price + sum;
+            }
         }
 
         var transportcost = (await _transportCost.GetByWeight(weight)).Data;
