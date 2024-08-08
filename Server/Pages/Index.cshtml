@@ -126,7 +126,7 @@
 
         <div class="row border rounded-3 bg-light p-2 mt-2 shadow-lg">
             <h3 class="w-100 rounded-2 bg-danger p-2 text-white">
-                <i class="bi bi-bag-plus"></i> @(Resources.DataDictionary.LatestProducts)
+                <i class="bi bi-bag-plus"></i> @* @(Resources.DataDictionary.TheLatestProducts) *@ جدید ترین کالا ها 
             </h3>
             @foreach (var item in Model.ViewModelProductNewset)
             {
@@ -185,8 +185,8 @@
                             </a>
                         </div>
                     }
-                @* } *@
-                @* p = p + 1; *@
+                 @* }
+                 p = p + 1;  *@
             }
         </div>
     }

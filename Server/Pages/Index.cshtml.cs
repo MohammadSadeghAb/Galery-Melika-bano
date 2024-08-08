@@ -61,12 +61,14 @@ namespace Server.Pages
             {
                 ViewModelProduct = await _context.Products.ToListAsync();
                 ViewModelCategory = (await _category.GetIndexCategories()).Data;
+                ViewModelProductNewset = (await _product.Getnewest()).Data;
             }
 
             if (Search != null)
             {
                 ViewModelProduct = await _context.Products.Where(x => x.Name_Product.Contains($"{Search}") & x.IsActive == true).ToListAsync();
                 ViewModelCategory = (await _category.GetIndexCategories()).Data;
+                ViewModelProductNewset = (await _product.Getnewest()).Data;
             }
 
             return Page();
