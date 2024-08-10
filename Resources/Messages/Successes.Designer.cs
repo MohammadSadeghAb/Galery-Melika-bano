@@ -160,6 +160,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to YourProductSend.
+        /// </summary>
+        public static string YourProductSend {
+            get {
+                return ResourceManager.GetString("YourProductSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your registration has been completed.
         /// </summary>
         public static string Yourregistrationhasbeencompleted {

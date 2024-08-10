@@ -150,6 +150,13 @@
   <data name="Yourorderhasbeenregistered" xml:space="preserve">
     <value>سفارش شما ثبت گردید</value>
   </data>
+  <data name="YourProductSend" xml:space="preserve">
+    <value>فروشگاه ملیکا بانو 🌸🦢 
+سلام دوست عزیزم، سفارش {0} ارسال شد.
+شما میتونید کد رهگیری پستی خود را از از طریق این صفحه "https://eitaa.com/joinchat/3039035697C8dcf2f5165" بگیرید و مرسوله خودتونو پیگیری کنید.
+ و در پایان، ممنون که از تولیدات ایرانی وحجاب حمایت میکنید🌷🙏😊
+لغو11</value>
+  </data>
   <data name="Yourregistrationhasbeencompleted" xml:space="preserve">
     <value>ثبت نام شما تکمیل شد</value>
   </data>
