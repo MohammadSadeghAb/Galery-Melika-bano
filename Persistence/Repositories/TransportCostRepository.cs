@@ -22,7 +22,7 @@ namespace Persistence.Repositories
 
         public async Task<TransportCost> GetByWeight(int weight)
         {
-            var Weight = await _context.TransportCosts.Where(x => x.Maximum_Weight >= weight).ToListAsync();
+            var Weight = await _context.TransportCosts.Where(x => x.Maximum_Weight >= weight && x.IsActive == true).ToListAsync();
             //int Price = (await _context.TransportCosts.FirstOrDefaultAsync(x => x.Maximum_Weight == Weight)).Price;
             if (Weight.Count == 0)
             {
