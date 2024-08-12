@@ -33,6 +33,6 @@ public class IndexModel : BasePageModel
 
     public async Task OnGetAsync()
     {
-        ViewModel = (await _application.GetAllProduct()).Data.Where(x => x.IsActive == true).ToList();
+        ViewModel = (await _application.GetAllProduct()).Data;
     }
 }
