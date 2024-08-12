@@ -91,7 +91,7 @@
                     </div>
                     <hr />
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="p-1 border border-1 rounded-2 bg-light">
                                 <div class="p-1">
                                     <p class="text-muted">@(Resources.DataDictionary.Type)</p>
@@ -100,27 +100,27 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        @* <div class="col-6">
                             <div class="p-1 border border-1 rounded-2 bg-light">
                                 <div class="p-1">
-                                    <p class="text-muted">@* @(Resources.DataDictionary.NumberRemaining) *@ تعداد باقی مانده</p>
+                                    <p class="text-muted"> @(Resources.DataDictionary.NumberRemaining) تعداد باقی مانده</p>
                                     <h6>@(Model.ViewModel.Number)</h6>
                                 </div>
                             </div>
-                        </div>
+                        </div> *@
 
                         <div class="col-12">
                             <div class="text-center mt-2 p-1 border border-1 rounded-2 bg-light">
                                 <div class="p-1">
-                                    @if (Model.ViewModel.Gender == "پسر")
+                                    @if (Model.ViewModel.Gender == Resources.DataDictionary.Boy)
                                     {
                                         <p>مناسب برای آقا پسر ها</p>
                                     }
-                                    @if (Model.ViewModel.Gender == "دختر")
+                                    @if (Model.ViewModel.Gender == Resources.DataDictionary.Girl)
                                     {
                                         <p>مناسب برای دختر خانم ها</p>
                                     }
-                                    @if (Model.ViewModel.Gender == "هردو")
+                                    @if (Model.ViewModel.Gender == Resources.DataDictionary.Both)
                                     {
                                         <p>مناسب برای دختر خانم ها و آقا پسر ها</p>
                                     }
@@ -161,7 +161,7 @@
                                     <p class="text-muted">@(Resources.DataDictionary.Dimensions)</p>
                                     @if (Model.ViewModel.Dimensions == null)
                                     {
-                                        <h6>ثبت نشده</h6>
+                                        <h6>@(Resources.DataDictionary.NotRegistered)</h6>
                                     }
                                     else
                                     {
