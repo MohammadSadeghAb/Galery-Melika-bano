@@ -8,31 +8,76 @@
 
     Layout = "Layouts/Manager/_Layout";
 
-    var users = Model._context.Users.Where(x => x.Role == "User").ToList();
+    var users = Model._context.Users.Where(x => x.Role == "User").ToList().Count;
 
-    var sales = Model._context.TotalSales.ToList();
+    var sales = Model._context.TotalSales.ToList().DistinctBy(x => x.FactorNumber).Count();
 
-    var delivery = Model._context.TotalSales.Where(x => x.Delivery == true).ToList();
+    var delivery = Model._context.TotalSales.Where(x => x.Delivery == true).ToList().DistinctBy(x => x.FactorNumber).Count();
 
-    var posted = Model._context.TotalSales.Where(x => x.Posted == true).ToList();
+    var posted = Model._context.TotalSales.Where(x => x.Posted == true).ToList().DistinctBy(x => x.FactorNumber).Count();
 
-    var packing = Model._context.TotalSales.Where(x => x.Packing == true).ToList();
+    var packing = Model._context.TotalSales.Where(x => x.Packing == true).ToList().DistinctBy(x => x.FactorNumber).Count();
 
-    var accept = Model._context.TotalSales.Where(x => x.Accepted == true).ToList();
+    var accept = Model._context.TotalSales.Where(x => x.Accepted == true).ToList().DistinctBy(x => x.FactorNumber).Count();
+
+    int max = 0;
+    Domain.TotalSaleAgg.TotalSale bestproduct = new();
+    var salesproducts = Model._context.TotalSales.ToList().DistinctBy(x => x.Products);
+    foreach (var items in salesproducts)
+    {
+        var salesproduct = Model._context.TotalSales.Where(x => x.Products == items.Products).ToList();
+        foreach (var item in salesproduct)
+        {
+            int number = 0;
+            number = number + item.Number.Value;
+            if (number > max)
+            {
+                max = number;
+                bestproduct = item;
+            }
+        }
+    }
+    Domain.ProductAgg.Product popularproduct = new();
+    if (bestproduct != null)
+    {
+        popularproduct = Model._context.Products.FirstOrDefault(x => x.Id == bestproduct.Products);
+    }
+
+    DateTime dt = Framework.Utility.Now;
+    var salestoday = Model._context.TotalSales.Where(x => x.InsertDateTime.Date == dt.Date).ToList().DistinctBy(x => x.FactorNumber).Count();
+
 }
 <div class="row">
     <div class="col-12 w-100 text-center">
         <h1>@(User.Claims.FirstOrDefault(x => x.Type == "FullName").Value) @(Resources.DataDictionary.Welcome)</h1>
     </div>
 
-    <div class="col-lg-3 p-2"></div>
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-heart"></i> @(Resources.DataDictionary.Popular) @(Resources.DataDictionary.Product)
+            </h4>
+                @if (popularproduct != null)
+                {
+                    <h5 class="text-end">
+                        @(popularproduct.Name_Product)
+                    </h5>
+                }
+                @if (popularproduct == null)
+                {
+                    <h5 class="text-end">
+                        @(Resources.DataDictionary.NotRegistered)
+                    </h5>
+                }
+        </div>
+    </div>
 
     <div class="col-lg-3 p-2">
         <div class="border rounded-1 p-2 shadow-sm">
             <h4 class="text-start">
                 <i class="bi bi-person"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Users)
             </h4>
-            <h5 class="text-end">@(users.Count) @(Resources.DataDictionary.Person)</h5>
+            <h5 class="text-end">@(users) @(Resources.DataDictionary.Person)</h5>
         </div>
     </div>
 
@@ -41,18 +86,25 @@
             <h4 class="text-start">
                 <i class="bi bi-cart"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Sales)
             </h4>
-            <h5 class="text-end">@(sales.Count)</h5>
+            <h5 class="text-end">@(sales)</h5>
         </div>
     </div>
 
-    <div class="col-lg-3 p-2"></div>
+    <div class="col-lg-3 p-2">
+        <div class="border rounded-1 p-2 shadow-sm">
+            <h4 class="text-start">
+                <i class="bi bi-calendar"></i> @(Resources.DataDictionary.Sale) @(Resources.DataDictionary.Today)
+            </h4>
+            <h5 class="text-end">@(salestoday)</h5>
+        </div>
+    </div>
 
     <div class="col-lg-3 p-2">
         <div class="border rounded-1 p-2 shadow-sm">
             <h4 class="text-start">
                 <i class="bi bi-check2-square"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Accepted)
             </h4>
-            <h5 class="text-end">@(accept.Count)</h5>
+            <h5 class="text-end">@(accept)</h5>
         </div>
     </div>
 
@@ -61,7 +113,7 @@
             <h4 class="text-start">
                 <i class="bi bi-box-seam"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Packing)
             </h4>
-            <h5 class="text-end">@(packing.Count)</h5>
+            <h5 class="text-end">@(packing)</h5>
         </div>
     </div>
 
@@ -70,7 +122,7 @@
             <h4 class="text-start">
                 <i class="bi bi-mailbox"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Posted)
             </h4>
-            <h5 class="text-end">@(posted.Count)</h5>
+            <h5 class="text-end">@(posted)</h5>
         </div>
     </div>
 
@@ -79,7 +131,7 @@
             <h4 class="text-start">
                 <i class="bi bi-bag-heart"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Delivery)
             </h4>
-            <h5 class="text-end">@(delivery.Count)</h5>
+            <h5 class="text-end">@(delivery)</h5>
         </div>
     </div>
 

@@ -727,4 +727,13 @@
   <data name="TheLatestProducts" xml:space="preserve">
     <value>The Latest Products</value>
   </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Not Registered</value>
+  </data>
+  <data name="Popular" xml:space="preserve">
+    <value>Popular</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
 </root>
