@@ -8,6 +8,7 @@ using Persistence;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -38,7 +39,7 @@ public class DeletePicModel : BasePageModel
 
     public async Task OnGetAsync()
     {
-        var Products = (await _context.Products.ToListAsync());
+        var Products = (await _context.Products.OrderByDescending(x => x.InsertDateTime).ToListAsync());
         foreach (var item in Products)
         {
             products.Add(new KeyValueViewModel()
