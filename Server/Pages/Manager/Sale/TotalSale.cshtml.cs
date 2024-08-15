@@ -37,6 +37,7 @@ public class TotalSaleModel : BasePageModel
     public async Task OnGetAsync()
     {
         ViewModel = await _context.TotalSales.OrderBy(x => x.FactorNumber).ToListAsync();
+        ViewModel = ViewModel.DistinctBy(x => x.FactorNumber).ToList();
     }
 
     public async Task<IActionResult> OnPostAsync()
