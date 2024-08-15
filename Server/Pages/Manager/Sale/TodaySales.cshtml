@@ -1,0 +1,114 @@
+﻿@page
+@model Server.Pages.Manager.Sale.TodaySalesModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Sale}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input asp-for="factor" value="" class="form-control" placeholder="@(Resources.DataDictionary.Enterfactornumber)" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-danger">@(Resources.DataDictionary.Search)</button>
+        </div>
+    </div>
+</form>
+
+<br />
+
+<section-page-body>
+    <section-table>
+        <table>
+            <caption>
+                @(pageTitle)
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>
+                        @(Resources.DataDictionary.RowNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Action)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.FullName)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.TrackingCode)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.FactorNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Accepted)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Packing)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Posted)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Delivery)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.InsertDateTime)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                @for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+                {
+                    var item = Model.ViewModel[index];
+
+                    var user = Model._context.Users.FirstOrDefault(x => x.Id == item.UserId);
+
+                    <tr>
+                        @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+                        <table-actions>
+                            <a asp-page="Details" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDetails())
+                            </a>
+                            <a asp-page="Update_Accept" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconUpdate())
+                            </a>
+                            <a asp-page="Print" asp-route-id="@(item.Id)">
+                                <i class="bi bi-printer-fill"></i>
+                            </a>
+                        </table-actions>
+
+                        <td>
+                            @(user.FullName)
+                        </td>
+
+                        <td>
+                            @(item.TrackingCode)
+                        </td>
+
+                        <td>
+                            @(item.FactorNumber)
+                        </td>
+
+                        @(Html.DtatDisplayBooleanWithTd(value: item.Accepted))
+
+                        @(Html.DtatDisplayBooleanWithTd(value: item.Packing))
+
+                        @(Html.DtatDisplayBooleanWithTd(value: item.Posted))
+
+                        @(Html.DtatDisplayBooleanWithTd(value: item.Delivery))
+
+                        @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section-table>
+</section-page-body>
