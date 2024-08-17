@@ -33,6 +33,8 @@ using zarinpalasp.netcorerest.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 using RestSharp;
+using Server.Pages.Admin.Products;
+using Domain.ProductAgg;
 
 namespace Server.Pages.User.Card;
 
@@ -94,6 +96,8 @@ public class IndexModel : BasePageModel
     [BindProperty]
     public UpdateViewMode ViewModelSale { get; set; }
 
+    public Product ViewModelProduct { get; set; }
+
     public int? pricetotal { get; set; } = 0;
 
     public int weighttotal { get; set; } = 0;
@@ -124,6 +128,8 @@ public class IndexModel : BasePageModel
         }
 
         ViewModelSale.Id = id.Value;
+        var sale = await _context.Sales.FirstOrDefaultAsync(x => x.Id == ViewModelSale.Id);
+        ViewModelProduct = await _context.Products.FirstOrDefaultAsync(x => x.Id == sale.ProductId);
 
         if (ViewModelSale.Number == 1 && check == "low")
         {
@@ -133,13 +139,29 @@ public class IndexModel : BasePageModel
         if (check == "add")
         {
             ViewModelSale.Number = ViewModelSale.Number + 1;
-            await _application.UpdateSale(ViewModelSale);
+            if (ViewModelSale.Number >= ViewModelProduct.Min_Major)
+            {
+                ViewModelSale.Price = ViewModelProduct.Discount_Major;
+            }
+			if (ViewModelSale.Number < ViewModelProduct.Min_Major)
+			{
+				ViewModelSale.Price = ViewModelProduct.Discount_Single;
+			}
+			await _application.UpdateSale(ViewModelSale);
         }
 
         if (check == "low")
         {
             ViewModelSale.Number = ViewModelSale.Number - 1;
-            await _application.UpdateSale(ViewModelSale);
+			if (ViewModelSale.Number >= ViewModelProduct.Min_Major)
+			{
+				ViewModelSale.Price = ViewModelProduct.Discount_Major;
+			}
+			if (ViewModelSale.Number < ViewModelProduct.Min_Major)
+			{
+				ViewModelSale.Price = ViewModelProduct.Discount_Single;
+			}
+			await _application.UpdateSale(ViewModelSale);
         }
 
         return Page();

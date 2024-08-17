@@ -119,12 +119,29 @@ public class ProductModel : BasePageModel
 
                     if (checksale != null)
                     {
-                        ViewModelUpdate.Id = checksale.Id;
-                        ViewModelUpdate.Number = checksale.Number + Number;
-                        await _sale.UpdateSale(ViewModelUpdate);
+                        if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Special")
+                        {
+                            ViewModelUpdate.Id = checksale.Id;
+                            ViewModelUpdate.Number = checksale.Number + Number;
+                            await _sale.UpdateSale(ViewModelUpdate);
 
-                        AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
-                    }
+                            AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
+                        }
+
+						if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "User")
+						{
+							ViewModelUpdate.Id = checksale.Id;
+							ViewModelUpdate.Number = checksale.Number + Number;
+                            if (checksale.Number + Number >= ViewModel.Min_Major)
+                            {
+                                ViewModelUpdate.Price = ViewModel.Discount_Major;
+                            }
+
+                            await _sale.UpdateSale(ViewModelUpdate);
+
+							AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
+						}
+					}
 
                     if (checksale == null)
                     {

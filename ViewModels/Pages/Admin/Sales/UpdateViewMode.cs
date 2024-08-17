@@ -30,6 +30,18 @@ namespace ViewModels.Pages.Admin.Sales
             Name = nameof(Resources.DataDictionary.Number))]
 
         public int Number { get; set; }
-        //**********
-    }
+		//**********
+
+		//**********
+		[Required
+		(ErrorMessageResourceType = typeof(Validations),
+		ErrorMessageResourceName = nameof(Validations.Required))]
+
+		[Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Price))]
+
+		public int? Price { get; set; }
+		//**********
+	}
 }

@@ -133,6 +133,7 @@ namespace Application.SaleApp
             }
 
             saleForUpdate.Number = product.Number;
+            saleForUpdate.Price = product.Price;
 
             await _repository.SaveChangesAsync();
             res.Succeeded = true;
