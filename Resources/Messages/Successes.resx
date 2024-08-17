@@ -120,6 +120,9 @@
   <data name="Created" xml:space="preserve">
     <value>{0} successfully created.</value>
   </data>
+  <data name="Decline" xml:space="preserve">
+    <value>{0} successfully decline.</value>
+  </data>
   <data name="Deleted" xml:space="preserve">
     <value>{0} successfully deleted.</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="Updated" xml:space="preserve">
     <value>{0} successfully updated.</value>
+  </data>
+  <data name="Upgrade" xml:space="preserve">
+    <value>{0} successfully upgrade.</value>
   </data>
   <data name="Verified" xml:space="preserve">
     <value>{0} successfully verified.</value>

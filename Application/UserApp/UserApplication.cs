@@ -276,5 +276,59 @@ namespace Application.UserApp
 
 			return res;
 		}
-	}
+
+        public async Task<OperationResult> UpgradeToSpecial(UpdateViewModel user)
+        {
+            var res = new OperationResult();
+
+            var userForUpdate = await _repository.GetAsync(user.Id.Value);
+
+            if (userForUpdate == null)
+            {
+                res.AddErrorMessage(Errors.ThereIsNotAnyDataWithThisId);
+                res.Succeeded = false;
+                return res;
+            }
+
+            if (0 < res.ErrorMessages.Count)
+            {
+                res.Succeeded = false;
+                return res;
+            }
+
+            userForUpdate.Role = "Special";
+
+
+            await _repository.SaveChangesAsync();
+            res.Succeeded = true;
+            return res;
+        }
+
+        public async Task<OperationResult> DeclineToUser(UpdateViewModel user)
+        {
+            var res = new OperationResult();
+
+            var userForUpdate = await _repository.GetAsync(user.Id.Value);
+
+            if (userForUpdate == null)
+            {
+                res.AddErrorMessage(Errors.ThereIsNotAnyDataWithThisId);
+                res.Succeeded = false;
+                return res;
+            }
+
+            if (0 < res.ErrorMessages.Count)
+            {
+                res.Succeeded = false;
+                return res;
+            }
+
+            userForUpdate.Role = "User";
+
+
+            await _repository.SaveChangesAsync();
+            res.Succeeded = true;
+            return res;
+        }
+    }
 }

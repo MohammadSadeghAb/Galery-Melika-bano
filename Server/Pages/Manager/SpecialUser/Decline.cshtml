@@ -1,0 +1,60 @@
+﻿@page
+@model Server.Pages.Manager.SpecialUser.DeclineModel
+@{
+	var pageTitle =
+	$"{Resources.DataDictionary.Decline} {Resources.DataDictionary.User}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+	Layout = "Layouts/Manager/_Layout";
+}
+
+<form method="post">
+	<section-form>
+		<fieldset disabled>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<input type="hidden" asp-for="ViewModel.Id" />
+
+			<section-form-field>
+				<label asp-for="ViewModel.FullName"></label>
+				<input asp-for="ViewModel.FullName" />
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.CellPhoneNumber"></label>
+				<input asp-for="ViewModel.CellPhoneNumber" />
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.ProvinceAddress"></label>
+				<input asp-for="ViewModel.ProvinceAddress" />
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.CityAddress"></label>
+				<input asp-for="ViewModel.CityAddress" />
+			</section-form-field>
+
+			<label>@(Resources.Messages.Errors.AreYouSureAboutDemotingTheUser_)</label>
+
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+		</section-form-buttons>
+
+		<section-form-footer>
+			<a asp-page="Index">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDetails())
+			</a>
+		</section-form-footer>
+	</section-form>
+</form>

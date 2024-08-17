@@ -430,6 +430,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decline.
+        /// </summary>
+        public static string Decline {
+            get {
+                return ResourceManager.GetString("Decline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted.
         /// </summary>
         public static string Deleted {
@@ -1663,6 +1672,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Special.
+        /// </summary>
+        public static string Special {
+            get {
+                return ResourceManager.GetString("Special", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub Menu Items.
         /// </summary>
         public static string SubMenuItems {
@@ -1776,6 +1794,15 @@ namespace Resources {
         public static string UpdaterUserId {
             get {
                 return ResourceManager.GetString("UpdaterUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade.
+        /// </summary>
+        public static string Upgrade {
+            get {
+                return ResourceManager.GetString("Upgrade", resourceCulture);
             }
         }
         

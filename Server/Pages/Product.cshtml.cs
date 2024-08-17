@@ -128,22 +128,38 @@ public class ProductModel : BasePageModel
 
                     if (checksale == null)
                     {
-                        ViewModelSale.Color = Color;
-                        ViewModelSale.Number = Number;
-                        ViewModelSale.ProductId = ViewModel.Id;
-                        ViewModelSale.UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
-                        if (Number < ViewModel.Min_Major)
+                        if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Special")
                         {
-                            ViewModelSale.Price = ViewModel.Discount_Single;
-                        }
-                        if (Number >= ViewModel.Min_Major)
-                        {
+                            ViewModelSale.Color = Color;
+                            ViewModelSale.Number = Number;
+                            ViewModelSale.ProductId = ViewModel.Id;
+                            ViewModelSale.UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
                             ViewModelSale.Price = ViewModel.Discount_Major;
+
+                            await _sale.AddSale(ViewModelSale);
+
+                            AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
                         }
 
-                        await _sale.AddSale(ViewModelSale);
+                        if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "User")
+                        {
+                            ViewModelSale.Color = Color;
+                            ViewModelSale.Number = Number;
+                            ViewModelSale.ProductId = ViewModel.Id;
+                            ViewModelSale.UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+                            if (Number < ViewModel.Min_Major)
+                            {
+                                ViewModelSale.Price = ViewModel.Discount_Single;
+                            }
+                            if (Number >= ViewModel.Min_Major)
+                            {
+                                ViewModelSale.Price = ViewModel.Discount_Major;
+                            }
 
-                        AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
+                            await _sale.AddSale(ViewModelSale);
+
+                            AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);
+                        }
                     }
                 }
             }

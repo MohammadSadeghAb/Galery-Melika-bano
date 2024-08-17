@@ -120,6 +120,12 @@
   <data name="AlreadyExists" xml:space="preserve">
     <value>{0} تکراری است!</value>
   </data>
+  <data name="AreYouSureAboutDemotingTheUser?" xml:space="preserve">
+    <value>آیا در مورد تنزل کاربر مطمئن هستید؟</value>
+  </data>
+  <data name="AreYouSureAboutUpgradingTheUser?" xml:space="preserve">
+    <value>آیا از ارتقا کاربر مطمئن هستید؟</value>
+  </data>
   <data name="Captcha" xml:space="preserve">
     <value>شما باید عدد فوق را با دقت و با ارقام انگلیسی وارد نمایید!</value>
   </data>

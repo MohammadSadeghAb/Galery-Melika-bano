@@ -70,6 +70,24 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure about demoting the user?.
+        /// </summary>
+        public static string AreYouSureAboutDemotingTheUser_ {
+            get {
+                return ResourceManager.GetString("AreYouSureAboutDemotingTheUser?", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure about upgrading the user?.
+        /// </summary>
+        public static string AreYouSureAboutUpgradingTheUser_ {
+            get {
+                return ResourceManager.GetString("AreYouSureAboutUpgradingTheUser?", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You should just use digits!.
         /// </summary>
         public static string Captcha {

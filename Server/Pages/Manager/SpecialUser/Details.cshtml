@@ -1,0 +1,75 @@
+﻿@page
+@model Server.Pages.Manager.SpecialUser.DetailsModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.ButtonCaptions.Details} {Resources.DataDictionary.User}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<section-form-field>
+			<label asp-for="ViewModel.FullName"></label>
+			<input asp-for="ViewModel.FullName" />
+		</section-form-field>
+
+		@*<section-form-field>
+			<label asp-for="ViewModel.FatherName"></label>
+			<input asp-for="ViewModel.FatherName" />
+		</section-form-field>*@
+
+		<section-form-field>
+			<label asp-for="ViewModel.ProvinceAddress"></label>
+			<input asp-for="ViewModel.ProvinceAddress" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.CityAddress"></label>
+			<input asp-for="ViewModel.CityAddress" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Address"></label>
+			<textarea asp-for="ViewModel.Address"></textarea>
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.NationalCode"></label>
+			<input asp-for="ViewModel.NationalCode" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.PostalCode"></label>
+			<input asp-for="ViewModel.PostalCode" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Gender"></label>
+			<input asp-for="ViewModel.Gender" />
+		</section-form-field>
+
+		@* <section-form-field>
+			<label asp-for="ViewModel.EmailAddress"></label>
+			<input asp-for="ViewModel.EmailAddress" />
+		</section-form-field> *@
+
+		<section-form-field>
+			<label asp-for="ViewModel.CellPhoneNumber"></label>
+			<input asp-for="ViewModel.CellPhoneNumber" />
+		</section-form-field>
+	</fieldset>
+
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+	</section-form-footer>
+</section-form>

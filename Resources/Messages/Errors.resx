@@ -120,6 +120,12 @@
   <data name="AlreadyExists" xml:space="preserve">
     <value>{0} already exists!</value>
   </data>
+  <data name="AreYouSureAboutDemotingTheUser?" xml:space="preserve">
+    <value>Are you sure about demoting the user?</value>
+  </data>
+  <data name="AreYouSureAboutUpgradingTheUser?" xml:space="preserve">
+    <value>Are you sure about upgrading the user?</value>
+  </data>
   <data name="Captcha" xml:space="preserve">
     <value>You should just use digits!</value>
   </data>

@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.Users;
 
-namespace Server.Pages.Manager.SpecialUser;
+namespace Server.Pages.Manager.User;
 
 [Microsoft.AspNetCore.Authorization.Authorize
     (Roles = Infrastructure.Constants.Role.Manager)]

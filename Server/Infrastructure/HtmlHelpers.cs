@@ -385,7 +385,37 @@ public static class HtmlHelpers : object
 		return icon;
 	}
 
-	public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconDelete
+    public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconUpgrade
+        (this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+    {
+        if (html is null)
+        {
+            throw new System
+                .ArgumentNullException(paramName: nameof(html));
+        }
+
+        var icon =
+            TagHelpers.Utility.GetIconUpgrade();
+
+        return icon;
+    }
+
+    public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconDecline
+        (this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+    {
+        if (html is null)
+        {
+            throw new System
+                .ArgumentNullException(paramName: nameof(html));
+        }
+
+        var icon =
+            TagHelpers.Utility.GetIconDecline();
+
+        return icon;
+    }
+
+    public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconDelete
 		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
 	{
 		if (html is null)

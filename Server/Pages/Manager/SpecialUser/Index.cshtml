@@ -1,7 +1,7 @@
 ﻿@page
-@model Server.Pages.Manager.User.IndexModel
+@model Server.Pages.Manager.SpecialUser.IndexModel
 @{
-    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Users}";
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Users} {Resources.DataDictionary.Special}";
 
     ViewData["PageTitle"] = pageTitle;
 
@@ -53,15 +53,15 @@
                             <a asp-page="Details" asp-route-id="@(item.Id)">
                                 @(Html.DtatGetIconDetails())
                             </a>
-                            <a asp-page="Upgrade" asp-route-id="@(item.Id)">
-                                @(Html.DtatGetIconUpgrade())
+                            <a asp-page="Decline" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDecline())
                             </a>
-                            @*<a asp-page="Update" asp-route-id="@(item.Id)">
+                        @*     <a asp-page="Update" asp-route-id="@(item.Id)">
                         @(Html.DtatGetIconUpdate())
                         </a>
                         <a asp-page="Delete" asp-route-id="@(item.Id)">
                         @(Html.DtatGetIconDelete())
-                        </a>*@
+                        </a> *@
                         </table-actions>
 
                         <td>
@@ -87,3 +87,4 @@
         </table>
     </section-table>
 </section-page-body>
+ 

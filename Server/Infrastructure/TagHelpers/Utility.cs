@@ -99,7 +99,33 @@ namespace Infrastructure.TagHelpers
 			return icon;
 		}
 
-		public static void CreateOrMergeAttribute
+        public static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder GetIconUpgrade()
+        {
+            var icon =
+                new Microsoft.AspNetCore.Mvc
+                .Rendering.TagBuilder(tagName: "i");
+
+            icon.AddCssClass(value: "mx-1");
+            icon.AddCssClass(value: "bi");
+            icon.AddCssClass(value: "bi-star");
+
+            return icon;
+        }
+
+        public static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder GetIconDecline()
+        {
+            var icon =
+                new Microsoft.AspNetCore.Mvc
+                .Rendering.TagBuilder(tagName: "i");
+
+            icon.AddCssClass(value: "mx-1");
+            icon.AddCssClass(value: "bi");
+            icon.AddCssClass(value: "bi-arrow-clockwise");
+
+            return icon;
+        }
+
+        public static void CreateOrMergeAttribute
 			(string name, object content,
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
 		{

@@ -52,4 +52,17 @@ else
             </a>
         </p>
     }
+
+    if (User.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Special")
+    {
+        <p>
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Index">
+                <i class="bi bi-person"></i> <span class="d-none d-sm-inline">@(Resources.PageTitles.Profile)</span>
+            </a>
+            |
+            <a class="text-dark text-decoration-none btn btn-outline-light" asp-route-id="@(User.Claims.FirstOrDefault(x => x.Type == "Id").Value)" asp-page="/User/Card/Index">
+                <i class="bi bi-cart"></i> <span class="d-none d-sm-inline">@(Resources.DataDictionary.Card)</span>
+            </a>
+        </p>
+    }
 }

@@ -70,6 +70,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} successfully decline..
+        /// </summary>
+        public static string Decline {
+            get {
+                return ResourceManager.GetString("Decline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} successfully deleted..
         /// </summary>
         public static string Deleted {
@@ -102,6 +111,15 @@ namespace Resources.Messages {
         public static string Updated {
             get {
                 return ResourceManager.GetString("Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} successfully upgrade..
+        /// </summary>
+        public static string Upgrade {
+            get {
+                return ResourceManager.GetString("Upgrade", resourceCulture);
             }
         }
         
