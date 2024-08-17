@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.Users;
 
@@ -24,10 +25,29 @@ public class IndexModel : BasePageModel
         ViewModel = new List<Domain.Users.User>();
     }
 
+    [BindProperty]
+    public string FullName { get; set; }
+
     public IList<Domain.Users.User> ViewModel { get; set; }
 
     public async Task OnGetAsync()
     {
         ViewModel = await _context.Users.Where(x => x.Role == Constants.Role.User).ToListAsync();
+    }
+
+    public async Task<IActionResult> OnPstAsync()
+    {
+        if (FullName == null)
+        {
+            AddToastError(message: Resources.Messages.Errors.Pleaseenterthefactornumber);
+
+            ViewModel = await _context.Users.Where(x => x.Role == Constants.Role.User).ToListAsync();
+
+            return Page();
+        }
+
+        ViewModel = await _context.Users.Where(x => x.Role == Constants.Role.User && x.FullName == FullName).ToListAsync();
+
+        return Page();
     }
 }
