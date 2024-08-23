@@ -96,7 +96,7 @@ public class Update_PostedModel : BasePageModel
             {
                 new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
                 new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
-                new KeyValuePair<string, string>("Message",$"فروشگاه ملیکا بانو سلام دوست عزیزم سفارش شما با شماره فاکتور : {totalsale.FactorNumber} ارسال شد " + "شما میتونید کد رهگیری پستی خودتون رو از طریق این صفحه بگیرید" + "https://eitaa.com/joinchat/3039035697C8dcf2f5165" + "و مرسوله خودتونو پیگیری کنید و در پایان ممنون که از تولیدات ایرانی حمایت میکنید"),
+                new KeyValuePair<string, string>("Message","فروشگاه ملیکا بانو 🌸🦢 " + "/n" + $"سلام دوست عزیزم، سفارش {totalsale.FactorNumber} ارسال شد." + "شما میتونید کد رهگیری پستی خود را از طریق صفحه زیر پیگیری کنید" + "/n" + "https://eitaa.com/joinchat/3039035697C8dcf2f5165" + "/n" + " و در پایان، ممنون که از تولیدات ایرانی وحجاب حمایت میکنید🌷🙏😊" + "/n" + "لغو 11"),
                 new KeyValuePair<string, string>("Sender","238")
             });
 
