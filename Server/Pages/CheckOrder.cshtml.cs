@@ -24,232 +24,240 @@ namespace Server.Pages;
 
 public class CheckOrderModel : BasePageModel
 {
-	private readonly DatabaseContext _context;
+    private readonly DatabaseContext _context;
 
-	private readonly HttpClient _httpClient;
+    private readonly HttpClient _httpClient;
 
-	private readonly ISaleRepository _sale;
+    private readonly ISaleRepository _sale;
 
-	private readonly IProductApplication _product;
+    private readonly IProductApplication _product;
 
-	private readonly ITotalSaleRepository _totalSale;
+    private readonly ITotalSaleRepository _totalSale;
 
-	private readonly ITransportCostRepository _transportCost;
+    private readonly ITransportCostRepository _transportCost;
 
-	public CheckOrderModel(DatabaseContext context, ISaleRepository sale, IProductApplication product, ITotalSaleRepository totalSale, ITransportCostRepository transportCost)
-	{
-		_sale = sale;
-		_product = product;
-		_context = context;
-		_totalSale = totalSale;
-		_transportCost = transportCost;
-		ViewModel = new();
-		_httpClient = new HttpClient();
-		_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-	}
+    public CheckOrderModel(DatabaseContext context, ISaleRepository sale, IProductApplication product, ITotalSaleRepository totalSale, ITransportCostRepository transportCost)
+    {
+        _sale = sale;
+        _product = product;
+        _context = context;
+        _totalSale = totalSale;
+        _transportCost = transportCost;
+        ViewModel = new();
+        _httpClient = new HttpClient();
+        _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+    }
 
-	string merchant = "33cdb462-cda7-4457-af7d-1629eb13f77e";
-	//string amount;
-	string authority;
+    string merchant = "33cdb462-cda7-4457-af7d-1629eb13f77e";
+    //string amount;
+    string authority;
 
-	public string Status { get; set; }
+    public string Status { get; set; }
 
     public string data { get; set; }
 
     public TotalSale ViewModel { get; set; }
 
-	public string code { get; set; }
+    public string code { get; set; }
 
-	public async Task<IActionResult> OnGetAsync()
-	{
-		int weight = 0;
-		int price = 0;
+    public async Task<IActionResult> OnGetAsync()
+    {
+        int weight = 0;
+        int price = 0;
 
-		Guid UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+        Guid UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
 
-		if (UserId == null)
-		{
-			AddToastError(message: Resources.Messages.Errors.IdIsNull);
-			return Redirect("/Index");
-		}
+        if (UserId == null)
+        {
+            AddToastError(message: Resources.Messages.Errors.IdIsNull);
+            return Redirect("/Index");
+        }
 
-		var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == UserId);
 
-		if (user == null)
-		{
-			AddToastError(message: Resources.Messages.Errors.IdIsNull);
-			return Redirect("/Index");
-		}
+        if (user == null)
+        {
+            AddToastError(message: Resources.Messages.Errors.IdIsNull);
+            return Redirect("/Index");
+        }
 
-		var sales = await _context.Sales
-			.Where(x => x.UserId == UserId)
-			.AsNoTracking()
-			.ToListAsync();
+        var sales = await _context.Sales
+            .Where(x => x.UserId == UserId)
+            .AsNoTracking()
+            .ToListAsync();
 
-		foreach (var item in sales)
-		{
-			//var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
+        foreach (var item in sales)
+        {
+            //var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
             //product.Weight = product.Weight * item.Number;
             var product = (await _product.GetProduct(item.ProductId)).Data;
             var weights = product.Weight;
             weights = weights * item.Number;
-			weight = weight + weights;
-			int sum = item.Price.Value * item.Number;
-			price = price + sum;
-		}
+            weight = weight + weights;
+            int sum = item.Price.Value * item.Number;
+            price = price + sum;
+        }
 
-		var transportcost = (await _transportCost.GetByWeight(weight));
+        var transportcost = (await _transportCost.GetByWeight(weight));
 
-		price = price + transportcost.Price;
+        price = price + transportcost.Price;
 
-		price = price * 10;
+        price = price * 10;
 
-		try
-		{
-			VerifyParameters parameters = new VerifyParameters();
-
-
-			if (HttpContext.Request.Query["Authority"] != "")
-			{
-				authority = HttpContext.Request.Query["Authority"];
-				Status = HttpContext.Request.Query["Status"];
-			}
-
-			parameters.authority = authority;
-			parameters.amount = $"{price}";
-			parameters.merchant_id = merchant;
+        try
+        {
+            VerifyParameters parameters = new VerifyParameters();
 
 
-			var client = new RestClient(URLs.verifyUrl);
-			RestSharp.Method method = RestSharp.Method.Post;
-			var request = new RestRequest("", method);
+            if (HttpContext.Request.Query["Authority"] != "")
+            {
+                authority = HttpContext.Request.Query["Authority"];
+                Status = HttpContext.Request.Query["Status"];
+            }
 
-			request.AddHeader("accept", "application/json");
-
-			request.AddHeader("content-type", "application/json");
-			request.AddJsonBody(parameters);
-
-			var response = client.ExecuteAsync(request);
-
-
-			JObject jodata = JObject.Parse(response.Result.Content);
-
-			data = jodata["data"].ToString();
-
-			JObject jo = JObject.Parse(response.Result.Content);
-
-			string errors = jo["errors"].ToString();
-
-			if (data != "[]")
-			{
-				string refid = jodata["data"]["ref_id"].ToString();
-
-				code = refid;
-
-				//return View();
-			}
-			else if (errors != "[]")
-			{
-
-				string errorscode = jo["errors"]["code"].ToString();
-
-				//return BadRequest($"error code {errorscode}");
-
-			}
+            parameters.authority = authority;
+            parameters.amount = $"{price}";
+            parameters.merchant_id = merchant;
 
 
-		}
-		catch (Exception ex)
-		{
+            var client = new RestClient(URLs.verifyUrl);
+            RestSharp.Method method = RestSharp.Method.Post;
+            var request = new RestRequest("", method);
 
-			throw new Exception(ex.Message);
-		}
+            request.AddHeader("accept", "application/json");
 
-		if (Status == "OK" && data != "[]")
-		{
+            request.AddHeader("content-type", "application/json");
+            request.AddJsonBody(parameters);
 
-			int max = 0;
+            var response = client.ExecuteAsync(request);
 
-			Random random = new Random();
-			int tracking = random.Next(100000, 999999);
 
-			var check = _context.TotalSales.ToList();
+            JObject jodata = JObject.Parse(response.Result.Content);
 
-			if (check.Count != 0)
-			{
-				max = _context.TotalSales.Max(x => x.FactorNumber);
-			}
+            data = jodata["data"].ToString();
 
-			bool a = false;
+            JObject jo = JObject.Parse(response.Result.Content);
 
-			foreach (var item in sales)
-			{
-				var product = (await _product.GetProduct(item.ProductId)).Data;
+            string errors = jo["errors"].ToString();
 
-				if (item.Number <= product.Number)
-				{
-					product.Number = product.Number - item.Number;
-					var _saleModel = new TotalSale
-					{
-						Color = item.Color,
-						Number = item.Number,
-						Products = item.ProductId,
-						UserId = item.UserId,
-						TotalPrice = item.Price,
-						FactorNumber = max + 1,
-						TrackingCode = tracking.ToString(),
-					};
+            if (data != "[]")
+            {
+                string refid = jodata["data"]["ref_id"].ToString();
 
-					_sale.Remove(item);
+                code = refid;
 
-					await _totalSale.CreateAsync(_saleModel);
+                //return View();
+            }
+            else if (errors != "[]")
+            {
 
-					await _product.UpdateProduct(product);
+                string errorscode = jo["errors"]["code"].ToString();
 
-					a = true;
-				}
-			}
+                //return BadRequest($"error code {errorscode}");
 
-			await _sale.SaveChangesAsync();
-			await _totalSale.SaveChangesAsync();
+            }
 
-			ViewModel = await _context.TotalSales.FirstOrDefaultAsync(x => x.FactorNumber == max + 1);
 
-			if (a == true)
-			{
-				int factor = max + 1;
+        }
+        catch (Exception ex)
+        {
 
-				var stringContent = new FormUrlEncodedContent(new[]
-				{
-					new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
-					new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
-					new KeyValuePair<string, string>("Message",$"{Resources.Messages.Successes.Youritemhasbeenregistered} {Resources.DataDictionary.FactorNumber} : {factor}"),
-					new KeyValuePair<string, string>("Sender","238")
-				});
+            throw new Exception(ex.Message);
+        }
 
-				var postTask = _httpClient.PostAsync("http://panelyab.com/api/send", stringContent);
-				postTask.Wait();
+        if (Status == "OK" && data != "[]")
+        {
 
-				var response = postTask.Result;
-				if (response.IsSuccessStatusCode)
-				{
-					response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-					var readTask = response.Content.ReadAsAsync<SendOutputModel>();
-					readTask.Wait();
+            int max = 0;
 
-					var sendOutputModel = readTask.Result;
-					if (sendOutputModel.Status == 100)
-					{
-						AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
-						//return RedirectToPage("/Index");
-						//return RedirectToPage("/CheckOrder");
-					}
-				}
+            Random random = new Random();
+            int tracking = random.Next(100000, 999999);
 
-				AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
-			}
+            var check = _context.TotalSales.ToList();
 
-		}
-		return Page();
-	}
+            if (check.Count != 0)
+            {
+                max = _context.TotalSales.Max(x => x.FactorNumber);
+            }
+
+            bool a = false;
+
+            foreach (var item in sales)
+            {
+                var product = (await _product.GetProduct(item.ProductId)).Data;
+
+                if (item.Number <= product.Number)
+                {
+                    product.Number = product.Number - item.Number;
+                    var _saleModel = new TotalSale
+                    {
+                        Color = item.Color,
+                        Number = item.Number,
+                        Products = item.ProductId,
+                        UserId = item.UserId,
+                        TotalPrice = item.Price,
+                        FactorNumber = max + 1,
+                        TrackingCode = tracking.ToString(),
+                    };
+
+                    _sale.Remove(item);
+
+                    await _totalSale.CreateAsync(_saleModel);
+
+                    await _product.UpdateProduct(product);
+
+                    a = true;
+                }
+            }
+
+            await _sale.SaveChangesAsync();
+            await _totalSale.SaveChangesAsync();
+
+            ViewModel = await _context.TotalSales.FirstOrDefaultAsync(x => x.FactorNumber == max + 1);
+
+            try
+            {
+
+                if (a == true)
+                {
+                    int factor = max + 1;
+
+                    var stringContent = new FormUrlEncodedContent(new[]
+                    {
+                    new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
+                    new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
+                    new KeyValuePair<string, string>("Message",$"{Resources.Messages.Successes.Youritemhasbeenregistered} {Resources.DataDictionary.FactorNumber} : {factor}"),
+                    new KeyValuePair<string, string>("Sender","238")
+                });
+
+                    var postTask = _httpClient.PostAsync("http://panelyab.com/api/send", stringContent);
+                    postTask.Wait();
+
+                    var response = postTask.Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                        var readTask = response.Content.ReadAsAsync<SendOutputModel>();
+                        readTask.Wait();
+
+                        var sendOutputModel = readTask.Result;
+                        if (sendOutputModel.Status == 100)
+                        {
+                            AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
+                            //return RedirectToPage("/Index");
+                            //return RedirectToPage("/CheckOrder");
+                        }
+                    }
+
+                    AddToastSuccess(Resources.Messages.Successes.Yourorderhasbeenregistered);
+                }
+            }
+            catch (Exception)
+            {
+
+                
+            }
+        }
+        return Page();
+    }
 }
