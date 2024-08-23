@@ -136,7 +136,10 @@ public class ProductModel : BasePageModel
                             {
                                 ViewModelUpdate.Price = ViewModel.Discount_Major;
                             }
-
+                            if (checksale.Number + Number < ViewModel.Min_Major)
+                            {
+                                ViewModelUpdate.Price = ViewModel.Discount_Single;
+                            }
                             await _sale.UpdateSale(ViewModelUpdate);
 
 							AddToastSuccess(message: Resources.Messages.Successes.Thedesiredproducthasbeenaddedtothecart);

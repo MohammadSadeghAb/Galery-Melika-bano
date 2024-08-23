@@ -33,6 +33,7 @@
 				<div class="border-bottom border-start p-2 my-2">
 					<p>به نام : @(User.Claims.FirstOrDefault(x => x.Type == "FullName").Value)</p>
 					<p>شماره فاکتور : @(Model.ViewModel.FactorNumber)</p>
+					<p>شناسه تراکنش : @(Model.code)</p>
 					<p>کد رهگیری : @(Model.ViewModel.TrackingCode)</p>
 					<p class="text-center">سفارش شما ثبت و به دست ادمین رسید طی چند روز آینده سفارش شما ارسال می شود</p>
 				</div>
@@ -47,7 +48,7 @@
 	</div>
 </div>
 }
-@if (Model.Status == "NOK" && Model.data == "[]")
+else @* @if (Model.Status == "NOK" && Model.data == "[]") *@
 {
 	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 		<div class="row">
