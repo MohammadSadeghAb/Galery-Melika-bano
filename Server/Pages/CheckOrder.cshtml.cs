@@ -60,6 +60,10 @@ public class CheckOrderModel : BasePageModel
 
     public string code { get; set; }
 
+    public string errors { get; set; }
+
+    public string errorscode { get; set; }
+
     public async Task<IActionResult> OnGetAsync()
     {
         int weight = 0;
@@ -88,15 +92,28 @@ public class CheckOrderModel : BasePageModel
 
         foreach (var item in sales)
         {
-            //var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
-            //product.Weight = product.Weight * item.Number;
-            var product = (await _product.GetProduct(item.ProductId)).Data;
-            var weights = product.Weight;
-            weights = weights * item.Number;
-            weight = weight + weights;
-            int sum = item.Price.Value * item.Number;
-            price = price + sum;
-        }
+			//var product = (await _product.GetProduct(item.ProductId)).Data;
+			//if (item.Number <= product.Number)
+			//{
+			//	var weights = product.Weight;
+			//	weights = weights * item.Number;
+			//	weight = weight + weights;
+			//	int sum = item.Price.Value * item.Number;
+			//	price = price + sum;
+
+			//}
+
+			var product = (await _product.GetProduct(item.ProductId)).Data;
+			if (item.Number <= product.Number)
+			{
+				var weights = product.Weight;
+				weights = weights * item.Number;
+				weight = weight + weights;
+				int sum = item.Price.Value * item.Number;
+				price = price + sum;
+			}
+
+		}
 
         var transportcost = (await _transportCost.GetByWeight(weight));
 
@@ -138,7 +155,7 @@ public class CheckOrderModel : BasePageModel
 
             JObject jo = JObject.Parse(response.Result.Content);
 
-            string errors = jo["errors"].ToString();
+            errors = jo["errors"].ToString();
 
             if (data != "[]")
             {
@@ -151,7 +168,7 @@ public class CheckOrderModel : BasePageModel
             else if (errors != "[]")
             {
 
-                string errorscode = jo["errors"]["code"].ToString();
+                errorscode = jo["errors"]["code"].ToString();
 
                 //return BadRequest($"error code {errorscode}");
 
@@ -165,7 +182,7 @@ public class CheckOrderModel : BasePageModel
             throw new Exception(ex.Message);
         }
 
-        if (Status == "OK" && data != "[]")
+        if (data != "[]")
         {
 
             int max = 0;
