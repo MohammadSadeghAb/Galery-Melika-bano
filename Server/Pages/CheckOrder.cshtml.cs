@@ -185,17 +185,44 @@ public class CheckOrderModel : BasePageModel
         if (data != "[]")
         {
 
+			var checklast = await _context.TotalSales.Where(x => x.UserId == user.Id).ToListAsync();
+
             int max = 0;
+            int tracking = 0;
 
-            Random random = new Random();
-            int tracking = random.Next(100000, 999999);
-
-            var check = _context.TotalSales.ToList();
-
-            if (check.Count != 0)
+            if (checklast.Count != 0)
             {
-                max = _context.TotalSales.Max(x => x.FactorNumber);
+			    var checksale = checklast.MaxBy(x => x.FactorNumber);
+                if (checksale.Accepted == true)
+                {
+                    Random random = new Random();
+                    tracking = random.Next(100000, 999999);
+
+                    var check = _context.TotalSales.ToList();
+                    if (check.Count != 0)
+                    {
+                        max = _context.TotalSales.Max(x => x.FactorNumber);
+                    }
+                }
+
+                if (checksale.Accepted == false)
+                {
+                    max = checksale.FactorNumber - 1;
+                    tracking = int.Parse(checksale.TrackingCode);
+                }
             }
+
+            if (checklast.Count == 0)
+            {
+				Random random = new Random();
+				tracking = random.Next(100000, 999999);
+
+				var check = _context.TotalSales.ToList();
+				if (check.Count != 0)
+				{
+					max = _context.TotalSales.Max(x => x.FactorNumber);
+				}
+			}
 
             bool a = false;
 
