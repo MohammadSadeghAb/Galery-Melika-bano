@@ -21,10 +21,18 @@ namespace ViewModels.Pages.Admin.Products
             Name = nameof(Resources.DataDictionary.IsActive))]
 
         public bool IsActive { get; set; }
-        //**********
+		//**********
 
-        //**********
-        [Display
+		// **********
+		[Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Description))]
+
+		public string? Description { get; set; }
+		// **********
+
+		//**********
+		[Display
             (ResourceType = typeof(Resources.DataDictionary),
             Name = nameof(Resources.DataDictionary.Weight))]
 

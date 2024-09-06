@@ -27,6 +27,12 @@
 		</section-form-field>
 
 		<section-form-field>
+			<label asp-for="ViewModel.Description"></label>
+			<textarea asp-for="ViewModel.Description"></textarea>
+			<span asp-validation-for="ViewModel.Description"></span>
+		</section-form-field>
+
+		<section-form-field>
                 <label asp-for="ViewModel.Weight"></label>
                 <input asp-for="ViewModel.Weight" />
                 <span asp-validation-for="ViewModel.Weight"></span>
