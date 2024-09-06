@@ -35,7 +35,7 @@ public class IndexModel : BasePageModel
         ViewModel = await _context.Users.Where(x => x.Role == Constants.Role.User).ToListAsync();
     }
 
-    public async Task<IActionResult> OnPstAsync()
+    public async Task<IActionResult> OnPostAsync()
     {
         if (FullName == null)
         {
@@ -46,7 +46,7 @@ public class IndexModel : BasePageModel
             return Page();
         }
 
-        ViewModel = await _context.Users.Where(x => x.Role == Constants.Role.User && x.FullName == FullName).ToListAsync();
+        ViewModel = await _context.Users.Where(x => x.FullName.Contains(FullName) & x.Role == Constants.Role.User).ToListAsync();
 
         return Page();
     }
