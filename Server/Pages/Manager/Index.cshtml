@@ -55,20 +55,20 @@
     <div class="col-lg-3 p-2">
         <div class="border rounded-1 p-2 shadow-sm">
             <h4 class="text-start">
-                <i class="bi bi-heart"></i> @(Resources.DataDictionary.Popular) @(Resources.DataDictionary.Product)
+                <i class="bi bi-heart"></i> @* @(Resources.DataDictionary.Popular) *@ محبوب ترین @(Resources.DataDictionary.Product)
             </h4>
-                @if (popularproduct != null)
-                {
-                    <h5 class="text-end">
-                        @(popularproduct.Name_Product)
-                    </h5>
-                }
-                @if (popularproduct == null)
-                {
-                    <h5 class="text-end">
-                        @(Resources.DataDictionary.NotRegistered)
-                    </h5>
-                }
+            @if (popularproduct != null)
+            {
+                <h5 class="text-end">
+                    @(popularproduct.Name_Product)
+                </h5>
+            }
+            @if (popularproduct == null)
+            {
+                <h5 class="text-end">
+                    @(Resources.DataDictionary.NotRegistered)
+                </h5>
+            }
         </div>
     </div>
 
@@ -93,7 +93,7 @@
     <div class="col-lg-3 p-2">
         <div class="border rounded-1 p-2 shadow-sm">
             <h4 class="text-start">
-                <i class="bi bi-calendar"></i> @(Resources.DataDictionary.Sale) @(Resources.DataDictionary.Today)
+                <i class="bi bi-calendar"></i> @(Resources.DataDictionary.Sale) @* @(Resources.DataDictionary.Today) *@ امروز
             </h4>
             <h5 class="text-end">@(salestoday)</h5>
         </div>
@@ -133,6 +133,28 @@
             </h4>
             <h5 class="text-end">@(delivery)</h5>
         </div>
+    </div>
+
+
+    <div class="col-12 border rounded-1 mt-3 p-2">
+        <form method="post">
+            <div class="row">
+                <div class="col-12 col-md-5">
+                    <input asp-for="From" style="text-align:right" placeholder="از" value="" type="number" class="form-control mt-2" />
+                </div>
+
+                <div class="col-12 col-md-5">
+                    <input asp-for="Until" style="text-align:right" placeholder="تا" value="" type="number" class="form-control mt-2" />
+                </div>
+
+                <div class="col-12 col-md-2">
+                    <button type="submit" asp-route-status="Accepted" class="w-100 mt-2 btn btn-outline-danger">@(Resources.DataDictionary.Accepted)</button>
+                    <button type="submit" asp-route-status="Packing" class="w-100 mt-2 btn btn-outline-danger">@(Resources.DataDictionary.Packing)</button>
+                    <button type="submit" asp-route-status="Posted" class="w-100 mt-2 btn btn-outline-danger">@(Resources.DataDictionary.Posted)</button>
+                    <button type="submit" asp-route-status="Delivery" class="w-100 mt-2 btn btn-outline-danger">@(Resources.DataDictionary.Delivery)</button>
+                </div>
+            </div>
+        </form>
     </div>
 
 </div>
