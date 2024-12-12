@@ -161,11 +161,27 @@
                                     <p class="text-muted">@(Resources.DataDictionary.Dimensions)</p>
                                     @if (Model.ViewModel.Dimensions == null)
                                     {
-                                        <h6>@(Resources.DataDictionary.NotRegistered)</h6>
+                                        <h6> @* @(Resources.DataDictionary.NotRegistered) *@ ثبت نشده</h6>
                                     }
                                     else
                                     {
                                         <h6>@(Model.ViewModel.Dimensions)</h6>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="mt-2 p-1 border border-1 rounded-2 bg-light">
+                                <div class="p-1">
+                                    <p class="text-muted">@(Resources.DataDictionary.Description)</p>
+                                    @if (Model.ViewModel.Description == null)
+                                    {
+                                        <h6>@* @(Resources.DataDictionary.NotRegistered) *@ ثبت نشده</h6>
+                                    }
+                                    else
+                                    {
+                                        <h6>@(Model.ViewModel.Description)</h6>
                                     }
                                 </div>
                             </div>
