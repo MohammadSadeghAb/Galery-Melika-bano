@@ -1,8 +1,11 @@
 using Application.ProductApp;
+using Domain.ProductAgg;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Parbad.Internal;
 using Persistence;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,13 +29,33 @@ public class IndexModel : BasePageModel
     {
         _context = context;
         _application = application;
-        ViewModel = new List<DetailsViewModel>();
+        ViewModel = new List<Product>();
     }
 
-    public IList<DetailsViewModel> ViewModel { get; set; }
+    public IList<Product> ViewModel { get; set; }
+
+    [BindProperty]
+    public string Name { get; set; }
 
     public async Task OnGetAsync()
     {
-        ViewModel = (await _application.GetAllProduct()).Data;
+        ViewModel = await _context.Products.OrderBy(x => x.Name_Product).ToListAsync();
     }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (Name == null)
+        {
+            AddToastError(message: Resources.Messages.Errors.Pleaseenterthefactornumber);
+
+            ViewModel = await _context.Products.OrderBy(x => x.Name_Product).ToListAsync();
+
+            return Page();
+        }
+
+        ViewModel = await _context.Products.Where(x => x.Name_Product.Contains(Name)).ToListAsync();
+
+        return Page();
+    }
+
 }
