@@ -23,7 +23,7 @@ namespace Persistence.Repositories
 
         public async Task<IList<Product>> GetAllAsync()
         {
-            return await _context.Products.OrderByDescending(x => x.InsertDateTime).ToListAsync();
+            return await _context.Products.OrderBy(x => x.Name_Product).ToListAsync();
         }
 
 		public async Task<IList<Product>> Getnewest()
