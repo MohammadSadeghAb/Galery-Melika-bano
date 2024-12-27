@@ -86,6 +86,11 @@
                                 <i class="d-flex fs-4 bi-bag"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Products)</span>
                             </a>
                         </li>
+                        <li class="nav-item w-100">
+                            <a asp-page="/Manager/Products/ListofUnavailable" class="d-flex align-items-center text-white nav-link px-0 my-2">
+                                <i class="d-flex fs-4 bi-bag-x"></i> <span class="ms-2 d-none d-sm-inline">@(Resources.DataDictionary.Products)ی @(Resources.DataDictionary.Unavailable)</span>
+                            </a>
+                        </li>
                     </ul>
                     <hr>
                 </div>

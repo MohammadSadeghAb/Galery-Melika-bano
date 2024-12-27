@@ -1,0 +1,127 @@
+﻿@page
+@model Server.Pages.Manager.Products.ListofUnavailableModel
+@{
+    var pageTitle = $"{Resources.PageTitles.AdminSettings} - {Resources.DataDictionary.Products} - {Resources.DataDictionary.Unavailable}";
+
+    ViewData["PageTitle"] = pageTitle;
+
+    Layout = "Layouts/Manager/_Layout";
+}
+
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input asp-for="Name" value="" class="form-control" placeholder="@(Resources.DataDictionary.ProductName)" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-danger">@(Resources.DataDictionary.Search)</button>
+        </div>
+    </div>
+</form>
+
+<br />
+
+<section-page-header>
+    @(pageTitle)
+</section-page-header>
+
+<section-page-body>
+
+    <section-page-actions>
+        <a asp-page="Create">
+            @(Html.DtatGetLinkCaptionForCreate())
+        </a>
+
+        <a asp-page="CreatePic">
+            @(Html.DtatGetIconCreate()) @(Resources.DataDictionary.Picture)
+        </a>
+
+        <a asp-page="DeletePic">
+            @(Html.DtatGetIconDelete()) @(Resources.DataDictionary.Picture)
+        </a>
+    </section-page-actions>
+
+    <section-table>
+        <table>
+            <caption>
+                @(pageTitle)
+            </caption>
+
+            <thead>
+                <tr>
+                    <th>
+                        @(Resources.DataDictionary.RowNumber)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Action)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.ProductName)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Category)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.Number)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.DiscountSingle)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.DiscountMajor)
+                    </th>
+                    <th>
+                        @(Resources.DataDictionary.InsertDateTime)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                @for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+                {
+                    var item = Model.ViewModel[index];
+
+                    var category = Model._context.Categories.FirstOrDefault(x => x.Id == item.CategoryParent_Id);
+
+                    <tr>
+                        @(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+                        <table-actions>
+                            <a asp-page="Details" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDetails())
+                            </a>
+                            <a asp-page="Update" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconUpdate())
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@(item.Id)">
+                                @(Html.DtatGetIconDelete())
+                            </a>
+                        </table-actions>
+
+                        <td>
+                            @(item.Name_Product)
+                        </td>
+
+                        <td>
+                            @(category.Name)
+                        </td>
+
+                        <td>
+                            @(item.Number)
+                        </td>
+
+                        <td>
+                            @(item.Discount_Single)
+                        </td>
+
+                        <td>
+                            @(item.Discount_Major)
+                        </td>
+
+                        @(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section-table>
+</section-page-body>
