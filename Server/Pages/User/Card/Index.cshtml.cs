@@ -1,8 +1,11 @@
 ﻿using Application.ProductApp;
 using Application.SaleApp;
 using Application.TransportCostApp;
+using Domain.CategoryAgg;
+using Domain.ProductAgg;
 using Domain.SaleAgg;
 using Domain.TotalSaleAgg;
+using Domain.Users;
 using Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -10,31 +13,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using Parbad;
-using Parbad.Gateway.ZarinPal;
 using Persistence;
-using Resources;
-using SmsPanel.Models;
+using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Policy;
-using System.Text;
 using System.Threading.Tasks;
 using ViewModels.Pages.Admin.Sales;
-using ZarinPal.Class;
 using zarinpalasp.netcorerest.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
-using RestSharp;
-using Server.Pages.Admin.Products;
-using Domain.ProductAgg;
 
 namespace Server.Pages.User.Card;
 
@@ -76,7 +63,7 @@ public class IndexModel : BasePageModel
         ViewModelSale = new();
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        
+
     }
 
     public string merchant { get; set; }
@@ -101,7 +88,7 @@ public class IndexModel : BasePageModel
     public int? pricetotal { get; set; } = 0;
 
     public int weighttotal { get; set; } = 0;
-    
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id.HasValue == false)
@@ -138,30 +125,44 @@ public class IndexModel : BasePageModel
 
         if (check == "add")
         {
+            var category = await _context.Categories.FirstOrDefaultAsync(x => x.Id == ViewModelProduct.CategoryParent_Id);
+
+            if (category.Name == Resources.DataDictionary.Free)
+            {
+                var checksalefree = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == UserId && x.ProductId == ViewModelProduct.Id);
+                var checktotalsalefree = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == UserId && x.ProductId == ViewModelProduct.Id);
+
+                if (checksalefree != null && checksalefree.Number >= 5 && checktotalsalefree != null && checktotalsalefree.Number >= 5)
+                {
+                    AddToastError(message: Resources.Messages.Errors.Thisnumberofproductsisnotavailable);
+                    return Page();
+                }
+            }
+
             ViewModelSale.Number = ViewModelSale.Number + 1;
             if (ViewModelSale.Number >= ViewModelProduct.Min_Major)
             {
                 ViewModelSale.Price = ViewModelProduct.Discount_Major;
             }
-			if (ViewModelSale.Number < ViewModelProduct.Min_Major)
-			{
-				ViewModelSale.Price = ViewModelProduct.Discount_Single;
-			}
-			await _application.UpdateSale(ViewModelSale);
+            if (ViewModelSale.Number < ViewModelProduct.Min_Major)
+            {
+                ViewModelSale.Price = ViewModelProduct.Discount_Single;
+            }
+            await _application.UpdateSale(ViewModelSale);
         }
 
         if (check == "low")
         {
             ViewModelSale.Number = ViewModelSale.Number - 1;
-			if (ViewModelSale.Number >= ViewModelProduct.Min_Major)
-			{
-				ViewModelSale.Price = ViewModelProduct.Discount_Major;
-			}
-			if (ViewModelSale.Number < ViewModelProduct.Min_Major)
-			{
-				ViewModelSale.Price = ViewModelProduct.Discount_Single;
-			}
-			await _application.UpdateSale(ViewModelSale);
+            if (ViewModelSale.Number >= ViewModelProduct.Min_Major)
+            {
+                ViewModelSale.Price = ViewModelProduct.Discount_Major;
+            }
+            if (ViewModelSale.Number < ViewModelProduct.Min_Major)
+            {
+                ViewModelSale.Price = ViewModelProduct.Discount_Single;
+            }
+            await _application.UpdateSale(ViewModelSale);
         }
 
         return Page();

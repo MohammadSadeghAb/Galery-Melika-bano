@@ -747,4 +747,7 @@
   <data name="Decline" xml:space="preserve">
     <value>تنزل</value>
   </data>
+  <data name="Free" xml:space="preserve">
+    <value>رایگان</value>
+  </data>
 </root>

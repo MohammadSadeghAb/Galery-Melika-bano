@@ -116,6 +116,18 @@ public class ProductModel : BasePageModel
                     Guid userid = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
 
                     var checksale = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == userid && x.ProductId == id.Value);
+                    
+                    if (category.Name == Resources.DataDictionary.Free)
+                    {
+                        var checksalefree = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == userid && x.ProductId == id.Value);
+                        var checktotalsalefree = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == userid && x.ProductId == id.Value);
+
+                        if (checksalefree != null && checksalefree.Number >= 5 && checktotalsalefree != null && checktotalsalefree.Number >= 5)
+                        {
+                            AddToastError(message: Resources.Messages.Errors.Thisnumberofproductsisnotavailable);
+                            return Page();
+                        }
+                    }
 
                     if (checksale != null)
                     {
