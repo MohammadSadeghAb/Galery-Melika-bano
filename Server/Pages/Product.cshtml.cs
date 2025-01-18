@@ -122,7 +122,10 @@ public class ProductModel : BasePageModel
                         var checksalefree = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == userid && x.ProductId == id.Value);
                         var checktotalsalefree = await _context.Sales.FirstOrDefaultAsync(x => x.UserId == userid && x.ProductId == id.Value);
 
-                        if (checksalefree != null && checksalefree.Number >= 5 && checktotalsalefree != null && checktotalsalefree.Number >= 5)
+                        int checksalenumber = Number + checksalefree.Number;
+                        int checktotalsalenumber = Number + checktotalsalefree.Number;
+
+                        if (checksalefree != null && checksalenumber >= 5 && checktotalsalefree != null && checktotalsalenumber >= 5)
                         {
                             AddToastError(message: Resources.Messages.Errors.Thisnumberofproductsisnotavailable);
                             return Page();
