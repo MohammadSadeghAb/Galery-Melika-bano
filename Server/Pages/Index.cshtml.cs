@@ -46,7 +46,7 @@ namespace Server.Pages
 		public async Task<IActionResult> OnGetAsync()
 		{
 
-			ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).ToListAsync();
+			//ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).ToListAsync();
 
 			ViewModelCategory = (await _category.GetIndexCategories()).Data;
 
