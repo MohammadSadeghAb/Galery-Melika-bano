@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using Persistence;
 using RestSharp;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -61,6 +62,7 @@ public class IndexModel : BasePageModel
         _webHostEnvironment = webHostEnvironment;
         ViewModel = new();
         ViewModelSale = new();
+        Sales = new();
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -79,6 +81,8 @@ public class IndexModel : BasePageModel
     public Guid UserId { get; set; }
 
     public TotalSale ViewModel { get; set; }
+
+    public List<Sale> Sales { get; set; }
 
     [BindProperty]
     public UpdateViewMode ViewModelSale { get; set; }
@@ -100,6 +104,8 @@ public class IndexModel : BasePageModel
         }
 
         UserId = id.Value;
+
+        Sales = await _context.Sales.Where(x => x.UserId == UserId).ToListAsync();
 
         return Page();
     }
@@ -406,5 +412,21 @@ public class IndexModel : BasePageModel
         }
 
         return RedirectToPage("/CheckOrder");
+    }
+
+    public async Task<IActionResult> OnPostDeleteAsync()
+    {
+        UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+
+        var sales = await _context.Sales.Where(x => x.UserId == UserId).ToListAsync();
+
+        foreach (var item in sales)
+        {
+            _context.Sales.Remove(item);
+        }
+
+        await _context.SaveChangesAsync();
+
+        return Page();
     }
 }

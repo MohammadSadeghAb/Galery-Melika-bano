@@ -7,7 +7,7 @@
 
     Layout = "Layouts/Ltr/_Layout";
 
-    var Sales = Model._context.Sales.Where(x => x.UserId == Model.UserId).ToList();
+    // var Sales = Model._context.Sales.Where(x => x.UserId == Model.UserId).ToList();
 }
 
 <br />
@@ -18,16 +18,16 @@
 <div class="container">
     <div class="row mt-2">
         <div class="col-md-8 p-2">
-            @if (Sales.Count == 0)
+            @if (Model.Sales.Count == 0)
             {
                 <div class="border rounded-1 p-5 text-center">
                     <h1>سبد خالیه!</h1>
                 </div>
             }
-            @if (Sales.Count != 0)
+            @if (Model.Sales.Count != 0)
             {
                 <div class="border rounded-1 p-2">
-                    @foreach (var item in Sales)
+                    @foreach (var item in Model.Sales)
                     {
                         Model.ViewModelSale.Number = item.Number;
 
@@ -124,7 +124,7 @@
             }
         </div>
         <div class="col-md-4 p-2">
-            @if (Sales.Count != 0)
+            @if (Model.Sales.Count != 0)
             {
                 var transportcost = (await Model._transportCost.GetByWeight(Model.weighttotal)).Data;
 
@@ -141,6 +141,31 @@
 
                     <form method="post" asp-page-handler="Create">
                         <button type="submit" class="w-100 btn btn-danger">@(Resources.DataDictionary.Order)</button>
+                    </form>
+                    <form method="post" asp-page-handler="Delete">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="mt-2 w-100 btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        @* <h5 class="modal-title" id="exampleModalLabel">سیبت</h5> *@
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        آیا از خالی کردن سبد خرید خود مطمئن هستید؟
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="w-25 btn btn-outline-danger" data-bs-dismiss="modal">@(Resources.ButtonCaptions.Cancel)</button>
+                                        <button type="submit" class="w-25 btn btn-danger">@(Resources.ButtonCaptions.Delete)</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             }
