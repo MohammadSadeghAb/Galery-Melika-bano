@@ -1,5 +1,6 @@
 using Application.ProductApp;
 using Application.TotalSaleApp;
+using Application.TransportCostApp;
 using Application.UserApp;
 using Domain.ProductAgg;
 using Domain.TotalSaleAgg;
@@ -26,14 +27,18 @@ public class PrintModel : BasePageModel
 
     private readonly IUserApplication _userApplication;
 
+    private readonly ITransportCostApplication _costApplication;
+
     public readonly DatabaseContext _context;
 
     public PrintModel(ITotalSaleApplication totalSaleApplication,
+                      ITransportCostApplication costApplication,
                       IUserApplication userApplication,
                       DatabaseContext context)
     {
         _context = context;
         _userApplication = userApplication;
+        _costApplication = costApplication;
         _totalSaleApplication = totalSaleApplication;
         ViewModelUser = new();
         ViewModelTotalSale = new ();
@@ -48,6 +53,10 @@ public class PrintModel : BasePageModel
 
     public DetailsViewModel AdminUser { get; set; }
 
+    public int FactorNumber { get; set; }
+
+    public int ShippingCost { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id.HasValue == false)
@@ -59,12 +68,24 @@ public class PrintModel : BasePageModel
 
         ViewModelTotalSale = (await _totalSaleApplication.GetTotalSale(id.Value)).Data;
 
+        FactorNumber = ViewModelTotalSale.FactorNumber;
+
         TotalSales = await _context.TotalSales.Where(x => x.FactorNumber == ViewModelTotalSale.FactorNumber).ToListAsync();
 
         ViewModelUser = (await _userApplication.GetUser(ViewModelTotalSale.UserId)).Data;
 
         Guid iduser = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
         AdminUser = (await _userApplication.GetUser(iduser)).Data;
+
+        int weight = 0;
+
+        foreach (var item in TotalSales)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.Products);
+            weight = weight + product.Weight;
+        }
+
+        ShippingCost = (_costApplication.GetByWeight(weight)).Result.Data.Price;
 
         if (ViewModelTotalSale == null)
         {
