@@ -83,7 +83,7 @@ public class PrintModel : BasePageModel
         foreach (var item in TotalSales)
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.Products);
-            int sum = product.Weight * product.Number;
+            int sum = product.Weight * item.Number.Value;
             weight = weight + sum;
         }
 
