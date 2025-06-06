@@ -270,7 +270,7 @@ public class CheckOrderModel : BasePageModel
                     {
                     new KeyValuePair<string, string>("Token","7TEEwvtO5H4AYUgnPttu6X9m6i0ix02V"),
                     new KeyValuePair<string, string>("To",$"{user.CellPhoneNumber}"),
-                    new KeyValuePair<string, string>("Message",$"{Resources.Messages.Successes.Youritemhasbeenregistered} {Resources.DataDictionary.FactorNumber} : {factor}"),
+                    new KeyValuePair<string, string>("Message",$"{Resources.Messages.Successes.Youritemhasbeenregistered} {Resources.DataDictionary.FactorNumber} : {factor}" + "\n" + "لغو 11"),
                     new KeyValuePair<string, string>("Sender","238")
                 });
 
