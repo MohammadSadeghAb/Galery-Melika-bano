@@ -133,6 +133,24 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verify Code Is Sent.
+        /// </summary>
+        public static string VerifyCodeIsSent {
+            get {
+                return ResourceManager.GetString("VerifyCodeIsSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verify Code Sent.
+        /// </summary>
+        public static string VerifyCodeSent {
+            get {
+                return ResourceManager.GetString("VerifyCodeSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome {0}!.
         /// </summary>
         public static string Welcome {

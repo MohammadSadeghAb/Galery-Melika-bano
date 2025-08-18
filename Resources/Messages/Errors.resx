@@ -165,8 +165,14 @@
   <data name="Pleaseenterthefactornumber" xml:space="preserve">
     <value>Please enter the factor number</value>
   </data>
+  <data name="PleaseInterTheCellPhoneNumber" xml:space="preserve">
+    <value>Please Inter The CellPhoneNumber</value>
+  </data>
   <data name="Pleaseregister/loginfirst" xml:space="preserve">
     <value>Please register/login first</value>
+  </data>
+  <data name="PleaseRegisterFirst" xml:space="preserve">
+    <value>Please Register First</value>
   </data>
   <data name="Thedesireditemwasnotfound" xml:space="preserve">
     <value>The desired item was not found</value>

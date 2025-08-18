@@ -387,9 +387,6 @@
   <data name="SiteAuthor" xml:space="preserve">
     <value />
   </data>
-  <data name="Sites" xml:space="preserve">
-    <value>سایت‌ها</value>
-  </data>
   <data name="SiteTitle" xml:space="preserve">
     <value>متخصصین ایرانی</value>
   </data>
@@ -428,9 +425,6 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>کاربران</value>
-  </data>
-  <data name="VerificationKeyExpireDateTime" xml:space="preserve">
-    <value>زمان انقضا کد تایید پست الکترونیکی</value>
   </data>
   <data name="Verified" xml:space="preserve">
     <value>تایید شده</value>
@@ -480,11 +474,11 @@
   <data name="Comment" xml:space="preserve">
     <value>نظر</value>
   </data>
-  <data name="Comments" xml:space="preserve">
-    <value>نظرات</value>
-  </data>
   <data name="Score" xml:space="preserve">
     <value>امتیاز</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>نظرات</value>
   </data>
   <data name="Review" xml:space="preserve">
     <value>نقد و بررسی</value>
@@ -543,15 +537,6 @@
   <data name="Color" xml:space="preserve">
     <value>رنگ</value>
   </data>
-  <data name="Number" xml:space="preserve">
-    <value>تعداد</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>قیمت</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>جنس</value>
-  </data>
   <data name="Color2" xml:space="preserve">
     <value>رنگ دو</value>
   </data>
@@ -569,6 +554,15 @@
   </data>
   <data name="DiscountSingle" xml:space="preserve">
     <value>قیمت تکی</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>جنس</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>کالا</value>
@@ -749,5 +743,20 @@
   </data>
   <data name="Free" xml:space="preserve">
     <value>رایگان</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>کد تایید</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>ارسال</value>
+  </data>
+  <data name="Sites" xml:space="preserve">
+    <value>سایت‌ها</value>
+  </data>
+  <data name="VerificationKeyExpireDateTime" xml:space="preserve">
+    <value>زمان انقضا کد تایید پست الکترونیکی</value>
+  </data>
+  <data name="Correction" xml:space="preserve">
+    <value>اصلاح</value>
   </data>
 </root>

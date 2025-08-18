@@ -205,11 +205,29 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Inter The CellPhoneNumber.
+        /// </summary>
+        public static string PleaseInterTheCellPhoneNumber {
+            get {
+                return ResourceManager.GetString("PleaseInterTheCellPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please register/login first.
         /// </summary>
         public static string Pleaseregister_loginfirst {
             get {
                 return ResourceManager.GetString("Pleaseregister/loginfirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Register First.
+        /// </summary>
+        public static string PleaseRegisterFirst {
+            get {
+                return ResourceManager.GetString("PleaseRegisterFirst", resourceCulture);
             }
         }
         

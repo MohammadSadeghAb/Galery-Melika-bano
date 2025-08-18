@@ -1,107 +1,71 @@
-﻿<header class="fixed-top zindex-fixed bg-white p-3 shadow-sm">
-    @*<nav class="navbar navbar-expand-lg bg-white shadow-sm">*@
-    @*<div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" asp-page="/Index"><img width="40" height="40" src="~/images/Logo.jpg" /></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ms-auto">
-    <li class="nav-item">
-    <a class="nav-link active" asp-page="/Index">@(Resources.PageTitles.Index)</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" asp-page="/Products">@(Resources.DataDictionary.Product)</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" asp-page="/Category">@(Resources.DataDictionary.Category)</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" asp-page="/About">@(Resources.PageTitles.About)</a>
-    </li>
-    </ul>
+﻿<div class="container-fluid">
+    <header class="fixed-top zindex-fixed bg-white p-3 shadow-sm">
+        <div class="row">
+            <div class="col-2 col-md-1" style="text-align : center;">
+                <a class="text-direction-none text-dark" style="cursor : pointer; width : 80px;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list p-2 mt-3 rounded-circle menu" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </a>
 
-    <partial name="PartialViews/_LoginStatus" />
-
-    <form class="d-flex">
-    <button class="d-flex btn btn-outline-danger" type="submit"><i class="bi bi-search"></i> @(Resources.DataDictionary.Search)</button>
-    <input class="d-flex form-control me-1 ms-1" type="search" placeholder="@(Resources.DataDictionary.Search)..." aria-label="Search">
-    </form>
-    </div>
-    </div>*@
-    <div class="row">
-        <div class="col-2 col-md-1" style="text-align : center;">
-            <a class="text-direction-none text-dark" style="cursor : pointer; width : 80px;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list p-2 mt-3 rounded-circle menu" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                </svg>
-            </a>
-
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasRightLabel"><img width="65" height="65" src="~/images/Logo.jpg" /></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav text-end">
-                        <li>
-                            <a asp-page="/Index" class="text-dark text-end btn btn-outline-light w-100 m-1">
-                                <i class="bi bi-house"></i> @(Resources.PageTitles.Index)
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-page="/Products" class="text-dark text-end btn btn-outline-light w-100 m-1">
-                                <i class="bi bi-bag"></i> @(Resources.DataDictionary.Products)
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-page="/Category" class="text-dark text-end btn btn-outline-light w-100 m-1">
-                                <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
-                            </a>
-                            @*<a class="text-dark text-end btn btn-outline-light w-100 m-1" data-bs-toggle="collapse" href="#collapseExample" >
-                                <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
-                            </a>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                                </div>
-                            </div>*@
-                        </li>
-                        <li>
-                            <a asp-page="/About" class="text-dark text-end btn btn-outline-light w-100 m-1">
-                                <i class="bi bi-telephone"></i> @(Resources.PageTitles.About)
-                            </a>
-                        </li>
-                    </ul>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel"><img width="65" height="65" src="~/images/Logo.jpg" /></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav text-end">
+                            <li>
+                                <a asp-page="/Index" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                    <i class="bi bi-house"></i> @(Resources.PageTitles.Index)
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-page="/Products" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                    <i class="bi bi-bag"></i> @(Resources.DataDictionary.Products)
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-page="/Category" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                    <i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-page="/About" class="text-dark text-end btn btn-outline-light w-100 m-1">
+                                    <i class="bi bi-telephone"></i> @(Resources.PageTitles.About)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-2 col-md-1">
-            <img src="~/images/Logo.jpg" width="75" height="75" />
-        </div>
-        <div class="col-3 col-md-6 col-lg-7">
-        </div>
-        <div class="col-5 col-md-4 col-lg-3 p-3">
-            <partial name="PartialViews/_LoginStatus" />
-        </div>
+            <div class="col-2 col-md-1">
+                <img src="~/images/Logo.jpg" width="75" height="75" />
+            </div>
+            <div class="col-3 col-md-6 col-lg-7">
+            </div>
+            <div class="col-5 col-md-4 col-lg-3 p-3">
+                <partial name="PartialViews/_LoginStatus" />
+            </div>
 
-        @if (ViewData["PageTitle"] == $"{Resources.PageTitles.Melikabano_Products}")
-        {
-                <div class="col-4 col-sm-3 col-md-2 col-xl-1">
-                    <img src="~/images/Logo2.png" width="120" height="40" />
+            @if (ViewData["PageTitle"] == $"{Resources.PageTitles.Melikabano_Products}")
+            {
+                <div class="d-none d-sm-block col-sm-3 col-md-2 col-xl-1">
+                    <img src="~/images/Logo2.png" class="img-fluid" style="max-width : 100%" />
                 </div>
-                <div class="col-8 col-sm-9 col-md-10 col-xl-11">
+                <div class="col-12 col-sm-9 col-md-10 col-xl-11">
                     <partial name="PartialViews/_SearchProducts" />
                 </div>
-        }
-        @if (ViewData["PageTitle"] == $"{Resources.PageTitles.Melikabano_Index}")
-        {
-                <div class="col-4 col-sm-3 col-md-2 col-xl-1">
+            }
+            @if (ViewData["PageTitle"] == $"{Resources.PageTitles.Melikabano_Index}")
+            {
+                <div class="d-none d-sm-block col-sm-3 col-md-2 col-xl-1">
                     <img src="~/images/Logo2.png" width="120" height="40" />
                 </div>
-                <div class="col-8 col-sm-9 col-md-10 col-xl-11">
+                <div class="col-12 col-sm-9 col-md-10 col-xl-11">
                     <partial name="PartialViews/_SearchIndex" />
                 </div>
-        }
-    </div>
-</header>
+            }
+        </div>
+    </header>
+</div>

@@ -20,7 +20,7 @@
 <br />
 <br />
 
-<div class="container">
+@* <div class="container"> *@
 
     <h4 class="text-right text-dark"><i class="bi bi-grid"></i> @(Resources.DataDictionary.Category)</h4>
     <section class="scrollport">
@@ -139,8 +139,6 @@
             @foreach (var item in Model.ViewModelProductNewset)
             {
                 var Pic = Model._context.ProductsPic.FirstOrDefault(x => x.Product_Id == item.Id);
-                @* if (p < 8)
-        { *@
                 if (Pic == null)
                 {
                     decimal price = decimal.Parse(item.Discount_Single.ToString(), System.Globalization.NumberStyles.Currency);
@@ -193,12 +191,10 @@
                         </a>
                     </div>
                 }
-                @* }
-        p = p + 1;  *@
             }
         </div>
     }
 
     <br />
 
-</div>
+@* </div> *@

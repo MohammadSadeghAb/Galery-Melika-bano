@@ -141,6 +141,12 @@
   <data name="Verified" xml:space="preserve">
     <value>{0} successfully verified.</value>
   </data>
+  <data name="VerifyCodeIsSent" xml:space="preserve">
+    <value>Verify Code Is Sent</value>
+  </data>
+  <data name="VerifyCodeSent" xml:space="preserve">
+    <value>Verify Code Sent</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome {0}!</value>
   </data>

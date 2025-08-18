@@ -165,8 +165,14 @@
   <data name="Pleaseenterthefactornumber" xml:space="preserve">
     <value>لطفا شماره فاکتور را وارد کنید</value>
   </data>
+  <data name="PleaseInterTheCellPhoneNumber" xml:space="preserve">
+    <value>لطفا شماره تلفن همراه خود را وارد کنید</value>
+  </data>
   <data name="Pleaseregister/loginfirst" xml:space="preserve">
     <value> لطفا اول ثبت نام/ورود کنید</value>
+  </data>
+  <data name="PleaseRegisterFirst" xml:space="preserve">
+    <value>لطفا اول ثبت نام کنید</value>
   </data>
   <data name="Thedesireditemwasnotfound" xml:space="preserve">
     <value>کالای مورد نظر یافت نشد</value>
