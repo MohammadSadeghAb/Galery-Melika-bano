@@ -19,14 +19,16 @@
 
             <partial name="PartialViews/_DisplayPageMessages" />
 
-            <section-form-field>
+            <input asp-for="ProductId" hidden />
+
+            @* <section-form-field>
                 <label asp-for="productid"></label>
                 <select class="form-select" asp-for="productid"
                         asp-items="@(new SelectList(Model.products,
 						nameof(ViewModels.Shared.KeyValueViewModel.Id),
 						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
                 </select>
-            </section-form-field>
+            </section-form-field> *@
         </fieldset>
 
         <section-form-buttons>

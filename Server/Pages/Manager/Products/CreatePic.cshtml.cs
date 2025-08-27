@@ -34,14 +34,14 @@ public class CreatePicModel : BasePageModel
         _product = product;
         _application = application;
         _webHostEnvironment = webHostEnvironment;
-        products = new();
+        //products = new();
         ViewModel = new();
     }
 
     [BindProperty]
     public CommonViewModel ViewModel { get; set; }
 
-    public List<KeyValueViewModel> products { get; set; }
+    //public List<KeyValueViewModel> products { get; set; }
 
     [BindProperty]
     [DataType(DataType.Upload)]
@@ -63,17 +63,19 @@ public class CreatePicModel : BasePageModel
     [DataType(DataType.Upload)]
     public IFormFile? UplodPic5 { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task OnGetAsync(Guid id)
     {
-        var Products = (await _product.GetAllProduct()).Data;
-        foreach (var item in Products)
-        {
-            products.Add(new KeyValueViewModel()
-            {
-                Id = item.Id,
-                Name = item.Name_Product,
-            });
-        }
+        //var Products = (await _product.GetAllProduct()).Data;
+        //foreach (var item in Products)
+        //{
+        //    products.Add(new KeyValueViewModel()
+        //    {
+        //        Id = item.Id,
+        //        Name = item.Name_Product,
+        //    });
+        //}
+
+        ViewModel.Product_Id = id;
     }
 
     public async Task<IActionResult> OnPostAsync()

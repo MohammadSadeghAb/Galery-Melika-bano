@@ -18,6 +18,8 @@
             </section-form-header>
 
             <partial name="PartialViews/_DisplayPageMessages" />
+            
+            <input asp-for="ViewModel.Product_Id" hidden />
 
             <section-form-field>
                 <label asp-for="ViewModel.PicAddress1"></label>
@@ -49,7 +51,7 @@
                 <span asp-validation-for="ViewModel.PicAddress5"></span>
             </section-form-field>
 
-            <section-form-field>
+            @* <section-form-field>
                 <label asp-for="ViewModel.Product_Id"></label>
                 <select class="form-select" asp-for="ViewModel.Product_Id"
                         asp-items="@(new SelectList(Model.products,
@@ -57,7 +59,7 @@
 						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
                 </select>
                 <span asp-validation-for="ViewModel.Product_Id"></span>
-            </section-form-field>
+            </section-form-field> *@
         </fieldset>
 
         <section-form-buttons>
