@@ -1,12 +1,15 @@
 ﻿using Domain.Users;
 using Framework.OperationResult;
+using ViewModels.Pages.Account;
 using ViewModels.Pages.Admin.Users;
 
 namespace Application.UserApp
 {
 	public interface IUserApplication
 	{
-		Task<OperationResult> AddUser(CreateViewModel user);
+		Task<User> AddUserAndRetuenId(UserRegistrationViewModel model);
+
+        Task<OperationResult> AddUser(CreateViewModel user);
 		Task<OperationResult> DeleteUser(Guid Id);
 		Task<OperationResult> UpdateUser(UpdateViewModel user);
 		Task<OperationResult> UpgradeToSpecial(UpdateViewModel user);

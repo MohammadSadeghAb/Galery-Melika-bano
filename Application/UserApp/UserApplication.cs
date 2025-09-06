@@ -3,6 +3,7 @@ using Framework.OperationResult;
 using Framework.Password;
 using Resources;
 using Resources.Messages;
+using ViewModels.Pages.Account;
 using ViewModels.Pages.Admin.Users;
 
 namespace Application.UserApp
@@ -17,6 +18,32 @@ namespace Application.UserApp
 			_repository = repository;
 			_hasher = hasher;
 		}
+
+		public async Task<User> AddUserAndRetuenId(UserRegistrationViewModel model)
+		{
+            var fixedAddress = Framework.Utility.FixText(model.Address);
+
+			var _user = new Domain.Users.User()
+			{
+				Role = "User",
+				IsActive = true,
+				Gender = model.Gender,
+				Address = fixedAddress,
+				CityAddress = model.City,
+				FullName = model.FullName,
+				Password = "",
+				Username = "",
+				PostalCode = model.PostalCode,
+				ProvinceAddress = model.Province,
+				CellPhoneNumber = model.CellPhoneNumber,
+				NationalCode = model.NationalCode,
+			};
+
+            await _repository.CreateAsync(_user);
+            await _repository.SaveChangesAsync();
+
+			return _user;
+        }
 
 		public async Task<OperationResult> AddUser(CreateViewModel user)
 		{
@@ -52,14 +79,11 @@ namespace Application.UserApp
 			var _user = new Domain.Users.User()
 			{
 				Password = hashedPassword,
-				//IsEmailAddressVerified = true,
 				Address = fixedAddress,
 				CityAddress = user.CityAddress,
 				PostalCode = user.PostalCode,
 				ProvinceAddress = user.ProvinceAddress,
-				//FatherName = user.FatherName,
 				Gender = user.Gender,
-				//EmailAddress = user.EmailAddress,
 				Ordering = user.Ordering,
 				IsActive = user.IsActive,
 				AdminDescription = fixedDescription,

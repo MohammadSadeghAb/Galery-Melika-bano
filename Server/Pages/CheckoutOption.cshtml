@@ -1,0 +1,193 @@
+﻿@page
+@model Server.Pages.CheckoutOptionModel
+@{
+    var pageTitle =
+        Resources.PageTitles.CheckoutOptions;
+
+    ViewData["PageTitle"] = pageTitle;
+
+    if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+    {
+        Layout =
+            "Layouts/Rtl/_Security";
+    }
+    else
+    {
+        Layout =
+            "Layouts/Ltr/_Security";
+    }
+}
+
+@if (Model.Status == "formquestion")
+{
+
+    <form method="post">
+
+        <div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+            <div class="row">
+                <div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+                    <fieldset>
+                        <legend>
+                            @(pageTitle)
+                        </legend>
+
+                        <hr />
+
+                        <partial name="PartialViews/_DisplayPageMessages" />
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="radio" value="true" asp-for="GuestCheckout" class="form-check-input" />
+                                <label class="form-check-label">خرید با عضویت</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="radio" value="false" asp-for="GuestCheckout" class="form-check-input" />
+                                <label class="form-check-label">خرید بدون عضویت</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" asp-route-status="FormQuestion" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
+                            <button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+                        </div>
+                    </fieldset>
+
+                    <hr class="mt-4" />
+
+                    <div class="text-center">
+                        <a asp-page="/Index" class="text-decoration-none">
+                            @(Resources.ButtonCaptions.Home)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+}
+else if (Model.Status == "formregister")
+{
+    <form method="post">
+
+        <div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+            <div class="row">
+                <div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+                    <fieldset>
+                        <legend>
+                            @(pageTitle)
+                        </legend>
+
+                        <hr />
+
+                        <partial name="PartialViews/_DisplayPageMessages" />
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.FullName" class="form-label"></label> <label class="text-danger">*</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                                <input asp-for="ViewModel.FullName" class="form-control" dir="ltr" />
+                            </div>
+
+                            <span asp-validation-for="ViewModel.FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.Province" class="form-label"></label> <label class="text-danger">*</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
+                                <input asp-for="ViewModel.Province" class="form-control" dir="ltr" />
+                            </div>
+
+                            <span asp-validation-for="ViewModel.Province" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.City" class="form-label"></label> <label class="text-danger">*</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
+                                <input asp-for="ViewModel.City" class="form-control" dir="ltr" />
+                            </div>
+
+                            <span asp-validation-for="ViewModel.City" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.Address" class="form-label"></label> <label class="text-danger">*</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-geo-alt-fill"></i></div>
+                                <textarea asp-for="ViewModel.Address" class="form-control" dir="ltr"></textarea>
+                            </div>
+
+                            <span asp-validation-for="ViewModel.Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label> <label class="text-danger">*</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-telephone-fill"></i></div>
+                                <input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
+                            </div>
+
+                            <span asp-validation-for="ViewModel.CellPhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.NationalCode" class="form-label"></label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-flag-fill"></i></div>
+                                <input asp-for="ViewModel.NationalCode" class="form-control" dir="ltr" />
+                            </div>
+
+                            <span asp-validation-for="ViewModel.NationalCode" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.PostalCode" class="form-label"></label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-mailbox2"></i></div>
+                                <input asp-for="ViewModel.PostalCode" class="form-control" dir="ltr" />
+                            </div>
+
+                            <span asp-validation-for="ViewModel.PostalCode" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViewModel.Gender" class="form-label"></label> <label class="text-danger">*</label>
+
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-gender-male"></i></div>
+                                <select asp-for="ViewModel.Gender" class="form-control" dir="ltr">
+                                    <option>@(Resources.DataDictionary.Male)</option>
+                                    <option>@(Resources.DataDictionary.Female)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" asp-route-status="FormRegister" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
+                            <button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+                        </div>
+                    </fieldset>
+
+                    <hr class="mt-4" />
+
+                    <div class="text-center">
+                        <a asp-page="/Index" class="text-decoration-none">
+                            @(Resources.ButtonCaptions.Home)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+}

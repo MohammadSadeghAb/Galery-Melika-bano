@@ -93,8 +93,7 @@ public class ProductModel : BasePageModel
             User.Identity == null ||
             User.Identity.IsAuthenticated == false)
         {
-            AddToastError(message: Resources.Messages.Errors.Pleaseregister_loginfirst);
-            return Page();
+            return RedirectToPage("CheckoutOption");
         }
         else
         {

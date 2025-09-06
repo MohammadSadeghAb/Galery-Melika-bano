@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checkout Options.
+        /// </summary>
+        public static string CheckoutOptions {
+            get {
+                return ResourceManager.GetString("CheckoutOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string Contact {

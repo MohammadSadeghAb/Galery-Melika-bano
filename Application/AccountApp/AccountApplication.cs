@@ -29,12 +29,9 @@ namespace Application.AccountApp
 				Address = model.Address,
 				CityAddress = model.City,
                 FullName = model.FullName,
-                Password = model.Password,
-                Username = model?.Username,
 				PostalCode = model.PostalCode,
 				ProvinceAddress = model.Province,
 				NationalCode = model.NationalCode,
-				//EmailAddress = model.EmailAddress,
 				CellPhoneNumber = model.CellPhoneNumber,
             });
         }

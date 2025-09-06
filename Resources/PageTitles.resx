@@ -129,6 +129,9 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>
+  <data name="CheckoutOptions" xml:space="preserve">
+    <value>Checkout Options</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
