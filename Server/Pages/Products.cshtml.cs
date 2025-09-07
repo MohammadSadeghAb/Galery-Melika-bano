@@ -32,14 +32,14 @@ namespace Server.Pages
 
         public async Task OnGetAsync()
         {
-            ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).ToListAsync();
+            ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).OrderByDescending(x => x.UpdateDateTime).ToListAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (Search == null)
             {
-                ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).ToListAsync();
+                ViewModelProduct = await _context.Products.Where(x => x.IsActive == true).OrderByDescending(x => x.UpdateDateTime).ToListAsync();
             }
 
             if (Search != null)

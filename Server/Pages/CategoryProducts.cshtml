@@ -47,7 +47,14 @@
                                     <br />
                                     <p class="text-end">@(item.Name_Product)</p>
                                     <br />
-                                    <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                    @if (item.Number > 0)
+                                    {
+                                        <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-start text-danger">@(Resources.DataDictionary.Endofinventory)</p>
+                                    }
                                 </div>
                             </div>
                         </a>
@@ -79,7 +86,14 @@
                                     <br />
                                     <p class="text-end">@(item.Name_Product)</p>
                                     <br />
-                                    <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                    @if (true)
+                                    {
+                                        <p class="text-start">@(price.ToString("#,#")) تومان </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-start text-danger">@(Resources.DataDictionary.Endofinventory)</p>
+                                    }
                                 </div>
                             </div>
                         </a>
