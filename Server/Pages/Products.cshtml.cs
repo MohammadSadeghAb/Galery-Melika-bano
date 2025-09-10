@@ -49,5 +49,12 @@ namespace Server.Pages
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPostShowAsync()
+        {
+            ViewModelProduct = await _context.Products.Where(x => x.Number > 0 && x.IsActive == true).ToListAsync();
+
+            return Page();
+        }
     }
 }
