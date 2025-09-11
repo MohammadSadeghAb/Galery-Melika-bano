@@ -10,6 +10,11 @@
 */
 
 @font-face {
+	font-family: iranyekan;
+	src: url('/fonts/iranyekan/Qs_Iranyekan.woff2') format('woff2');
+}
+
+/*@font-face {
 	font-family: IRANSansX;
 	font-style: normal;
 	font-weight: 100;
@@ -71,3 +76,4 @@
 	font-weight: normal;
 	src: url('/fonts/woff/IRANSansX-regular.woff') format('woff'), url('/fonts/woff2/IRANSansX-regular.woff2') format('woff2');
 }
+*/
