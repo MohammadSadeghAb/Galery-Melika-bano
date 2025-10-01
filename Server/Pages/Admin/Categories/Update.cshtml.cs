@@ -38,7 +38,7 @@ namespace Server.Pages.Admin.Categories
 
         [BindProperty]
         [DataType(DataType.Upload)]
-        public IFormFile UploadPic { get; set; }
+        public IFormFile? UploadPic { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -97,7 +97,10 @@ namespace Server.Pages.Admin.Categories
                 return Page();
             }
 
-            Upload(UploadPic);
+            if (UploadPic != null)
+            {
+                Upload(UploadPic);
+            }
 
             var res = await _application.UpdateCategory(ViewModel);
 
