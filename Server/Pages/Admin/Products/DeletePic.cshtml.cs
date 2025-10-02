@@ -37,17 +37,19 @@ public class DeletePicModel : BasePageModel
 
     public List<KeyValueViewModel> products { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task OnGetAsync(Guid id)
     {
-        var Products = (await _context.Products.OrderByDescending(x => x.InsertDateTime).ToListAsync());
-        foreach (var item in Products)
-        {
-            products.Add(new KeyValueViewModel()
-            {
-                Id = item.Id,
-                Name = item.Name_Product,
-            });
-        }
+        //var Products = (await _context.Products.OrderByDescending(x => x.InsertDateTime).ToListAsync());
+        //foreach (var item in Products)
+        //{
+        //    products.Add(new KeyValueViewModel()
+        //    {
+        //        Id = item.Id,
+        //        Name = item.Name_Product,
+        //    });
+        //}
+
+        productid = id;
     }
 
     public async Task<IActionResult> OnPostAsync()

@@ -81,6 +81,12 @@
 							<a asp-page="Delete" asp-route-id="@(item.Id)">
 								@(Html.DtatGetIconDelete())
 							</a>
+							<a asp-page="DeletePic" asp-route-id="@(item.Id)">
+								<i class="mx-1 bi bi-x-lg"></i>
+							</a>
+							<a asp-page="CreatePic" asp-route-id="@(item.Id)">
+								<i class="mx-1 bi bi-check-lg"></i>
+							</a>
 						</table-actions>
 
 						<td>
