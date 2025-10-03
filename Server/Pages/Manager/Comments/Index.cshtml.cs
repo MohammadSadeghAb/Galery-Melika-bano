@@ -7,7 +7,7 @@ using ViewModels.Pages.Admin.Comments;
 namespace Server.Pages.Manager.Comments;
 
 [Microsoft.AspNetCore.Authorization.Authorize
-    (Roles = Infrastructure.Constants.Role.Admin)]
+    (Roles = Infrastructure.Constants.Role.Manager)]
 
 public class IndexModel : PageModel
 {
