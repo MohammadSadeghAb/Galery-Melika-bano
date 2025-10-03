@@ -1,4 +1,5 @@
 ﻿using Domain.CategoryAgg;
+using Domain.CommentAgg;
 using Domain.NewsAgg;
 using Domain.ProductAgg;
 using Domain.ProductPicAgg;
@@ -27,6 +28,8 @@ namespace Persistence
         public DbSet<TotalSale> TotalSales { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
 		public DatabaseContext(DbContextOptions options) : base(options)
 		{

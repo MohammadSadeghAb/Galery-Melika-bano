@@ -41,13 +41,9 @@
                         <h5><i class="bi bi-cart"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Buy) : @(Model.CountTotal)</h5>
                     </div>
                 </div>
-                @* <div class="col-12 col-lg-4">
-                    <div class="border rounded-2 m-1 p-3">
-                        <h5><i class="bi bi-cart"></i> @(Resources.DataDictionary.Number) @(Resources.DataDictionary.Product) @(Resources.DataDictionary.Delivery) : @(Model.CountDelivery)
-                        </h5>
-                        
-                    </div>
-                </div> *@
+                <div class="col-12 my-2">
+                    <a class="btn btn-danger w-100" asp-page="/User/Comments/Index">@(Resources.DataDictionary.Comments)</a>
+                </div>
             </div>
         </div>
     </div>
