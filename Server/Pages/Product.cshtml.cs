@@ -1,3 +1,4 @@
+﻿using Application.CommentApp;
 using Application.ProductApp;
 using Application.SaleApp;
 using Domain.CategoryAgg;
@@ -6,12 +7,14 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Parbad.Internal;
 using Persistence;
 using Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ViewModels.Pages.Admin.Comments;
 using ViewModels.Pages.Admin.Products;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -25,13 +28,17 @@ public class ProductModel : BasePageModel
 
     public readonly DatabaseContext _context;
 
+    private readonly ICommentApplication _commentApplication;
+
     public ProductModel(IProductApplication product,
                         ISaleApplication sale,
-                        DatabaseContext context)
+                        DatabaseContext context,
+                        ICommentApplication commentApplication)
     {
         _sale = sale;
         _product = product;
         _context = context;
+        _commentApplication = commentApplication;
         ViewModel = new();
         ViewModelSale = new();
         ViewModelUpdate = new();
@@ -42,6 +49,9 @@ public class ProductModel : BasePageModel
     public ViewModels.Pages.Admin.Sales.UpdateViewMode ViewModelUpdate { get; set; }
 
     public ViewModels.Pages.Admin.Sales.CreateViewModel ViewModelSale { get; set; }
+
+    [BindProperty]
+    public CreateCommentViewModel ViewModelComment { get; set; } = new();
 
     [BindProperty]
     public int Number { get; set; }
@@ -199,5 +209,66 @@ public class ProductModel : BasePageModel
             }
         }
         return RedirectToPage("Index");
+    }
+
+    public async Task<IActionResult> OnPostComment(Guid productId)
+    {
+        if (User == null || User.Identity == null || User.Identity.IsAuthenticated == false)
+        {
+            AddToastError(message: Resources.Messages.Errors.Pleaseregister_loginfirst);
+
+            ViewModel = (await _product.GetProduct(productId)).Data;
+
+            category = _context.Categories.FirstOrDefault(x => x.Id == ViewModel.CategoryParent_Id);
+
+            if (ViewModel == null)
+            {
+                AddToastError
+                    (message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+                return RedirectToPage(pageName: "Index");
+            }
+
+            return Page();
+        }
+
+        if (ViewModelComment.Description.IsNullOrWhiteSpace() || ViewModelComment.Score <= 0
+            || ViewModelComment.Score > 5)
+        {
+            AddToastError(message: "لطفاً نظر خود را وارد کنید و حداقل یک امتیاز انتخاب کنید.");
+
+            ViewModel = (await _product.GetProduct(productId)).Data;
+
+            category = _context.Categories.FirstOrDefault(x => x.Id == ViewModel.CategoryParent_Id);
+
+            if (ViewModel == null)
+            {
+                AddToastError
+                    (message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+                return RedirectToPage(pageName: "Index");
+            }
+
+            return Page();
+        }
+
+        ViewModelComment.ProductId = productId;
+        ViewModelComment.UserId = Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+        ViewModelComment.IsActive = false;
+
+        await _commentApplication.AddComment(ViewModelComment);
+
+        AddToastSuccess(message: "نظر شما با موفقیت ثبت شد");
+
+        ViewModel = (await _product.GetProduct(productId)).Data;
+
+        category = _context.Categories.FirstOrDefault(x => x.Id == ViewModel.CategoryParent_Id);
+
+        if (ViewModel == null)
+        {
+            AddToastError
+                (message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+            return RedirectToPage(pageName: "Index");
+        }
+
+        return Page();
     }
 }

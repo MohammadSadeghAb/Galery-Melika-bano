@@ -1,5 +1,6 @@
 ﻿using Application.AccountApp;
 using Application.CategoryApp;
+using Application.CommentApp;
 using Application.NewsApp;
 using Application.ProductApp;
 using Application.ProductPicApp;
@@ -8,6 +9,7 @@ using Application.TotalSaleApp;
 using Application.TransportCostApp;
 using Application.UserApp;
 using Domain.CategoryAgg;
+using Domain.CommentAgg;
 using Domain.NewsAgg;
 using Domain.ProductAgg;
 using Domain.ProductPicAgg;
@@ -25,31 +27,34 @@ namespace Infrastructure
 	{
 		internal static void ServicesBootstrapper(IServiceCollection services)
 		{
-			services.AddTransient<IUserApplication, UserApplication>();
-			services.AddTransient<IUserRepository, UserRepository>();
+			services.AddScoped<IUserApplication, UserApplication>();
+			services.AddScoped<IUserRepository, UserRepository>();
 
-			services.AddTransient<IProductApplication, ProductApplication>();
-			services.AddTransient<IProductRepository, ProductRepository>();
+			services.AddScoped<IProductApplication, ProductApplication>();
+			services.AddScoped<IProductRepository, ProductRepository>();
 
-			services.AddTransient<IProductPicApplication, ProductPicApplication>();
-			services.AddTransient<IProductPicRepository, ProductPicRepository>();
+			services.AddScoped<IProductPicApplication, ProductPicApplication>();
+			services.AddScoped<IProductPicRepository, ProductPicRepository>();
 
-			services.AddTransient<ISaleApplication, SaleApplication>();
-			services.AddTransient<ISaleRepository, SaleRepository>();
+			services.AddScoped<ISaleApplication, SaleApplication>();
+			services.AddScoped<ISaleRepository, SaleRepository>();
 
-			services.AddTransient<ITotalSaleApplication, TotalSaleApplication>();
-			services.AddTransient<ITotalSaleRepository, TotalSaleRepository>();
+			services.AddScoped<ITotalSaleApplication, TotalSaleApplication>();
+			services.AddScoped<ITotalSaleRepository, TotalSaleRepository>();
 
-            services.AddTransient<ITransportCostApplication, TransportCostApplication>();
-            services.AddTransient<ITransportCostRepository, TransportCostRepository>();
+            services.AddScoped<ITransportCostApplication, TransportCostApplication>();
+            services.AddScoped<ITransportCostRepository, TransportCostRepository>();
 
-            services.AddTransient<INewsApplication, NewsApplication>();
-            services.AddTransient<INewsRepository, NewsRepository>();
+            services.AddScoped<INewsApplication, NewsApplication>();
+            services.AddScoped<INewsRepository, NewsRepository>();
 
-            services.AddTransient<ICategoryApplication, CategoryApplication>();
-			services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryApplication, CategoryApplication>();
+			services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-			services.AddTransient<IAccountApplication, AccountApplication>();
+            services.AddScoped<ICommentApplication, CommentApplication>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+
+            services.AddTransient<IAccountApplication, AccountApplication>();
 			services.AddTransient<IPasswordHasher, PasswordHasher>();
 
 			services.AddTransient<IPasswordHasher, PasswordHasher>();

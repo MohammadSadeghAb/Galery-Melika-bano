@@ -1,0 +1,74 @@
+﻿@page
+@model Server.Pages.User.Comments.IndexModel
+@{
+    var pageTitle =
+    $"{Resources.DataDictionary.Melikabanoo} - {Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Comments}";
+
+    ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+
+    Layout = "Layouts/Ltr/_Layout";
+}
+
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
+<section-page-body>
+
+	<section-table>
+		<table>
+			<caption>
+				@(pageTitle)
+			</caption>
+
+			<thead>
+				<tr>
+					<th>
+						@(Resources.DataDictionary.RowNumber)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Comment)
+					</th>
+					<th>
+						@(Resources.DataDictionary.Score)
+					</th>
+					<th>
+						@(Resources.DataDictionary.ProductName)
+					</th>
+					<th>
+						@(Resources.DataDictionary.InsertDateTime)
+					</th>
+					<th>
+						@(Resources.DataDictionary.UpdateDateTime)
+					</th>
+				</tr>
+			</thead>
+
+			<tbody class="text-center">
+				@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+				{
+					var item = Model.ViewModel[index];
+
+					<tr>
+						@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+						<td>
+							@(item.Description)
+						</td>
+
+						<td>
+							@(item.Score)
+						</td>
+
+						<td>
+							@(item.Product.Name_Product)
+						</td>
+
+						@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+						@(Html.DtatDisplayDateTimeWithTd(value: item.UpdateDateTime))
+					</tr>
+				}
+			</tbody>
+		</table>
+	</section-table>
+</section-page-body>
