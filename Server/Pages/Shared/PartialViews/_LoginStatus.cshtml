@@ -7,7 +7,7 @@
             <i class="bi bi-plus-square"></i> <span class="d-none d-sm-inline">@(Resources.PageTitles.Register)</span>
         </a>
         |
-        <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Login">
+        <a class="text-dark text-decoration-none btn btn-outline-light" asp-page="/Account/Login" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">
             <i class="bi bi-box-arrow-in-left"></i> <span class="d-none d-sm-inline">@(Resources.PageTitles.Login)</span>
         </a>
     </p>

@@ -36,8 +36,13 @@ namespace Server.Pages
         [BindProperty]
         public UserRegistrationViewModel ViewModel { get; set; } = new();
 
-        public async Task<IActionResult> OnGet()
+        [BindProperty]
+        public string? ReturnUrl { get; set; }
+
+        public async Task<IActionResult> OnGet(string? returnUrl)
         {
+            ReturnUrl = returnUrl;
+
             Status = "formquestion";
 
             return Page();
@@ -84,7 +89,14 @@ namespace Server.Pages
                     principal: claimsPrincipal, properties: authenticationProperties);
 
 
-                return RedirectToPage(pageName: "/Index");
+                if (string.IsNullOrWhiteSpace(ReturnUrl))
+                {
+                    return RedirectToPage(pageName: "/Index");
+                }
+                else
+                {
+                    return Redirect(url: ReturnUrl);
+                }
             }
 
             return Page();

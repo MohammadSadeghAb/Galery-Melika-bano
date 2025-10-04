@@ -103,7 +103,9 @@ public class ProductModel : BasePageModel
             User.Identity == null ||
             User.Identity.IsAuthenticated == false)
         {
-            return RedirectToPage("CheckoutOption");
+            var returnurl = HttpContext.Request.Path + HttpContext.Request.QueryString;
+
+            return RedirectToPage("CheckoutOption", new { returnUrl = returnurl });
         }
         else
         {

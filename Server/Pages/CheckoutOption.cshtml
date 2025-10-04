@@ -34,6 +34,7 @@
                         <hr />
 
                         <partial name="PartialViews/_DisplayPageMessages" />
+                        <input asp-for="ReturnUrl" hidden />
 
                         <div class="mb-3">
                             <div class="form-check">
@@ -49,8 +50,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" asp-route-status="FormQuestion" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
-                            <button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+                            <button type="submit" asp-route-status="FormQuestion" class="btn btn-danger">@(Resources.ButtonCaptions.Save)</button>
                         </div>
                     </fieldset>
 
@@ -82,6 +82,7 @@ else if (Model.Status == "formregister")
                         <hr />
 
                         <partial name="PartialViews/_DisplayPageMessages" />
+                        <input asp-for="ReturnUrl" hidden />
 
                         <div class="mb-3">
                             <label asp-for="ViewModel.FullName" class="form-label"></label> <label class="text-danger">*</label>
